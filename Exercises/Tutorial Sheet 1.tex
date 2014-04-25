@@ -12,16 +12,37 @@
 \section*{Exercise 2}
 \subsection*{Exercise 2.a}
 
-%\begin{align}
-
-%\end{align}
+We use the formula for calculating odds:
+\begin{align}
+\frac{p}{1-p} = \frac{s_2}{s_1}
+\end{align}
+The probability for rolling a 6 is $\frac{1}{6}$, $s_1$ can be set to 10.
+\begin{align}
+\frac{\frac{1}{6}}{1-\frac{1}{6}} = \frac{s_2}{10} \Leftrightarrow s_2 = 2
+\end{align}
+So our stack should be \$2.
 
 
 \subsection*{Exercise 2.b}
+We use the same formula again, this time with $s_1=25$.
+\begin{align}
+\frac{\frac{1}{6}}{1-\frac{1}{6}} = \frac{s_2}{25} \Leftrightarrow s_2 = 5
+\end{align}
+So we accept all stakes $s_2 \geq \$ 5$.
 
 
 \subsection*{Exercise 2.c}
-
+We use the formula for odds and solve it for $p$.
+\begin{align}
+                & & \frac{p}{1 - p} & = \frac{s_2}{s_1}                     & & \\
+\Leftrightarrow & & p               & = \frac{s_2}{s_1} (1 - p)             & & \\
+\Leftrightarrow & & p               & = \frac{s_2}{s_1} - \frac{s_2}{s_1} p & & \\
+\Leftrightarrow & & p s_1           & = s_2 - p s_2                         & & \\
+\Leftrightarrow & & p s_1 + p s_2   & = s_2                                 & & \\
+\Leftrightarrow & & p (s_1 + s_2)   & = s_2                                 & & \\
+\Leftrightarrow & & p               & = \frac{s_2}{s_1 + s_2}               & &
+\end{align}
+So the probability should be $p = \frac{s_2}{s_1 + s_2}$.
 
 
 \section*{Exercise 3}
