@@ -7,3 +7,5 @@
 *.toc
 *.tps
 *.tcp
+*.bbl
+*.blg
