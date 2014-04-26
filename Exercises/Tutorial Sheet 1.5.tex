@@ -20,17 +20,17 @@
                         node[end, label=right: {$P(wrong | N > M, c \notin M)$}] {}
                         edge from parent
                         node[above] {$wrong$}
-                        node[below] {$1 - \frac{1}{N-M}$}
+                        node[below] {$1 - \frac{1}{n - m}$}
                     }
                     child {
                         node[end, label=right: {$P(right | N > M, c \notin M)$}] {}
                         edge from parent
                         node[above] {$right$}
-                        node[below] {$\frac{1}{N-M}$}
+                        node[below] {$\frac{1}{n - m}$}
                     }
                     edge from parent
                     node[above] {}
-                    node[below] {$1 - \frac{M}{N}$}
+                    node[below] {$1 - \frac{m}{n}$}
             }
             child {
                 node[bag] {$c \in M$}
@@ -48,7 +48,7 @@
                     }
                     edge from parent
                     node[above] {}
-                    node[below] {$\frac{M}{N}$}
+                    node[below] {$\frac{m}{n}$}
             }
             edge from parent 
             node[above] {}
