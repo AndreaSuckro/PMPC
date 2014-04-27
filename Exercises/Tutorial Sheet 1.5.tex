@@ -20,17 +20,17 @@
                         node[end, label=right: {$P(wrong | N > M, c \notin M)$}] {}
                         edge from parent
                         node[above] {$wrong$}
-                        node[below] {$1 - \frac{1}{N-M}$}
+                        node[below] {$1 - \frac{1}{n - m}$}
                     }
                     child {
                         node[end, label=right: {$P(right | N > M, c \notin M)$}] {}
                         edge from parent
                         node[above] {$right$}
-                        node[below] {$\frac{1}{N-M}$}
+                        node[below] {$\frac{1}{n - m}$}
                     }
                     edge from parent
                     node[above] {}
-                    node[below] {$1 - \frac{M}{N}$}
+                    node[below] {$1 - \frac{m}{n}$}
             }
             child {
                 node[bag] {$c \in M$}
@@ -48,7 +48,7 @@
                     }
                     edge from parent
                     node[above] {}
-                    node[below] {$\frac{M}{N}$}
+                    node[below] {$\frac{m}{n}$}
             }
             edge from parent 
             node[above] {}
@@ -72,6 +72,7 @@
         node[above] {}
         node[below] {}
     };
+<<<<<<< HEAD
 \end{tikzpicture}
 
 We seperate two cases. The first is the case where the number of squares on screen can all be remembered by the subject ($N \leq M$).
@@ -91,3 +92,6 @@ We now add up the cases where the subject  gets the right answer.
 P(right) &= \frac{M}{N} + (1 - \frac{M}{N}) \frac{1}{N-M} = \frac{M+1}{N}
 \end{align}
 
+=======
+\end{tikzpicture}
+>>>>>>> 0e0eea4122e3b3789f5f44bed195346e3c9756c1
