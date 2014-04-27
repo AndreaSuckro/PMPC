@@ -121,6 +121,23 @@ All probabilities can be seen in the tree in figure \ref{tree} (page \pageref{tr
 \label{tree}
 \end{figure}
 
+%We seperate two cases. The first is the case where the number of squares on screen can all be remembered by the subject ($N \leq M$).
+%\begin{align}
+%&&P(right | N \leq M) &= 1 \\
+%&&P(wrong | N \leq M) &= 0 \\
+%\end{align}
+%The second case is the more interesting one, where not all squares can be remembered ($N > M$).
+%\begin{align}
+%&&P(right | N > M, c \in M) &= \frac{M}{N} \\
+%&&P(wrong | N > M, c \in M) &= 0 \\
+%&&P(right | N > M, c \notin M) &= (1 - \frac{M}{N}) \frac{1}{N-M} \\
+%&&P(wrong | N > M, c \notin M) &= (1 - \frac{M}{N}) (1 - \frac{1}{N-M})
+%\end{align}
+%We now add up the cases where the subject  gets the right answer.
+%\begin{align}
+%P(right) &= \frac{M}{N} + (1 - \frac{M}{N}) \frac{1}{N-M} = \frac{M+1}{N}
+%\end{align}
+
 To get the total probabilities for \textit{right} and \textit{wrong} choices, we 
 can sum up the paths.
 
