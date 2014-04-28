@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{center}
+\LARGE PMPC Tutorial Sheet 2\\
+\small Lisa Goerke, Kai Standvoss, Andrea Suckro, Sebastian H\"offner
+\end{center}
+\vspace{0.5cm}
+\normalsize
+
+\section*{Exercise 1}
+
+\section*{Exercise 2}
+The union-bound can be proved by induction.\\
+\\
+$Basis:$
+For $n=1$ we have
+\begin{align}
+& & P(\bigcup_{i=1}^{1}(E_i)) & \leq \sum_{i=1}^{1}(P(E_i)) & & \\
+\Leftrightarrow & & P(E_1) & = P(E_1) & & 
+\end{align}
+\\
+$Inductive Step:$
+We know that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, so it follows that:
+\begin{align}
+& & P(\bigcup_{i=1}^{n+1}(E_i)) & = P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1}) - P(\bigcup_{i=1}^{n}(E_i) \cap A_{n+1}) & &
+\end{align}
+
+\setcounter{equation}{0}
+\section*{Exercise 3}
+
+\begin{align}
+P(A|B) & = \frac{P(B|A) \cdot P(A)}{P(B)} \\
+Posterior & = \frac{Likelihood \cdot Prior}{Evidence}
+\end{align}
+
+\begin{align}
+\frac{P(A|B)}{P(not A|B)} & = \frac{P(B|A)}{P(B|not A)} \cdot \frac{P(A)}{P(not A)} \\
+Posterior & = Likelihoodratio \cdot Prior
+\end{align}
+
+
+\section*{Exercise 4}
+We take Bayes' rule to calculate $P(\mbox{Blue Car}|\mbox{Verified from Witness})$
+\begin{align}
+P(B|V) = \frac{P(V|B) \cdot P(B)}{P(T)}
+\end{align}
+We know that $P(V|B) = 0.8$ and $P(B) = 0.15$, so we only have to find out $P(T)$. Therefore we marginalize over B:
+\begin{align}
+\sum_{B}{P(V|B) \cdot P(B)} = 0.8 \cdot 0.15 + 0.2 \cdot 0.85 = 0.29
+\end{align}
+Now we can take our values and calculate the correct answer:
+\begin{align}
+P(B|V) = \frac{P(V|B) \cdot P(B)}{P(T)} = \frac{0.8 \cdot 0.15}{0.29} = 0.414
+\end{align}
+
+When testing a large group of people is asked, the common mistake becomes obvious that they take the probability that the witness correctly identified each one of the two colors, which is 80\%, as the probability that is asked for.
+
+\setcounter{equation}{0}
+\section*{Exercise 5}
+
+We take Bayes' rule to calculate $P(\mbox{Cancer}|\mbox{Positive Test})$
+\begin{align}
+P(C|P) = \frac{P(P|C) \cdot P(C)}{P(P)}
+\end{align}
+We know that $P(P|C) = 0.5$ and $P(C) = 0.003$, so we only have to find out $P(P)$. Therefore we marginalize over C:
+\begin{align}
+\sum_{C}{P(P|C) \cdot P(C)} = 0.5 \cdot 0.003 + 0.03 \cdot 0.997 = 0.0314
+\end{align}
+Now we can take our values and calculate the correct answer:
+\begin{align}
+P(C|P) = \frac{P(P|C) \cdot P(C)}{P(P)} = \frac{0.5 \cdot 0.003}{0.0314} = 0.048
+\end{align}
+
+As we can see, only 4.8\% of the people being tested positively actually have cancer. Nevertheless screening is a good thing because ... ?!?!?! LALALALALA
+
+\end{document}
