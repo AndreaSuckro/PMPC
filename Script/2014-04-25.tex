@@ -78,11 +78,23 @@ We can calculate $P$ for all events by adding singleton events.
 \label{fig:venn_a_inter_b}
 \end{figure}
 
+\begin{align}
+& P(A \cup B) = P(A) + P(B) - P(A \cap B) = P(A \setminus B) + P(A \cap B) + P(B \setminus A)\\
+& P(A \cup \neg A) = P(\Omega) = 1 = P(A) + P(\neg A)\\
+& P(A) = 1- P(\neg A)
+\end{align}
+
 
 
 \subsection{Random Variables \& Joint Distribution}
-
-
+An example for a joint distribution: You roll two dice, one is six-sided and red, the other one is four sided and blue.
+\begin{align}
+R~\Omega_R~=~\{1,...,6\} & & P(R=\omega)~=~1/6~\forall~\omega~\in~\Omega_R\\
+B~\Omega_B~=~\{1,...,4\} & & P(B=\omega)~=~1/4~\forall~\omega~\in~\Omega_B
+\end{align}
+The joint sample space $\Omega$ is $\Omega = \Omega_R \times \Omega_B$\\
+Since R and B are independent the joint probability is $ P(R,B) = 1/24$ for all value of R, B\\
+More formally speaking it holds that $P(R=i, B=j) = 1/24$ for all values of i,j since $P(R,B) = P(R) \cdot P(B)$ for all independent R,B
 \subsection{Marginal and Conditional Probability}
 
 
