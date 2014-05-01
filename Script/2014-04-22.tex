@@ -22,25 +22,25 @@ Alice offers Bob a bet:
 \textit{Let's toss a coin. I will give you  \$2  whenever it shows heads. But each time it shows tails, you will give me \$3.}
 \end{quote}
 Should Bob accept? Let's take Bob's point of view and see.
-\begin{align}
+\begin{align*}
 x \in \{0 = tails, 1 = heads\}\\
 \mbox{If }x = 1: \mbox{Alice gives Bob \$2.}\\
 \mbox{If }x = 0: \mbox{Bob gives Alice \$3.}
-\end{align}
+\end{align*}
 
 If they play once, the money Bob gains equals: $2x - 3 (1 - x)$, with $x = 0$ on tails or $x = 1$ for heads, respectively.
 But since they will play $n$ times, so Bob has to calculate the sum for $n$ games:
-\begin{align}
+\begin{align*}
 \frac{1}{n} \sum\limits_{i=1}^n \left(2x_i-3\left(1-x_i\right)\right) &= 2\left(\frac{1}{n}\sum\limits_{i=1}^n x_i\right)-3\left(\frac{1}{n}\sum\limits_{i=1}^n \left(1-x_i\right)\right)\\
 &= 2\left(\frac{1}{n}\sum\limits_{i=1}^n x_i\right)-3\left(1-\frac{1}{n}\sum\limits_{i=1}^n x_i\right)
-\end{align}
+\end{align*}
 
 Where $\frac{1}{n}\sum\limits_{i=1}^n x_i$ is the \textbf{relative proportion of heads}.\\
 The expected value (\textit{read as: ``Bob's expected gain''}) is, as can be seen above, $E = 2p - 3 (1 - p)$, where $p$ is the probability of heads.
 $p$ can now easily be expressed as:
-\begin{align}
+\begin{align*}
 \lim_{n\rightarrow\infty}\left(\frac{1}{n}\sum\limits_{i=1}^n x_i\right) = p
-\end{align}
+\end{align*}
 
 But what shall Bob do now, where he has a formula to derive p? Basically he has two choices: Trying out and tossing a coin $n$ times or using his \textit{a priori belief} and assigning a $p$.
 How he decides is the difference between the frequentist and the Bayesian view. 
@@ -54,9 +54,9 @@ Alice has another bet for Bob:
 \end{quote}
 What stakes should Bob choose?
 We will have a look at his situation again.
-\begin{align}
+\begin{align*}
 x \in \{0 = tails, 1 = heads\}
-\end{align}
+\end{align*}
 \begin{figure}[ht]
   \centering
   \includegraphics[scale=0.5]{thumbtacks}
@@ -65,23 +65,23 @@ x \in \{0 = tails, 1 = heads\}
 
 The probability $p$ is again:
 
-\begin{align}
+\begin{align*}
 \lim_{n\rightarrow\infty}\left(\frac{1}{n}\sum\limits_{i=1}^n x_i\right) = p
-\end{align}
+\end{align*}
 
 What is different is Bob's expected gain. He now has to consider the stakes as well.
 
-\begin{align}
+\begin{align*}
 E = s_1 p - s_2 (1 - p)
-\end{align}
+\end{align*}
 
 $s_1$ is Alice's stake and $s_2$ is Bob's stake. To have a \textit{``fair''} bet the expected gain should be zero. Bob uses this knowledge to derive his stake.
 
-\begin{align}
+\begin{align*}
 & \: E = s_1 p - s_2 (1 - p)\\
 0 = E \: \Leftrightarrow & \: s_1 p = s_2 (1 - p)\\
 \Leftrightarrow & \: \frac{p}{1-p} = \frac{s_2}{s_1}
-\end{align}
+\end{align*}
 
 This last formula $\frac{p}{1-p} = \frac{s_2}{s_1}$ are the \textbf{odds}. If Bob fixes one stake and inserts $p$, he can calculate the other stake needed for a fair bet. But again he has the problem of how to get to $p$.
 

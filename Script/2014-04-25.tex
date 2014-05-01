@@ -52,11 +52,13 @@ To get the probability of an event we just have to sum up the values in table
 than the blue number'', let's call it $R < B$, the probability $P(R < B)$ can be 
 calculated as follows:
 
-\begin{align}
+\begin{align*}
 P(R < B) &= P(R=1, B=2) + P(R=1, B=3) + P(R=2, B=3) \\
          &+ P(R=1, B=4) + P(R=2, B=4) + P(R=3, B=4) \nonumber \\
          &= 6 \cdot \frac{1}{25} = \frac{6}{25}
-\end{align}
+\end{align*}
+
+
 
 \subsection{Axioms of Probability}
 \begin{description}
@@ -69,32 +71,36 @@ P(R < B) &= P(R=1, B=2) + P(R=1, B=3) + P(R=2, B=3) \\
             then $P(E) = P(\bigcup_{i=1}^n E_i) = \sum_{i=1}^{n}{P(E_i)}$
 \end{description}
 
-We can calculate $P$ for all events by adding singleton events.
+We can calculate $P$ for all events by adding up singleton events.
 
 \subsubsection*{Other rules that follow}
 \begin{figure}[ht]
-\includegraphics[scale=0.2]{venn_diagram_a_intersects_b}
-\caption{The intersection between two sets makes math a bit tricky}
-\label{fig:venn_a_inter_b}
+  \begin{center}
+    \includegraphics[scale=0.3]{venn_diagram_a_intersects_b}
+    \caption{The intersection between two sets makes math a bit tricky}
+    \label{fig:venn_a_inter_b}
+  \end{center}
 \end{figure}
 
-\begin{align}
+\begin{align*}
 & P(A \cup B) = P(A) + P(B) - P(A \cap B) = P(A \setminus B) + P(A \cap B) + P(B \setminus A)\\
 & P(A \cup \neg A) = P(\Omega) = 1 = P(A) + P(\neg A)\\
 & P(A) = 1- P(\neg A)
-\end{align}
+\end{align*}
 
 
 
 \subsection{Random Variables \& Joint Distribution}
 An example for a joint distribution: You roll two dice, one is six-sided and red, the other one is four sided and blue.
-\begin{align}
-R~\Omega_R~=~\{1,...,6\} & & P(R=\omega)~=~1/6~\forall~\omega~\in~\Omega_R\\
-B~\Omega_B~=~\{1,...,4\} & & P(B=\omega)~=~1/4~\forall~\omega~\in~\Omega_B
-\end{align}
-The joint sample space $\Omega$ is $\Omega = \Omega_R \times \Omega_B$\\
-Since R and B are independent the joint probability is $ P(R,B) = 1/24$ for all value of R, B\\
-More formally speaking it holds that $P(R=i, B=j) = 1/24$ for all values of i,j since $P(R,B) = P(R) \cdot P(B)$ for all independent R,B
+\begin{align*}
+\mbox{R: }\Omega_R = \{1, ..., 6\} & & P(R=\omega) = \frac{1}{6}\ \forall\ \omega \in \Omega_R\\
+\mbox{B: }\Omega_B = \{1, ..., 4\} & & P(B=\omega) = \frac{1}{4}\ \forall\ \omega \in \Omega_B
+\end{align*}
+The joint sample space $\Omega$ is $\Omega = \Omega_R \times \Omega_B$.
+
+Since R and B are independent the joint probability is $ P(R, B) = \frac{1}{24}$ for all value of R, B.
+
+More formally speaking it holds that $P(R=i, B=j) = \frac{1}{24}$ for all values of $i, j$ since $P(R, B) = P(R) \cdot P(B)$ for all independent $R, B$.
 \subsection{Marginal and Conditional Probability}
 
 
