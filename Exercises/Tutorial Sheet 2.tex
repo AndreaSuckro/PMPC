@@ -126,6 +126,65 @@ P(C|P) = \frac{P(P|C) \cdot P(C)}{P(P)} = \frac{0.5 \cdot 0.003}{0.0314} = 0.048
 As we can see, only 4.8\% of the people being tested positively actually have cancer. Nevertheless screening is a good thing because out of 1000 detections still 50 have cancer and those can be treated which probably makes up for the disadvantage of having 950 false alarms.  
 
 \setcounter{equation}{0}
+\section*{Exercise 6}
+
+\begin{tabular}{ r|c|c|l }
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{Cancer}
+ & \multicolumn{1}{c}{$\neg$ Cancer} \\
+\cline{2-3}
+Positive Test & 0.15\% & 2.99\% & 3.14\%\\ 
+\cline{2-3}
+Negative Test & 0.15\% & 96.71\% & 96.86\% \\
+\cline{2-3}
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{0.3\%}
+ & \multicolumn{1}{c}{99.7\%}  & \multicolumn{1}{c}{100\%}\\
+\end{tabular}
+
+\begin{align}
+& P(P) = \sum_{C}{P(P|C) \cdot P(C)} = 0.5 \cdot 0.003 + 0.03 \cdot 0.997 = 0.0314\\
+& P(\neg P) = \sum_{C}{P(\neg P|C) \cdot P(C)} = 0.5 \cdot 0.003 + 0.97 \cdot 0.997 = 0.9686\\ 
+& P(P|C) = \frac{P(P,C)}{P(C)} = \frac{0.0015}{0.003} = 0.5 \\
+& P(P|\neg C) = \frac{P(P,\neg C)}{P(\neg C)} = \frac{0.0299}{0.997} = 0.03 \\
+& P(\neg P|C) = \frac{P(\neg P,C)}{P(C)} = \frac{0.0015}{0.003} = 0.5 \\
+& P(\neg P|\neg C) = \frac{P(\neg P,\neg C)}{P(\neg C)} = \frac{0.9671}{0.997}= 0.97\\
+& P(C|P) = \frac{P(C,P)}{P(P)} = \frac{0.0015}{0.0314} = 0.048 \\
+& P(C|\neg P) = \frac{P(C,\neg P)}{P(\neg P)} = \frac{0.0015}{0.9686} = 0.002 \\
+& P(\neg C|P) = \frac{P(\neg C,P)}{P(P)} = \frac{0.0299}{0.0314} = 0.952 \\
+& P(\neg C|\neg P) = \frac{P(\neg C,\neg P)}{P(\neg P)} = \frac{0.9671}{0.9686}= 0.998 
+\end{align}\\
+\\
+If the events were independent but $P(C)=0.003$, $P(\neg C)=0.997$, $P(P)=0.0314$ and $P(\neg P)=0.9686$ stay as they are we got:
+\\
+\\
+\begin{tabular}{ r|c|c|l }
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{Cancer}
+ & \multicolumn{1}{c}{$\neg$ Cancer} \\
+\cline{2-3}
+Positive Test & 0.009\% & 3.131\% & 3.14\%\\ 
+\cline{2-3}
+Negative Test & 0.291\% & 96.569\% & 96.86\% \\
+\cline{2-3}
+\multicolumn{1}{r}{}
+ &  \multicolumn{1}{c}{0.3\%}
+ & \multicolumn{1}{c}{99.7\%}  & \multicolumn{1}{c}{100\%}\\
+\end{tabular}\\
+\newpage
+The conditional probabilities change as follows:\\
+\begin{align}
+& P(P|C) = \frac{P(P,C)}{P(C)} = \frac{0.00009}{0.003} = 0.03 \\
+& P(P|\neg C) = \frac{P(P,\neg C)}{P(\neg C)} = \frac{0.03131}{0.997} = 0.0314 \\
+& P(\neg P|C) = \frac{P(\neg P,C)}{P(C)} = \frac{0.00291}{0.003} = 0.97 \\
+& P(\neg P|\neg C) = \frac{P(\neg P,\neg C)}{P(\neg C)} = \frac{0.96569}{0.997}= 0.9686\\
+& P(C|P) = \frac{P(C,P)}{P(P)} = \frac{0.00009}{0.0314} = 0.00287 \\
+& P(C|\neg P) = \frac{P(C,\neg P)}{P(\neg P)} = \frac{0.00291}{0.9686} = 0.003 \\
+& P(\neg C|P) = \frac{P(\neg C,P)}{P(P)} = \frac{0.03131}{0.0314} = 0.99713 \\
+& P(\neg C|\neg P) = \frac{P(\neg C,\neg P)}{P(\neg P)} = \frac{0.96569}{0.9686}= 0.997 
+\end{align}
+
+\setcounter{equation}{0}
 \section*{Exercise 7}
 
 As the probability for each door to contain a car is equal we know that our chance to win is given by $P(\mbox{Win}) = \frac{1} 3$\\
