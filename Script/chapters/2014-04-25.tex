@@ -67,8 +67,8 @@ P(R < B) &= P(R=1, B=2) + P(R=1, B=3) + P(R=2, B=3) \\
   \item[3.] if $E = E_1 \cup E_2 \wedge E_1 \cap E_2 = \left\{ \right\}$ 
             then $P(E) = P(E_1 \cup E_2) = P(E_1) + P(E_2)$
   \item[3'.] \textit{(follows from 3)} 
-            if $E = \bigcup_{i=1}^n E_i \  \wedge \ \forall_{i, j; i \neq j} E_i \cap E_j = \left\{ \right\}$
-            then $P(E) = P(\bigcup_{i=1}^n E_i) = \sum_{i=1}^{n}{P(E_i)}$
+            if $E = \bigcup\limits_{i=1}^n E_i \  \wedge \ \forall_{i, j; i \neq j} E_i \cap E_j = \left\{ \right\}$ \\
+            then $P(E) = P\left(\bigcup\limits_{i=1}^n E_i\right) = \sum\limits_{i=1}^{n}{P\left(E_i\right)}$
 \end{description}
 
 We can calculate $P$ for all events by adding up singleton events.
@@ -101,10 +101,71 @@ The joint sample space $\Omega$ is $\Omega = \Omega_R \times \Omega_B$.
 Since R and B are independent the joint probability is $ P(R, B) = \frac{1}{24}$ for all value of R, B.
 
 More formally speaking it holds that $P(R=i, B=j) = \frac{1}{24}$ for all values of $i, j$ since $P(R, B) = P(R) \cdot P(B)$ for all independent $R, B$.
-\subsection{Marginal and Conditional Probability}
 
+
+
+\subsection{Marginal and Conditional Probability}
+For the following examples please refer to table \ref{tab:2014-04-25_cards} (page \pageref{tab:2014-04-25_cards}).
 
 \subsubsection*{Marginal Probability}
+The \textbf{Marginal Probability} for $P(R=j)$ is:
 
+\begin{align*}
+P(R=j) = 
+\begin{cases} 
+\frac{5}{25} & \mbox{if } j = 1 \\ 
+\frac{4}{25} & \mbox{if } else
+\end{cases}
+\end{align*}
+
+This can be calculated by summing up one dimension of the table.
+\begin{align*}
+P(R=j) = \sum\limits_{i \in \Omega_B} P(R=j, B=i)
+\end{align*}
+
+This can be written a bit more casual (here for B now):
+\begin{align*}
+P(B) = \sum\limits_R P(R, B) = 
+\begin{cases} 
+\frac{7}{25} & \mbox{if } B = 1 \\ 
+\frac{6}{25} & \mbox{if } else
+\end{cases}
+\end{align*}
 
 \subsubsection*{Conditional Probability}
+In case a card was picked and it is already known what number the red side shows,
+$P(R, B) \neq P(R) \cdot P(B)$ is \textit{not independent}.
+
+The probabilities are then:
+\begin{align*}
+P(B|R=1) =
+\begin{cases} 
+\frac{2}{5} & \mbox{if } B = 1 \\ 
+\frac{1}{5} & \mbox{if } else
+\end{cases}\\
+P(B|R=2, ..., 6) = \frac{1}{4}
+\end{align*}
+
+The conditional probability $P(A|B)$ (read: $P$ of $A$ given $B$) can be expressed as follows:
+\begin{align*}
+P(A|B)         &= \frac{P(A, B)}{\sum\limits_A P(A, B)} = \frac{P(A, B)}{P(B)} \\
+\mbox{where}   & \\
+P(A, B)        &\mbox{ is the joint pobability} \\
+\sum\limits_A P(A, B) &\mbox{ is the marginal probability} \\
+P(A, B)        &\mbox{ is a function of A (because B is fixed)}\\
+P(B)           &\mbox{ is the renorm}
+\end{align*}
+
+With the chain rule $P(A|B)P(B) = P(A, B) = P(B|A)P(A)$ we can derive \textbf{Bayes' rule}:
+\begin{align*}
+P(B|A) &= \frac{P(A|B)P(B)}{P(A)} = \frac{P(A|B)P(B)}{\sum\limits_B P(A|B)P(B)} \\
+\mbox{where we call}   & \\
+P(B|A)  &\mbox{ posterior} \\
+P(A|B)  &\mbox{ likelihood} \\
+P(B)    &\mbox{ prior} \\
+P(A)    &\mbox{ evidence}
+\end{align*}
+
+
+
+
