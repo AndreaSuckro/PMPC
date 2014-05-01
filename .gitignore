@@ -2,7 +2,8 @@
 *.lof
 *.log
 *.lot
-*.pdf
+Notes.pdf
+Tutorial Sheet*.pdf
 *.tiw
 *.toc
 *.tps

@@ -3,12 +3,35 @@
 \usepackage{amsmath}  % math package
 \usepackage{graphicx} % graphics
 \usepackage{multirow} % for rowspanning table entries
+\usepackage{etoolbox} % for conditional includes
+\usepackage{pdfpages} % to include exercise sheets
+
+\usepackage{tikz}      % difficult diagrams
+\usetikzlibrary{trees} % tree diagram
+
+
+% Toggles for document layout
+\newtoggle{exercises}   % toggle for exercise sheets
+\newtoggle{solutions}   % toggle for sheet solutions
+\newtoggle{showdates}   % toggle for dates in headlines
+% use \toggletrue{} and \togglefalse{} to set them 
+
+\toggletrue{exercises} 
+%\togglefalse{exercises} 
+
+\toggletrue{solutions} 
+%\togglefalse{solutions} 
+
+\toggletrue{showdates}
+%\togglefalse{showdates}
+
+
 
 \begin{document}
 
 % title, no headings etc.
 \pagestyle{empty}
-\input{titlepage.tex}
+\input{chapters/titlepage.tex}
 \clearpage
 
 % table of contents and new page
@@ -18,98 +41,192 @@
 % from now on headings etc.
 \pagestyle{plain}
 
-% chapters
+
+% maybe one day we want to include a preface
+%\input{chapters/preface.tex}
+%\clearpage
+
 
 % Probability Refresher I
-\input{2014-04-22.tex}
+\input{chapters/2014-04-22.tex}
 \clearpage
 
 % Practice: Probability Refresher I
-%\input{2014-04-28.tex}
-%\clearpage
+\iftoggle{exercises}{
+  \includepdf[pages={-},
+      addtotoc={1,section,1,Tutorial Sheet 1,exsheet1},
+      viewport=100 50 550 700,
+      scale=0.75,
+      pagecommand=\thispagestyle{plain}
+      ]{exercises/Exercises01.pdf}
+}{}
+\iftoggle{solutions}{
+  \input{chapters/2014-04-28.tex}
+  \clearpage
+}{}
 
 % Probability Refresher II
-\input{2014-04-25.tex}
+\input{chapters/2014-04-25.tex}
 \clearpage
 
 % Practice: Probability Refresher II
-%\input{2014-05-05.tex}
-%\clearpage
+\iftoggle{exercises}{
+  \includepdf[pages={-},
+      addtotoc={1,section,1,Tutorial Sheet 2,exsheet2},
+      viewport=100 50 550 700,
+      scale=0.75,
+      pagecommand=\thispagestyle{plain}
+      ]{exercises/Exercises02.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-05-05.tex}
+%  \clearpage
+}{}
 
 % Measuring Beliefs I
-%\input{2014-05-02.tex}
-%\clearpage
+\input{chapters/2014-05-02.tex}
+\clearpage
 
 % Measuring Beliefs II
-%\input{2014-05-09.tex}
+%\input{chapters/2014-05-09.tex}
 %\clearpage
 
 % Practice: Measuring Beliefs I + II
-%\input{2014-05-19.tex}
-%\clearpage
+\iftoggle{exercises}{
+  \includepdf[pages={-},
+      addtotoc={1,section,1,Tutorial Sheet 3,exsheet3},
+      viewport=100 50 550 700,
+      scale=0.75,
+      pagecommand=\thispagestyle{plain}
+      ]{exercises/Exercises03.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-05-19.tex}
+%  \clearpage
+}{}
 
 % Bayesian Inference Examples
-%\input{2014-05-23.tex}
+%\input{chapters/2014-05-23.tex}
 %\clearpage
 
 % Frequentist Inference Examples
-%\input{2014-05-26.tex}
+%\input{chapters/2014-05-26.tex}
 %\clearpage
 
 % Practice: Bayesian and Frequentist Inference
-%\input{2014-05-03.tex}
-%\clearpage
+\iftoggle{exercises}{
+  %\includepdf[pages={-},
+      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
+      %viewport=100 50 550 700,
+      %scale=0.75,
+      %pagecommand=\thispagestyle{plain}
+      %]{exercises/Exercises0.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-05-03.tex}
+%  \clearpage
+}{}
 
 % Mid-Term Exam Corrections
-%\input{2014-06-06.tex}
+%\input{chapters/2014-06-06.tex}
 %\clearpage
 
 % Signal Detection Theory I
-%\input{2014-06-13.tex}
+%\input{chapters/2014-06-13.tex}
 %\clearpage
 
 % Signal Detection Theory II
-%\input{2014-06-16.tex}
+%\input{chapters/2014-06-16.tex}
 %\clearpage
 
 % Practice: Signal Detection Theory I+II
-%\input{2014-06-23.tex}
-%\clearpage
+\iftoggle{exercises}{
+  %\includepdf[pages={-},
+      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
+      %viewport=100 50 550 700,
+      %scale=0.75,
+      %pagecommand=\thispagestyle{plain}
+      %]{exercises/Exercises0.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-06-23.tex}
+%  \clearpage
+}{}
 
 % Signal Detection Theory III
-%\input{2014-06-20.tex}
+%\input{chapters/2014-06-20.tex}
 %\clearpage
 
 % Practice: Signal Detection Theory III
-%\input{2014-06-30.tex}
-%\clearpage
+\iftoggle{exercises}{
+  %\includepdf[pages={-},
+      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
+      %viewport=100 50 550 700,
+      %scale=0.75,
+      %pagecommand=\thispagestyle{plain}
+      %]{exercises/Exercises0.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-06-30.tex}
+%  \clearpage
+}{}
 
 % Choice Models I
-%\input{2014-06-27.tex}
+%\input{chapters/2014-06-27.tex}
 %\clearpage
 
 % Practice: Choice Models I
-%\input{2014-07-07.tex}
-%\clearpage
+\iftoggle{exercises}{
+  %\includepdf[pages={-},
+      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
+      %viewport=100 50 550 700,
+      %scale=0.75,
+      %pagecommand=\thispagestyle{plain}
+      %]{exercises/Exercises0.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-07-07.tex}
+%  \clearpage
+}{}
 
 % Choice Models II
-%\input{2014-07-04.tex}
+%\input{chapters/2014-07-04.tex}
 %\clearpage
 
 % Practice: Choice Models II
-%\input{2014-07-14.tex}
-%\clearpage
+\iftoggle{exercises}{
+  %\includepdf[pages={-},
+      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
+      %viewport=100 50 550 700,
+      %scale=0.75,
+      %pagecommand=\thispagestyle{plain}
+      %]{exercises/Exercises0.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-07-14.tex}
+%  \clearpage
+}{}
 
 % Everyday Predictions
-%\input{2014-07-11.tex}
+%\input{chapters/2014-07-11.tex}
 %\clearpage
 
 % Practice: Everyday Predictions
-%\input{2014-07-18.tex}
-%\clearpage
+\iftoggle{exercises}{
+  %\includepdf[pages={-},
+      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
+      %viewport=100 50 550 700,
+      %scale=0.75,
+      %pagecommand=\thispagestyle{plain}
+      %]{exercises/Exercises0.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-07-18.tex}
+%  \clearpage
+}{}
 
 % Q&A
-%\input{2014-07-18.tex}
+%\input{chapters/2014-07-18.tex}
 %\clearpage
 
 \end{document}
