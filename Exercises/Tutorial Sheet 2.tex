@@ -11,43 +11,70 @@
 \normalsize
 
 \section*{Exercise 1}
+There are different types of roulette, we will only deal with the so-called 
+``European'' one, which features only one $0$, no $00$.
+
+The sample space $\Omega$ is $\Omega=\left\{0, 1, 2, 3, ..., 36\right\}$. The event space is $\mathcal{P} \left( \Omega \right) \setminus \Omega$, the number of events $2^{|\Omega|} = 2^37 = 2^10 * 2^10 * 2^10 * 2^7 \approx 128,000,000,000 (128 Bio)$.
+
+The expected values are:
+\begin{align*}
+E(even) &= 18 \cdot \frac{18}{37} - 18 \cdot \frac{19}{37} = -0.49\\
+E(even\ numbers) &= \left(35 \cdot \frac{1}{37} - 1 \cdot \frac{36}{37} \right) * 18 = -0.49
+\end{align*}
+So basically both variants are the same. 
+
+However, in European roulette there usually exists the so-called ``en prison''-rule. This rule freezes (``imprisons'') the stakes made on the small bets (``odd'', ``even'', ``red'', ``black'', ``high'', ``low'') after a $0$ until the specific bet was fulfilled twice in a row. When it came up twice in a row, you are allowed to get your stakes back. Alternatively, if you want to play with your bets, you can keep half of them instead of letting them being frozen, losing the other half. This modifies the expected value:
+
+\begin{align*}
+E(even, 0, freeze) &= 18 \cdot \frac{18}{37} - 18 \cdot \frac{18}{37} - 0 \cdot \frac{1}{37} = 0  \\
+E(even, 0, return) &= 18 \cdot \frac{18}{37} - 18 \cdot \frac{18}{37} - 9 \cdot \frac{1}{37} = -0.24  \\
+E(even, 0) &= \frac{1}{2} \left( E(even, 0, return) + E(even, 0, freeze) \right) = -0.12 \\
+E(even) &= \frac{\frac{1}{37} E(even, 0) + \frac{36}{37} E(even, \neg 0)}{2} = -0.48
+\end{align*}
+
+With the ``en prison'' rule betting on ``even'' is therefore better than betting on all even numbers.
+
+\noindent {}
+
+The Bank makes money because of the $0$: For calculating the odds they assume not 37 but 36 numbers.
+
 
 \setcounter{equation}{0}
 \section*{Exercise 2}
-The union-bound can be proved by induction.\\
-\\
-$Basis:$
-For $n=1$ we have
+The union-bound can be proved by induction.
+
+\noindent $Basis:$ \\ For $n=1$ we have
 \begin{align}
 & & P(\bigcup_{i=1}^{1}(E_i)) & \leq \sum_{i=1}^{1}(P(E_i)) & & \\
 \Leftrightarrow & & P(E_1) & = P(E_1) & & 
 \end{align}
-\\
-$Inductive Step:$
+
+\noindent $Inductive Step:$ \\
 We know that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, so it follows that:
 \begin{align}
-& & P(\bigcup_{i=1}^{n+1}(E_i)) & = P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1}) - P(\bigcup_{i=1}^{n}(E_i) \cap A_{n+1}) & &
+& & P(\bigcup_{i=1}^{n+1}(E_i)) & = P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1}) - P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1}) & &
 \end{align}
-\\
-Now since $P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1})$ is a probability, by the first axiom of probability we know that it is bigger or equal to zero:\\
+
+\noindent Now since $P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1})$ is a probability, by the first axiom of probability we know that it is bigger or equal to zero:
 \begin{align}
  P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1}) \geq 0 
 \end{align}
-\\
-By adding it to both sides of the inequality we get:\\
+
+\noindent By adding it to both sides of the inequality we get:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) + P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1}) & = P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1})  & &
 \end{align}
-\\
-And therefore we know:
+
+\noindent And therefore we know:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) \leq P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1})  & &
 \end{align}
-This is equvialent to:
+
+\noindent This is equvialent to:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) \leq \sum_{i=1}^{n}(P(E_i) + P(E_{n+1})) & = \sum_{i=1}^{n+1}(P(E_i)) & &
 \end{align}
-\\
+
 
 \setcounter{equation}{0}
 \section*{Exercise 3}
