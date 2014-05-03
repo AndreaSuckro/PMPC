@@ -23,7 +23,7 @@ E(even) &= \frac{\frac{1}{37} E(even, 0) + \frac{36}{37} E(even, \neg 0)}{2} = -
 
 With the ``en prison'' rule betting on ``even'' is therefore better than betting on all even numbers.
 
-\noindent {}
+{ }
 
 The Bank makes money because of the $0$: For calculating the odds they assume not 37 but 36 numbers.
 
@@ -31,35 +31,35 @@ The Bank makes money because of the $0$: For calculating the odds they assume no
 \subsection*{Exercise 2}
 The union-bound can be proved by induction.
 
-\noindent $Basis:$ \\ For $n=1$ we have
+$Basis:$ \\ For $n=1$ we have
 \setcounter{equation}{0}
 \begin{align}
 & & P(\bigcup_{i=1}^{1}(E_i)) & \leq \sum_{i=1}^{1}(P(E_i)) & & \\
 \Leftrightarrow & & P(E_1) & = P(E_1) & & 
 \end{align}
 
-\noindent $Inductive Step:$ \\
+$Inductive Step:$ \\
 We know that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, so it follows that:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) & = P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1}) - P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1}) & &
 \end{align}
 
-\noindent Now since $P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1})$ is a probability, by the first axiom of probability we know that it is bigger or equal to zero:
+Now since $P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1})$ is a probability, by the first axiom of probability we know that it is bigger or equal to zero:
 \begin{align}
  P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1}) \geq 0 
 \end{align}
 
-\noindent By adding it to both sides of the inequality we get:
+By adding it to both sides of the inequality we get:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) + P(\bigcup_{i=1}^{n}(E_i) \cap E_{n+1}) & = P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1})  & &
 \end{align}
 
-\noindent And therefore we know:
+And therefore we know:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) \leq P(\bigcup_{i=1}^{n}(E_i)) + P(E_{n+1})  & &
 \end{align}
 
-\noindent This is equvialent to:
+This is equvialent to:
 \begin{align}
 & & P(\bigcup_{i=1}^{n+1}(E_i)) \leq \sum_{i=1}^{n}(P(E_i) + P(E_{n+1})) & = \sum_{i=1}^{n+1}(P(E_i)) & &
 \end{align}
