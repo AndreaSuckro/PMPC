@@ -16,7 +16,8 @@ The actual probability we are interested in is the one of really being guilty gi
   P(G | P) & = \frac{0.9999 \cdot \frac{1}{100,000}}{0.9999 \cdot \frac{1}{100,000} + 0.00001 \cdot \frac{99,999}{100,000}}\\
   P(G | P) & = 0.49998
 \end{align*}
- That means the actual probability that the accused person really is guilty is just about 50\%. Again neglecting the high base rate, at first glance in court  it may seem very likely that the defendant is the murderer but we as clever attornies, knowing our statistics, can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high even though the test is so accurate. Of cause the probability of 50\% is just an upper bound and can be much less for fewer participants but nevertheless shows the huge mistake one makes by neglecting the effect of a high base rate.  
+ That means the actual probability that the accused person really is guilty is just about 50\%. Again neglecting the high base rate, at first glance in court  it may seem very likely that the defendant is the murderer but we as clever attorneys, knowing our statistics, can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high even though the test is so accurate. Of cause the probability of 50\% is just an upper bound and can be much less for fewer participants but nevertheless shows the huge mistake one makes by neglecting the effect of a high base rate.  
+ 
 \section*{Exercise 4}
 The odds are $7 : 2$ for Portugal to win, it means that if Adam bets $10\euro$ on Portugal the bookmaker bets $2,857€$ on Greece. In case Portugal wins Adam will get $12,86€$, which is a gain of $2,86€$.
 Boris bets $10€$ on Greece and the odds are 2:5 that Greece wins. The bookmaker bets $25€$ on Portugal, so Boris will get $35€$ if Greece wins, which is a gain of $25€$.
@@ -26,5 +27,20 @@ Charly bets $6,70$ in total.
 If the odds were $7 : 2$ and $2 : 7$, Charly would lose $0.40€$ if Portugal wins, he would win $1.40$ if Greece wins. The bookmaker however wants to make money, that's why he fixes the odd in a way that he will earn some.\\
 $7 : 2$ for Portugal $\rightarrow 4,90€ : 1,40€$ $\rightarrow$ Charly gets $6,30€$, he loses $0.40$.\\
 $2 : 5$ for Greece $\rightarrow 1,80€ : 4,50€$ $\rightarrow$ Charly gets $6,30€$, he loses $0.40$.
+
+\section*{Exercise 6}
+\begin{align*}
+& \frac{p}{1-p} = 2/5\\
+& \Leftrightarrow 5p = 2 - 2p\\
+& \Leftrightarrow 7p = 2\\
+& \Leftrightarrow p = 2/7
+\end{align*}
+If the probability for Greece to win was higher than 2/7, we might have been tempted to place a bet.
+
+\section*{Exercise 7}
+The expected gain for the two different tickets is:\\
+$EV_{P(A \cap B)} = (1 - P(A \cap B)) \cdot P(A \cap B) + P(A \cap B) \cdot (1 - P(A \cap B)) \Leftrightarrow 2 \cdot P(A \cap B) - 2 \cdot P(A \cap B)^2$ \\
+$EV_{P(A)} = (1 - P(A)) \cdot P(A) + P(A) \cdot (1 - P(A))$
+
 
 \end{document}
