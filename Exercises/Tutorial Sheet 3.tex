@@ -2,16 +2,19 @@
 \input{exercises_preamble}
 
 \section*{Exercise 2}
-Before we can calculate any probabilities we make some assumptions about the circumstances of the case. First we approximate the number of subjects taking part in the DNA test still to be 100.000 even though probably this rate would be a lot less, but thereby we at least an upper bound for our probabilities. Further we assume that the murderer really is one of the men which renders the probability of beeing guilt as \\ 
+Before we can calculate any probabilities we make some assumptions about the circumstances of the case. First we approximate the number of subjects taking part in the DNA test still to be 100.000 even though probably this rate would be a lot less, but thereby we at least an upper bound for our probabilities. Further we assume that the murderer really is one of the men which renders the probability of being guilt as \\ 
 $P(Guilty) = \frac{1}{100.000}$\\
 and therefore\\
 $P(\neg G) = \frac{99999}{100.000}$\\
 We are further given the probability of having a positiv test result given you are guilty \\
 $P(Positiv|G) = 0.9999 $ \\
-The actual probability we are interested in is the one of really beeing guilty given a positiv test result: \\
+The actual probability we are interested in is the one of really being guilty given a positiv test result: \\
 \begin{align*}
-  P(G | P) = \frac{P(P|G) \cdot p(G)}{P(P)} \\
-  P(G | P) = \frac{P(P|G) \cdot p(G)}{\sum_{G}(P(P,G))}
+  P(G | P) & = \frac{P(P|G) \cdot P(G)}{P(P)} \\
+  P(G | P) & = \frac{P(P|G) \cdot P(G)}{\sum_{i=1}^{N}(P(P|G_i)\cdot P(G_i)}\\
+  P(G | P) & = \frac{P(P|G) \cdot P(G)}{P(P|G)\cdot P(G) + P(P|\neg G)\cdot P(\neg G)} \\
+  P(G | P) & = \frac{0.9999 \cdot \frac{1}{100.000}}{0.9999 \cdot \frac{1}{100.000} + 0.00001 \cdot \frac{99999}{100.000}}\\
+  P(G | P) & = 0.49998
 \end{align*}
  
 
