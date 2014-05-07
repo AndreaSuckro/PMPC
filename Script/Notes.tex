@@ -1,15 +1,24 @@
 \documentclass[a4paper,oneside,10pt]{article}
 
-\usepackage{amsmath, amssymb} % math package
-\usepackage{graphicx}         % graphics
-\usepackage{multirow}         % for rowspanning table entries
-\usepackage{etoolbox}         % for conditional includes
-\usepackage{pdfpages}         % to include exercise sheets
-\usepackage[T1]{fontenc}      % font encoding
-\usepackage[utf8]{inputenc}   % input encoding
+\usepackage[T1]{fontenc}       % font encoding
+\usepackage[utf8]{inputenc}    % input encoding
+\usepackage{lmodern}           % correct fonts to make pdf searchable
 
-\usepackage{tikz}      % difficult diagrams
-\usetikzlibrary{trees} % tree diagram
+\usepackage{amsmath, amssymb}  % math package
+
+\usepackage{graphicx}          % graphics
+\usepackage{multirow}          % for rowspanning table entries
+\usepackage{etoolbox}          % for conditional includes
+\usepackage{pdfpages}          % to include exercise sheets
+
+\usepackage{tikz}              % diagrams
+\usetikzlibrary{trees}         % tree diagram
+
+\usepackage{eurosym}           % euro symbol
+\DeclareRobustCommand{\officialeuro}{
+  \ifmmode\expandafter\text\fi
+  {\fontencoding{U}\fontfamily{eurosym}\selectfont e}} % euro symbol in math
+
 
 % Toggles for document layout
 \newtoggle{exercises}   % toggle for exercise sheets
@@ -56,7 +65,7 @@
 % Practice: Probability Refresher I
 \iftoggle{exercises}{
   \includepdf[pages={-},
-      addtotoc={1,section,1,Tutorial Sheet 1,exsheet1},
+      addtotoc={1,section,1,Tutorial Sheet 1: Probability Refresher I,exsheet1},
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
@@ -74,7 +83,7 @@
 % Practice: Probability Refresher II
 \iftoggle{exercises}{
   \includepdf[pages={-},
-      addtotoc={1,section,1,Tutorial Sheet 2,exsheet2},
+      addtotoc={1,section,1,Tutorial Sheet 2: Probability Refresher II,exsheet2},
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
@@ -90,21 +99,21 @@
 \clearpage
 
 % Measuring Beliefs II
-%\input{chapters/2014-05-09.tex}
-%\clearpage
+\input{chapters/2014-05-09.tex}
+\clearpage
 
 % Practice: Measuring Beliefs I + II
 \iftoggle{exercises}{
   \includepdf[pages={-},
-      addtotoc={1,section,1,Tutorial Sheet 3,exsheet3},
+      addtotoc={1,section,1,Tutorial Sheet 3: Measuring Beliefs I + II,exsheet3},
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
       ]{exercises/Exercises03.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-05-19.tex}
-%  \clearpage
+  \input{chapters/2014-05-19.tex}
+  \clearpage
 }{}
 
 % Bayesian Inference Examples
