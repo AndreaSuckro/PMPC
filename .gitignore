@@ -10,3 +10,10 @@ Tutorial Sheet*.pdf
 *.tcp
 *.bbl
 *.blg
+*.fdb*
+*.fls
+*.tex~
+*.gz
+*.zip
+*.rar
+*synctex*
