@@ -1,7 +1,0 @@
-PWD /home/kai/Git/PMPC/PMPC/Exercises
-INPUT /etc/texmf/web2c/texmf.cnf
-INPUT /usr/share/texmf/web2c/texmf.cnf
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT Tutorial Sheet 1.5.tex
-OUTPUT Tutorial Sheet 1.5.log
