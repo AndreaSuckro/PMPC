@@ -1,8 +1,13 @@
 \documentclass{article}
+
 \usepackage{amsmath}
+
 \usepackage{eurosym}
+\DeclareRobustCommand{\officialeuro}{
+  \ifmmode\expandafter\text\fi
+  {\fontencoding{U}\fontfamily{eurosym}\selectfont e}}
+
 \usepackage{tikz}
-\usepackage{eurosym}
 \usetikzlibrary{trees}
 
 \setlength\parindent{0pt}
