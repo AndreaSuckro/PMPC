@@ -1,1 +1,77 @@
 \section[Measuring Beliefs II]{Measuring Beliefs II \iftoggle{showdates}{\small{\textit{2014-05-09}}}{}}
+
+\subsection{Probabilities of Continuous Random Variables}
+
+``How tall am I?'' -> 1.80, 1.70, 1.68, 1.69, 1.7034241?
+
+Bayesian view would also ask: ``What do you think is the probability for that size?''
+
+But continuous random variables are difficult: Infinite uncountable range of numbers, how to assign probabilities?
+What's the probability of a real number?
+
+\subsubsection[Probability Density Function (PDF)]{Solution 1: histograms}
+Histogram! -> Limit of the histogram: Probability density function (PDF)
+Make discrete space: 150-160, 160-170, etc.
+Assign probabilities to those bins.
+Change resolution (150-155, 155-160), reassign/reorder 
+
+this is the density (and it's = 1 (area/integral))
+
+two weird extreme cases:
+- reassigning/reordering causes high densities
+- equally distributed density causes probability of 0 for each exact number
+   - however, you can calculate the probability for intervals with the integral
+   -> you only want to bet on intervals
+
+\subsubsection[Cumulative Density Function (CDF)]{Solution 2: Cumulative Density/Distribution Function (CDF)}
+CDF is the integral of the PDF
+ % rest see paper notes
+
+\subsubsection{Solution 3: Parametric Distribution}
+We use the Gaussian distribution
+
+\begin{align*}
+p(X=x) &= \frac{1}{2\pi\sigma^2}e^{-\frac{1}{2}\left(\frac{\mu-x}{\sigma}\right)^2} = \phi(x;\mu,\sigma) = \phi\left(\frac{\mu-x}{\sigma};0,1\right) \\
+\frac{\mu-x}{\sigma}&=z \\
+P(X \leq t) &= \int\limits_{-\infty}^{t}{p(X=x)} dx = \Phi(t;\mu,\sigma) \\
+\mbox{probability of the standard deviation: } \\
+P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68\%
+\end{align*}
+
+\begin{itemize}
+	\item $\mu \pm \sigma \approx 68\%$
+	\item $\mu \pm 2\sigma \approx 95\%$
+	\item $\mu \pm 3\sigma \approx 99\%$
+\end{itemize}
+
+\subsection{Proper Scoring Rules}
+Multiple choice test: better to say: ``How is your belief that this is right''
+
+Example: EU pop > US pop? X = 1 if true, X = 0 if false
+
+aim: high gain if true and high q, no gain if high q but false etc.
+
+q is what you say your belief is 
+\begin{align*}
+L(X,q) &= (X-q)^2 \\
+       &= X^2-2qX+q^2 \mbox{ note: $X^2 = X$, since only 1 or 2} \\
+       &= X(1-2q)+q^2
+\end{align*}
+
+You lie: Your true belief is p, but you say q.
+
+For best performance on test minimize expected loss $E(L(X,q)) = p(1-2q)+q^2$
+
+p is ``a bet on $p\cdot num$ of questions are true'', so that's why the expected loss is like this
+
+Minimize E: $1^{st}$ derivative:
+\begin{align*}
+E(L(X,q)) &= p(1-2q)+q^2 \\
+\frac{\partial E}{\partial q}E(L(X,q)) &= -2p + 2q \\
+\Leftrightarrow p = q
+\end{align*}
+
+
+
+
+
