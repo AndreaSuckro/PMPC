@@ -1,59 +1,99 @@
 \def \TutorialSheetNumber{4}
 \input{exercises_preamble}
+
+
 \section*{Exercise 1}
-In order to calculate the area under the density function we have to take the Integral. As the function is defined differently for seperate segments we can first calculate the Integral from $-\omega$ to 0 and then from 0 to $\omega$ (the rest is zero anyways)
+In order to calculate the area under the density function we have to take the integral. As the function is defined differently for separate segments we can first calculate the integral from $-\omega$ to 0 and then from 0 to $\omega$ (the rest is zero anyways).
+
 \begin{align*}
 \int \limits_{-w}^{0}p(x) dx & = \int \limits_{-w}^{0} \frac{x}{\omega^2} + \frac{1}{w} dx \\
-& = [\frac{1}{2\omega ^2} \cdot x^2 + \frac{1}{\omega } \cdot x]_{-w}^{0} \\
-& = 0 - (\frac{1}{2\omega ^2} \cdot -\omega^2 + \frac{1}{x} \cdot -\omega) \\
-& = -(\frac{1}{2} - 1) \\
+& =     \left[\frac{1}{2\omega ^2} \cdot x^2 + \frac{1}{\omega } \cdot x \right]_{-w}^{0} \\
+& = 0 - \left(\frac{1}{2\omega ^2} \cdot - \omega^2 + \frac{1}{x} \cdot -\omega \right) \\
+& = -\left(\frac{1}{2} - 1\right) \\
 & = \frac{1}{2}\\
 \int \limits_{0}^{\omega}p(x) dx & = \int \limits_{0}^{\omega} -\frac{x}{\omega^2} + \frac{1}{w} dx \\
-& = (-\frac{1}{2\omega ^2} \cdot \omega^2 + \frac{1}{x} \cdot \omega) - 0 \\
-& = -(\frac{1}{2} - 1) \\
+& = \left(-\frac{1}{2\omega ^2} \cdot \omega^2 + \frac{1}{x} \cdot \omega\right) - 0 \\
+& = -\left(\frac{1}{2} - 1\right) \\
 & = \frac{1}{2}\\
 \int \limits_{-\omega}^{\omega}p(x) dx & = \int \limits_{-\omega}^{0}p(x) dx +\int \limits_{0}^{\omega}p(x) dx \\
 & = \frac{1}{2} + \frac{1}{2} \\
-& = 1\\
+& = 1
 \end{align*}
-The value of the density function at 0 is given by:\\
+
+The value of the density function at 0 is given by:
+
 \begin{align*}
-  p(X=0) & = \frac{1}{\omega^2} \cdot 0 + \frac{1}{\omega} \\
-  & = \frac{1}{\omega}\\
+p(X=0) & = \frac{1}{\omega^2} \cdot 0 + \frac{1}{\omega} = \frac{1}{\omega}
 \end{align*}
-Therefore the value at zero can be bigger than 1 for $\omega >$ 1. This is possible because the density is not equal to the probability (which cannot be bigger than 1) but has to be multiplied with the width of intervall for which the probability should be calculated.
-\\
-\\
-In order to get the probability for coming late to timepoint $\frac{\omega}{2}$ we have to calculate the probability for arriving after that time point, or in other words the Integral from $\frac{\omega}{2}$ to $\omega$ (again the remaining area is zero anyways):\\
+
+Therefore the value at zero can be bigger than 1 for $\omega >$ 1. This is possible because the density is not equal to the probability (which cannot be bigger than 1) but has to be multiplied with the width of interval for which the probability should be calculated.
+
+In order to get the probability for coming late at time point $\frac{\omega}{2}$ we have to calculate the probability for arriving after that time point, or in other words the integral from $\frac{\omega}{2}$ to $\omega$ (again the remaining area is zero anyways):
+
 \begin{align*}
-  p(X > \frac{\omega}{2}) &= \int\limits_{\frac{\omega}{2}}^{\omega} p(x) dx \\
+  p\left(X > \frac{\omega}{2}\right) &= \int\limits_{\frac{\omega}{2}}^{\omega} p(x) dx \\
   &= \int\limits_{\frac{\omega}{2}}^{\omega} -\frac{x}{\omega^2} + \frac{1}{w} dx \\
-  &= [-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{w}\cdot x]_{\frac{\omega}{2}}^{\omega} \\
-  &= -\frac{1}{2\omega^2}\cdot \omega^2 + \frac{1}{\omega}\cdot \omega - (-\frac{1}{2\omega^2}\cdot (\frac{\omega}{2})^2 + \frac{1}{\omega}\cdot \frac{\omega}{2}) \\
+  &= \left[-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{w}\cdot x\right]_{\frac{\omega}{2}}^{\omega} \\
+  &= -\frac{1}{2\omega^2}\cdot \omega^2 + \frac{1}{\omega}\cdot \omega - \left(-\frac{1}{2\omega^2}\cdot \left(\frac{\omega}{2}\right)^2 + \frac{1}{\omega}\cdot \frac{\omega}{2}\right) \\
   &= \frac{1}{2} + \frac{1}{2\omega^2}\cdot\frac{\omega^2}{4} - \frac{1}{2}\\
   &= \frac{1}{8}\\
-  &= 12,5\% \\
+  &= 12.5\% \\
 \end{align*}
-Therefore the probability to come late to the appointment is 12,5\%.
-The probability to arrive exactly at timepoint $\frac{\omega}{2}$ on the other hand is zero, because probabilities of continuous variables can only be calculated for intervalls and not for points. Or mathematically:\\
+
+Therefore the probability to come late to the appointment is 12.5\%.
+
+The probability to arrive exactly at time point $\frac{\omega}{2}$ on the other hand is zero, because probabilities of continuous variables can only be calculated for intervals and not for points. Or mathematically:
+
 $\int\limits_{\frac{\omega}{2}}^{\frac{\omega}{2}} p(x)dx = 0$
-\\
-\\
-As we know from the first part of the excercise, the probability to arrive before timepoint 0 is 50\%. Thus we can just calculate the area after 0 which makes up for 45\% to get the timepoint at which we can be sure with 95\%  that we will arrive before: \\
+
+As we know from the first part of the exercise, the probability to arrive before time point 0 is 50\%. Thus we can just calculate the area after 0 which makes up for 45\% to get the time point at which we can be sure with 95\%  that we will arrive before:
+
 \begin{align*}
-  \int\limits_{0}^{t} p(x)dx &\stackrel{!}{=} 0,45\\
-  [-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{\omega}]_0^t & = 0,45   \\
-  -\frac{1}{2\omega^2}\cdot t^2 + \frac{1}{\omega} - 0 &= 0,45   \\
- & substitute: z=\frac{t}{\omega}\\
-  \frac{1}{2}\cdot z^2 + z &= 0,45\\
-  z^2 - 2z &= -0,9\\
-  z^2 - 2z + 1 &= 0,1\\
-  (z-1)^2 &= 0,1\\
-  z-1 &= \sqrt{0,1}\\
-  z &= \sqrt{0,1} + 1\\
-  z &= 1,3162 \vee  z = 0,6838\\
-  \frac{t}{\omega} &= 1,3162 \vee  \frac{t}{\omega} = 0,6838\\
-  t &= 1,3162\cdot \omega \vee t  = 0,6838\cdot \omega\\
+  \int\limits_{0}^{t} p(x)dx &\stackrel{!}{=} 0.45\\
+  \left[-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{\omega}\right]_0^t & = 0.45   \\
+  -\frac{1}{2\omega^2}\cdot t^2 + \frac{1}{\omega} - 0 &= 0.45   \\
+ \mbox{substitute: }z&=\frac{t}{\omega}\\
+  \frac{1}{2}\cdot z^2 + z &= 0.45\\
+  z^2 - 2z &= -0.9\\
+  z^2 - 2z + 1 &= 0.1\\
+  \left(z-1\right)^2 &= 0.1\\
+  z-1 &= \sqrt{0.1}\\
+  z &= \sqrt{0.1} + 1\\
+  z &= 1.3162 \vee  z = 0.6838\\
+  \frac{t}{\omega} &= 1.3162 \vee  \frac{t}{\omega} = 0.6838\\
+  t &= 1.3162\cdot \omega \vee t  = 0.6838\cdot \omega
 \end{align*}
-  Since we know that we have to arrive before $\omega$ it can only be the second value. Therefore we can be 95\% sure that we arrive before $0,6838 \cdot \omega$.
+
+Since we know that we have to arrive before $\omega$ it can only be the second value. Therefore we can be 95\% sure that we arrive before $0.6838 \cdot \omega$.
+
+
+\section*{Exercise 2}
+% questionnable
+\begin{align*}
+\mbox{pdf: } p\left(Y   =  G^{-1}\left(X\right)\right) &= \frac{1}{f\left(t\right)} \\
+\mbox{cdf: } P\left(Y \leq G^{-1}\left(X\right)\right) &= \log{f\left(t\right)}
+\end{align*}
+
+
+\section*{Exercise 3}
+% tba...
+
+%\section*{Exercise 4}
+% unavailable :-)
+
+
+\section*{Exercise 5}
+\textit{Note: $\log{\left(0\right)}$ is not defined!}
+
+A first check is just plugging in some values:
+
+\begin{align*}
+\mbox{T|T: }L_2(1,1) &= -1 \cdot \log{\left( 1 \right)} - (1 - 1) \cdot \log{\left(1 - 1\right)} = 0    \\
+\mbox{T|F: }L_2(1,0) &= -1 \cdot \log{\left( 0 \right)} - (1 - 1) \cdot \log{\left(1 - 0\right)} = n.d. \\
+\mbox{F|T: }L_2(0,1) &= -0 \cdot \log{\left( 1 \right)} - (1 - 0) \cdot \log{\left(1 - 1\right)} = n.d. \\
+\mbox{F|F: }L_2(0,0) &= -0 \cdot \log{\left( 0 \right)} - (1 - 0) \cdot \log{\left(1 - 0\right)} = 0
+\end{align*}
+
+% I'll do more later
+
 \end{document}
