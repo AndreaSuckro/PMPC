@@ -112,4 +112,22 @@ p &= q\\
 \end{align*}
 Since the second derivative is greater than zero in our definition from $0...1$ we found a minimum, so the loss function is good for honest people.
 
+Taking the first derivative with X = p we get:
+
+\begin{align*}
+  L_2 (p,q) &= -p \cdot \log{\left(q \right)} - (1-p) \cdot \log{\left(1-q \right)} \\
+  L_2' (p,q) &= -p \cdot \frac{1}{q} + (1-p) \cdot \frac{1}{1-q} \\
+  L_2' (p,q) &\stackrel{!}{=} 0 \\
+   -p \cdot \frac{1}{q} + (1-p) \cdot \frac{1}{1-q} &= 0 &| \cdot (1-q) \cdot q \\
+  -p \cdot (1-q) + (1-p) \cdot q & = 0 \\
+  -p + pq + q - pq &= 0\\
+  -p + q &= 0 \\
+  p = q
+\end{align*}
+
+ The second derivative with X = p gives us:
+ 
+ \begin{align*}
+   L_2'' (p,q) &= p \cdot \frac{1}{q^2} + (1-p) \cdot \frac{1}{(1-q)^2}\\
+\end{align*}
 \end{document}
