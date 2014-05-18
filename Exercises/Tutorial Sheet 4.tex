@@ -8,7 +8,7 @@ In order to calculate the area under the density function we have to take the in
 \begin{align*}
 \int \limits_{-w}^{0}p(x) dx & = \int \limits_{-w}^{0} \frac{x}{\omega^2} + \frac{1}{w} dx \\
 & =     \left[\frac{1}{2\omega ^2} \cdot x^2 + \frac{1}{\omega } \cdot x \right]_{-w}^{0} \\
-& = 0 - \left(\frac{1}{2\omega ^2} \cdot - \omega^2 + \frac{1}{x} \cdot -\omega \right) \\
+& = 0 - \left(\frac{1}{2\omega ^2} \cdot \left(- \omega\right)^2 + \frac{1}{x} \cdot \left(-\omega\right) \right) \\
 & = -\left(\frac{1}{2} - 1\right) \\
 & = \frac{1}{2}\\
 \int \limits_{0}^{\omega}p(x) dx & = \int \limits_{0}^{\omega} -\frac{x}{\omega^2} + \frac{1}{w} dx \\
@@ -49,51 +49,67 @@ $\int\limits_{\frac{\omega}{2}}^{\frac{\omega}{2}} p(x)dx = 0$
 As we know from the first part of the exercise, the probability to arrive before time point 0 is 50\%. Thus we can just calculate the area after 0 which makes up for 45\% to get the time point at which we can be sure with 95\%  that we will arrive before:
 
 \begin{align*}
-  \int\limits_{0}^{t} p(x)dx &\stackrel{!}{=} 0.45\\
-  \left[-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{\omega}\right]_0^t & = 0.45   \\
-  -\frac{1}{2\omega^2}\cdot t^2 + \frac{1}{\omega} - 0 &= 0.45   \\
- \mbox{substitute: }z&=\frac{t}{\omega}\\
-  \frac{1}{2}\cdot z^2 + z &= 0.45\\
-  z^2 - 2z &= -0.9\\
-  z^2 - 2z + 1 &= 0.1\\
-  \left(z-1\right)^2 &= 0.1\\
-  z-1 &= \sqrt{0.1}\\
-  z &= \sqrt{0.1} + 1\\
-  z &= 1.3162 \vee  z = 0.6838\\
-  \frac{t}{\omega} &= 1.3162 \vee  \frac{t}{\omega} = 0.6838\\
-  t &= 1.3162\cdot \omega \vee t  = 0.6838\cdot \omega
+  \int\limits_{0}^{t} p(x)dx &\stackrel{!}{=} 0.45 \\
+  \left[-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{\omega}\right]_0^t & = 0.45 \\
+  -\frac{1}{2\omega^2}\cdot t^2 + \frac{1}{\omega} - 0 &= 0.45 \\
+ \mbox{substitute: }z&=\frac{t}{\omega} \\
+  \frac{1}{2}\cdot z^2 + z &= 0.45 \\
+  z^2 - 2z &= -0.9 \\
+  z^2 - 2z + 1 &= 0.1 \\
+  \left(z-1\right)^2 &= 0.1 \\
+  z-1 &= \sqrt{0.1} \\
+  z &= \sqrt{0.1} + 1 \\
+  z &= 1.3162 \vee  z = 0.6838 \\
+  \frac{t}{\omega} &= 1.3162 \vee  \frac{t}{\omega} = 0.6838 \\
+  t &= 1.3162\cdot \omega \vee t  = 0.6838 \cdot \omega
 \end{align*}
 
 Since we know that we have to arrive before $\omega$ it can only be the second value. Therefore we can be 95\% sure that we arrive before $0.6838 \cdot \omega$.
 
 
 \section*{Exercise 2}
-% questionnable
 \begin{align*}
-\mbox{pdf: } p\left(Y   =  G^{-1}\left(X\right)\right) &= \frac{1}{f\left(t\right)} \\
-\mbox{cdf: } P\left(Y \leq G^{-1}\left(X\right)\right) &= \log{f\left(t\right)}
+Y &= G^-1(X) \\
+\mbox{cdf: } P\left(Y \leq t\right) &= P\left(G^-1\left(X\right) \leq t\right) = P\left(X \leq G\left(t\right)\right) = F\left(G\left(t\right)\right) \\
+\mbox{pdf: } \frac{\partial F\left(G\left(t\right)\right)}{\partial t} &=f\left(G\left(t\right)\right) \cdot g\left(t\right)
 \end{align*}
-
 
 \section*{Exercise 3}
-% tba...
-
-%\section*{Exercise 4}
-% unavailable :-)
-
-
-\section*{Exercise 5}
-\textit{Note: $\log{\left(0\right)}$ is not defined!}
-
-A first check is just plugging in some values:
-
 \begin{align*}
-\mbox{T|T: }L_2(1,1) &= -1 \cdot \log{\left( 1 \right)} - (1 - 1) \cdot \log{\left(1 - 1\right)} = 0    \\
-\mbox{T|F: }L_2(1,0) &= -1 \cdot \log{\left( 0 \right)} - (1 - 1) \cdot \log{\left(1 - 0\right)} = n.d. \\
-\mbox{F|T: }L_2(0,1) &= -0 \cdot \log{\left( 1 \right)} - (1 - 0) \cdot \log{\left(1 - 1\right)} = n.d. \\
-\mbox{F|F: }L_2(0,0) &= -0 \cdot \log{\left( 0 \right)} - (1 - 0) \cdot \log{\left(1 - 0\right)} = 0
+\mbox{pdf: } \frac{\partial F\left(G\left(t\right)\right)}{\partial t} &=f\left(G\left(t\right)\right) \cdot g\left(t\right)
 \end{align*}
 
-% I'll do more later
+$f(t)$ is 1 for $0 \leq t \leq 1$, so $f\left(G\left(t\right)\right) \cdot g\left(t\right) = 1 \cdot g\left(t\right) = \left(t\right)$.
+
+and now?
+
+\section*{Exercise 5}
+First derivative:
+\begin{align*}
+L_2\left(p,q\right) &= -p \cdot \log{\left(q\right)} - \left(1 - p\right) \cdot \log{\left(1-q\right)} \\
+\frac{\partial L_2\left(p, q\right)}{\partial q} &= -p \cdot \frac{1}{q} - \left(1 - p\right) \frac{-1}{1-q}
+\end{align*}
+
+Check for p = q:
+\begin{align*}
+0 &= -p \cdot \frac{1}{q} + \left(1 - p\right) \frac{1}{1-q} \\
+\Leftrightarrow \frac{p}{q} &= \frac{1-p}{1-q} \\
+\Leftrightarrow p \cdot \left(1 - q\right) &= \left(1 - p\right) \cdot q \\
+\Leftrightarrow p - pq &= q - pq \\
+\Leftrightarrow p &= q
+\end{align*}
+
+Second derivative:
+\begin{align*}
+\frac{\partial L_2\left(p, q\right)}{\partial q} &= \frac{-p}{q} + \frac{1-p}{1-q} \\
+\frac{\partial L_2\left(p, q\right)}{\partial^2 q} &= \frac{-p}{q} + \frac{1-p}{1-q} \\
+\frac{\partial L_2\left(p, q\right)}{\partial^2 q} &= \frac{p}{q^2} + \frac{1-p}{\left(1-q\right)^2}
+\end{align*}
+\begin{align*}
+p &= q\\
+\frac{q}{q^2} + \frac{1-q}{\left(1-q\right)^2} &= \frac{1}{q} + \frac{1}{1-q} \\
+&= \frac{1}{q-q^2} > 0
+\end{align*}
+Since the second derivative is greater than zero in our definition from $0...1$ we found a minimum, so the loss function is good for honest people.
 
 \end{document}
