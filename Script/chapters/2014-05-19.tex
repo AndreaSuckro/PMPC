@@ -1,1 +1,159 @@
-\section[Solution 3: Measuring Beliefs I + II]{Solution 3: Measuring Beliefs I + II \iftoggle{showdates}{\small{\textit{2014-05-05}}}{}}
+\section[Solution 3: Measuring Beliefs I + II]{Solution 3: Measuring Beliefs I + II \iftoggle{showdates}{\small{\textit{2014-05-19}}}{}}
+\subsection*{Exercise 2}
+Before we can calculate any probabilities, we make some assumptions about the circumstances of the case. 
+
+First we assume the number of subjects taking part in the DNA test is still 100,000. 
+
+Further we assume that the murderer really is one of the men tested (and not an outsider or deceased or ...) which renders the probability of being guilty ($P(G)$) as
+
+\begin{align*}
+P(G) = \frac{1}{100,000}
+\end{align*}
+
+and therefore
+
+\begin{align*}
+P(\neg G) = \frac{99,999}{100,000}
+\end{align*}
+
+A positive match with the correct DNA (i.e. matching the guilty person) has the probability of $P(P|G) = 0.99999$.
+
+The actual probability we are interested in is the one of really being guilty given a positive test result:
+\begin{align*}g
+P(G|P) &= \frac{P(P|G) \cdot P(G)}{P(P)} \\
+P(G|P) &= \frac{0.99999 \cdot \frac{1}{100,000}}{P(P)}
+\end{align*}
+
+To get the missing factor, $P(P)$ we can use the marginal probability:
+\begin{align*}
+P(P) &= \sum\limits_{i=1}^{N} \left( P(P|G_i) \cdot P(G_i) \right) \\
+     &= P(P|G) \cdot P(G) + P(P|\neg G) \cdot P(\neg G) \\
+     &= 0.99999 \cdot \frac{1}{100,000} + 0.00001 \cdot \frac{99,999}{100,000} \\
+     &= \frac{1.99998}{100,000}
+\end{align*}
+
+Now we can calculate $P(G|P)$:
+\begin{align*}
+P(G|P) &= \frac{0.99999 \cdot \frac{1}{100,000}}{\frac{1.99998}{100,000}} = 0.5
+\end{align*}
+
+That means the actual probability that the accused person really is guilty is just about 50 \%. Again neglecting the high base rate, at first glance in court  it may seem very likely that the defendant is the murderer but we as clever attorneys, knowing our statistics, can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high even though the test is so accurate. Of course the probability of 50 \% is just an upper bound and can be much less for fewer participants but nevertheless shows the huge mistake one makes by neglecting the effect of a high base rate.  
+
+\subsection*{Exercise 4}
+Boris bet $10\euro$ on Greece with odds of $2 : 5$. The bookmaker bet $10\cdot\frac{5}{2}\euro=25\euro$ on Portugal. Boris won $35\euro$, which is a gain of $25\euro$.
+
+Adam bet $10\euro$ on Portugal with odds of $7 : 2$. The bookmaker bet $10\cdot\frac{2}{7}\euro=2.86\euro$ on Greece. Adam would have won $12.86\euro$, which would have been a gain of $2.86\euro$.
+
+\subsection*{Exercise 5}
+Charly's bets were $4.90\euro+1.80\euro=6.70\euro$ in total.
+
+\begin{align*}
+E(Portugal) &= 4.90 \cdot \frac{2}{7} - 1.80 = -0.4 {[}\euro{]} \\
+E(Greece)   &= 1.80 \cdot \frac{7}{2} - 4.90 =  1.4 {[}\euro{]}
+\end{align*}
+
+If the odds were a fair bet, i.e. $7 : 2$ for Portugal and $2 : 7$ for Greece, Charly had either lost $0.40\euro$ in case Portugal won, or he'd gained $1.40\euro$ in case Greece won.
+
+The bookmaker however wants to make money, that's why he fixes the odds in a way that he will earn some.
+
+With $7 : 2$ for Portugal Charly's gain in case of Portugal's victory will be $4.90 \cdot \frac{2}{7} - 1.80 = -0.40 {[}\euro{]}$, he in fact loses money.
+With $2 : 5$ for Greece Charly's gain in case of Greece's victory will be $1.80 \cdot \frac{5}{2} - 4.90 = -0.40 {[}\euro{]}$, again he loses money in total.
+
+So the bookkeeper would always win some money (those $0.40 \euro$).
+
+\subsection*{Exercise 6}
+\begin{align*}
+& \frac{p}{1-p} \geq \frac{2}{5}\\
+& \Leftrightarrow 5p \geq 2 - 2p\\
+& \Leftrightarrow 7p \geq 2\\
+& \Leftrightarrow p \geq \frac{2}{7}
+\end{align*}
+If the probability for Greece to win was higher than $\frac{2}{7}$, we might have been tempted to place a bet.
+
+People bet because they hope to win or assume they have a dutch book. And they will bet if they really have a dutch book.
+
+\subsection*{Exercise 7}
+The person believes that $P(A \cap B)>P(A)$.
+
+We can buy cheap $P(A)$ tickets and sell expensive $P(A\cap B)$ tickets, so even before we know the outcome we make money.
+
+In practice now the other person has $P(A \cap B)$, we have $P(A)$.
+
+Now we see what could happen:
+
+\begin{align*}
+     A \cap      B:& \mbox{ We are even.}      \\
+     A \cap \neg B:& \mbox{ I get \$ 1.}       \\
+\neg A \cap      B:& \mbox{ All tickets lose.} \\
+\neg A \cap \neg B:& \mbox{ All tickets lose.}
+\end{align*}
+
+So either both parties have the same outcome or we win.
+
+\subsection*{Exercise 8}
+\textit{Note: pin $:= 1-p$, head $:= p$}
+
+The sample space is $\Omega = \mathbb{N}$ because we can get pin on the first, second, third, or n-th throw.
+
+We calculate the probability distribution.
+\begin{align*}
+p(N = n) = p^{n - 1} \left( 1 - p \right)
+\end{align*}
+
+We can use \textit{countable additivity} and add the numbers up to infinity.
+\begin{align*}
+1 &\stackrel{?}{=} \sum\limits_{n = 1}^\infty p(N = n) = \sum\limits_{n = 1}^\infty p^{n - 1}\left( 1 - p \right) \\
+&= \left( 1 - p \right) \sum\limits_{n=0}^\infty p^n = \left( 1 - p \right) \frac{1}{\left( 1 - p \right)} \stackrel{!}{=} 1
+\end{align*}
+
+For odd N the probability is accordingly:
+\begin{align*}
+P\left(\mbox{N is odd}\right) &= \sum\limits_{n=0}^\infty p(N=2n+1)\\
+&= \sum\limits_{n=0}^\infty \left( 1 - p \right) p^{2n} \\
+&= \left( 1 - p \right) \sum\limits_{n=0}^\infty \left(p^2\right)^n \\
+&= \frac{1-p}{1-p^2} = \frac{1}{1+p}
+\end{align*}
+
+\subsection*{Exercise 9}
+\begin{tabular}{ l || c | c | c | c | c }
+  $N$           & $1$ & $2$ & $3$ & $...$ & $n$ \\
+  $probability$ & $\frac{1}{2}$ & $\frac{1}{4}$ & $\frac{1}{2^3}$ & $...$ & $\frac{1}{2^n}$ \\
+  $Win$         & $2^1$ & $2^2$ & $2^3$ & $...$ & $2^n$ \\
+\end{tabular}
+
+The probability that we lose money is for all $N$ where we get less than 1000 \$.
+\begin{align*}
+2^N > 1000 \rightarrow N \geq 10 \\
+p\left(\mbox{lose money}\right) = p(N<10) = \sum\limits_{n=1}^9 \frac{1}{2^n} \approx 0.998
+\end{align*}
+
+Now the expected gain is:
+\begin{align*}
+E &= -1000 + \frac{1}{2} \cdot 2^1 + \frac{1}{2} \cdot 2^1 + \frac{1}{2} \cdot 2^1 + ... \\
+  &= -1000 + \sum\limits_{n=1}^\infty \frac{1}{2^n} \cdot 2^n \\
+  &= -1000 + \sum\limits_{n=1}^\infty 1 \\
+  &= +\infty
+\end{align*}
+
+Although this looks rather promising, of course we don't play the game.
+
+% maybe some details about logarithmic value of money etc.?
+
+\subsection*{Exercise 10}
+
+\begin{align*}
+P(min|D) &= \frac{P(D|min)P(min)}{P(D)}\\
+P(red|D) &= \frac{P(D|red)P(red)}{P(D)}\\
+P(red)   &= \frac{1}{2}  \\
+P(min)   &= \frac{1}{2}  \\
+P(D|min) &= \frac{5}{36} 
+      + 2 \cdot \left(\frac{9}{36}\right)
+      + \frac{3}{36}
+      + 4 \cdot \left( \frac{1}{36} \right)
+      + \frac{7}{36}
+      + \frac{11}{36}
+      = \frac{48}{36} = \frac{4}{3} \\
+P(D|red) &= 10 \cdot \left(\frac{1}{6}\right) = \frac{10}{6} = \frac{5}{3}
+\end{align*}
+
+$P(D|min) < P(D|red)$, so she most probably decided on the red die.
