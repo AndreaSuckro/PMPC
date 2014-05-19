@@ -1,15 +1,70 @@
 \section[Measuring Beliefs II]{Measuring Beliefs II \iftoggle{showdates}{\small{\textit{2014-05-09}}}{}}
 
 \subsection{Probabilities of Continuous Random Variables}
+How tall is Frank Jäkel? 1.80m, 1.70m, 1.68m, 1.69m, or even 1.7034241m?
 
-``How tall am I?'' -> 1.80, 1.70, 1.68, 1.69, 1.7034241?
+Not only are there problems with real numbers like 1.7034241, but also with the question the Bayesian view inevitably asks: ``What do you think is the probability for that size?''
 
-Bayesian view would also ask: ``What do you think is the probability for that size?''
+One sees: continuous random variables are difficult. There is an infinite uncountable range of numbers and one shall assign probabilities for them. This leads straight to the question: ``What's the probability of a real number?''
 
-But continuous random variables are difficult: Infinite uncountable range of numbers, how to assign probabilities?
-What's the probability of a real number?
+In the following section this problem gets tackled in three ways.
 
-\subsubsection[Probability Density Function (PDF)]{Solution 1: histograms}
+\subsubsection[Probability Density Function (PDF)]{Solution 1: Histograms (Probability Density Function, PDF)}
+The first and naive way is to discretize the sample space $\mathbb{R}$ into bins and assign probabilities to those bins.
+
+\begin{center}
+\begin{tikzpicture}
+
+  % horizontal axis
+  \draw[->] (0, 0) -- (5.5, 0);
+  % ticks horizontal
+  \foreach \x in {0,...,5}
+    \draw (\x,1pt) -- (\x,-3pt);
+  % labels horizontal
+  \draw	(0,-0.1) node[anchor=north] {1.4}
+		    (1,-0.1) node[anchor=north] {1.5}
+		    (2,-0.1) node[anchor=north] {1.6}
+		    (3,-0.1) node[anchor=north] {1.7}
+		    (4,-0.1) node[anchor=north] {1.8}
+		    (5,-0.1) node[anchor=north] {1.9}
+        ;
+  % axis label
+  \draw (2.5,-0.8) node {height in $m$};
+  
+  % vertical axis
+  \draw[->] (0, 0) -- (0, 2);
+  % ticks vertical
+  \foreach \y in {0,0.5,1,1.5,2}
+    \draw (1pt, \y) -- (-3pt, \y);
+  % labels vertical
+  \draw (-0.2,0.0) node[anchor=east]  {0}
+        (-0.2,0.5) node[anchor=east]  {2.5}
+        (-0.2,1.0) node[anchor=east]  {5}
+        (-0.2,1.5) node[anchor=east]  {7.5}
+        (-0.2,2.0) node[anchor=east] {10}
+        ;
+  % axis label
+  \draw (-1,1) node[rotate=90] {density};
+  
+  % first box
+  \draw[thick] (1, 0) -- (1, 0.2) -- (2, 0.2) -- (2, 0);
+  % second box
+  \draw[thick] (2, 0) -- (2, 1.4) -- (3, 1.4) -- (3, 0);
+  % third box
+  \draw[thick] (3, 0) -- (3, 0.4) -- (4, 0.4) -- (4, 0);
+  
+  % box labels
+  \draw (1.5,0.7) node{$10 \%$};
+  \draw (2.5,0.7) node{$70 \%$};
+  \draw (3.5,0.7) node{$20 \%$};
+  
+\end{tikzpicture}
+\end{center}
+
+Note that \textbf{the area describes the probability}. For the second box, we would assign a y-value of 7, such that the width (0.1) times the height equals the probability ($0.1\cdot 7 = 0.7$).
+
+\textit{From here on it's just notes for the rest of this section, working on it!}
+
 Histogram! -> Limit of the histogram: Probability density function (PDF)
 Make discrete space: 150-160, 160-170, etc.
 Assign probabilities to those bins.
@@ -23,7 +78,7 @@ two weird extreme cases:
    - however, you can calculate the probability for intervals with the integral
    -> you only want to bet on intervals
 
-\subsubsection[Cumulative Density Function (CDF)]{Solution 2: Cumulative Density/Distribution Function (CDF)}
+\subsubsection[Cumulative Density Function (CDF)]{Solution 2: Cumulative Density Function, CDF}
 CDF is the integral of the PDF
  % rest see paper notes
 
