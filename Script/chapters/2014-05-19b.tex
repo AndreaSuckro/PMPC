@@ -68,12 +68,12 @@ Since we know that we have to arrive before $\omega$ it can only be the second v
 \subsection*{Exercise 2}
 \begin{align*}
 Y &= G^-1(X) \\
-\mbox{cdf: }   &P\left(Y \leq t\right) \\
-             = &P\left(G^-1\left(X\right) \leq t\right) \\
-             = &P\left(X \leq G\left(t\right)\right) \\
-             = &F\left(G\left(t\right)\right) \\
-\mbox{pdf: }   &\frac{\partial F\left(G\left(t\right)\right)}{\partial t} \\
-             = &f\left(G\left(t\right)\right) \cdot g\left(t\right)
+\mbox{cdf: }   P\left(Y \leq t\right)
+             &= P\left(G^-1\left(X\right) \leq t\right) \\
+             &= P\left(X \leq G\left(t\right)\right) \\
+             &= F\left(G\left(t\right)\right) \\
+\mbox{pdf: }   \frac{\partial F\left(G\left(t\right)\right)}{\partial t}
+             &= f\left(G\left(t\right)\right) \cdot g\left(t\right)
 \end{align*}
 
 \subsection*{Exercise 3}
@@ -86,15 +86,19 @@ $f(t)$ is 1 for $0 \leq t \leq 1$, so $f\left(G\left(t\right)\right) \cdot g\lef
 % explanation from board to be added here
 
 \subsection*{Exercise 5}
+We can replace X with p in $L_2$ \textit{(this only works if the function is linear in X, see Tutorial Sheet 5)} and check if it's a good loss function.
+
 First derivative:
 \begin{align*}
-L_2\left(p,q\right) &= -p \cdot \log{\left(q\right)} - \left(1 - p\right) \cdot \log{\left(1-q\right)} \\
-\frac{\partial L_2\left(p, q\right)}{\partial q} &= -p \cdot \frac{1}{q} - \left(1 - p\right) \frac{-1}{1-q}
+L_2\left(X,q\right) &= -X \cdot \log{\left(q\right)} - \left(1 - X\right) \cdot \log{\left(1-q\right)} \\
+E\left(L_2\left(p,q\right)\right) &= -p \cdot \log{\left(q\right)} - \left(1 - p\right) \cdot \log{\left(1-q\right)} \\
+\frac{\partial E\left(L_2\left(p, q\right)\right)}{\partial q} &= -p \cdot \frac{1}{q} - \left(1 - p\right) \frac{-1}{1-q} \\
+&= -\frac{p}{q} + \frac{\left(1 - p\right)}{1-q}
 \end{align*}
 
 Check for p = q:
 \begin{align*}
-0 &= -p \cdot \frac{1}{q} + \left(1 - p\right) \frac{1}{1-q} \\
+0 &= -\frac{p}{q} + \frac{\left(1 - p\right)}{1-q} \\
 \Leftrightarrow \frac{p}{q} &= \frac{1-p}{1-q} \\
 \Leftrightarrow p \cdot \left(1 - q\right) &= \left(1 - p\right) \cdot q \\
 \Leftrightarrow p - pq &= q - pq \\
@@ -103,32 +107,14 @@ Check for p = q:
 
 Second derivative:
 \begin{align*}
-\frac{\partial L_2\left(p, q\right)}{\partial q} &= \frac{-p}{q} + \frac{1-p}{1-q} \\
-\frac{\partial L_2\left(p, q\right)}{\partial^2 q} &= \frac{-p}{q} + \frac{1-p}{1-q} \\
-\frac{\partial L_2\left(p, q\right)}{\partial^2 q} &= \frac{p}{q^2} + \frac{1-p}{\left(1-q\right)^2}
+\frac{\partial E\left(L_2\left(p, q\right)\right)}{\partial q} &= \frac{-p}{q} + \frac{1-p}{1-q} \\
+\frac{\partial E\left(L_2\left(p, q\right)\right)}{\partial^2 q} &= \frac{p}{q^2} + \frac{1-p}{\left(1-q\right)^2}
 \end{align*}
 \begin{align*}
-p &= q\\
-\frac{q}{q^2} + \frac{1-q}{\left(1-q\right)^2} &= \frac{1}{q} + \frac{1}{1-q} \\
+\text{use: } p &= q\\
+\Rightarrow \frac{q}{q^2} + \frac{1-q}{\left(1-q\right)^2} &= \frac{1}{q} + \frac{1}{1-q} \\
 &= \frac{1}{q-q^2} > 0
 \end{align*}
 Since the second derivative is greater than zero in our definition from $0...1$ we found a minimum, so the loss function is good for honest people.
 
-Taking the first derivative with X = p we get:
-
-\begin{align*}
-  L_2 (p,q) &= -p \cdot \log{\left(q \right)} - (1-p) \cdot \log{\left(1-q \right)} \\
-  L_2' (p,q) &= -p \cdot \frac{1}{q} + (1-p) \cdot \frac{1}{1-q} \\
-  L_2' (p,q) &\stackrel{!}{=} 0 \\
-   -p \cdot \frac{1}{q} + (1-p) \cdot \frac{1}{1-q} &= 0 &| \cdot (1-q) \cdot q \\
-  -p \cdot (1-q) + (1-p) \cdot q & = 0 \\
-  -p + pq + q - pq &= 0\\
-  -p + q &= 0 \\
-  p = q
-\end{align*}
-
-The second derivative with X = p gives us:
- 
-\begin{align*}
-  L_2'' (p,q) &= p \cdot \frac{1}{q^2} + (1-p) \cdot \frac{1}{(1-q)^2}\\
-\end{align*}
+Still usually the first loss function is better, since this function is unforgiving (on a mistake it gives a loss of $\infty$).
