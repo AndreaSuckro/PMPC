@@ -241,6 +241,9 @@ This can be done by integration of the PDF:
 
 
 \subsubsection{Solution 3: Parametric Distribution}
+% TODO: EXPLANATIONS
+\textit{This section is still incomplete}
+
 We can model the probability distribution with a parametric Gaussian distribution.
 
 \begin{align*}
@@ -251,7 +254,7 @@ P(X \leq t) &= \int\limits_{-\infty}^{t}{p(X=x)} dx = \Phi(t;\mu,\sigma) \\
 P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68\%
 \end{align*}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
@@ -264,7 +267,7 @@ P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-
 \caption{Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$.}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
@@ -285,7 +288,7 @@ P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-
 \end{itemize}
 
 \subsection{Proper Scoring Rules}
-Multiple choice tests would be better if you would state ``how your belief is, that this is right'', rather than just answering the question.
+Multiple choice tests would be better if you would state ``how your belief is, that this is right'', rather than just answering the question (For more about this see page \pageref{ex4_4_solution}).
 
 \vspace{1em}
 
@@ -322,7 +325,3 @@ E\left(L\left(p,q\right)\right) &= p\left(1-2q\right)+q^2 \\
 \end{align*}
 
 As can be seen the loss function is minimal if $p=q$, i.e. if the person answering is telling the truth.
-
-
-
-
