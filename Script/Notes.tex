@@ -39,10 +39,6 @@
 
 \newcommand{\est}[1]{\expandafter\hat#1}  
 
-%\begin{filecontents*}{histogramToPDFExample.data}
-  %\input{test.txt}
-%\end{filecontents*}
-
 \begin{document}
 
 % title, no headings etc.
@@ -121,10 +117,6 @@
   \clearpage
 }{}
 
-% Bayesian Inference Examples
-\input{chapters/2014-05-23.tex}
-\clearpage
-
 % Practice: Bayesian and Frequentist Inference I
 \iftoggle{exercises}{
   \includepdf[pages={-},
@@ -138,6 +130,10 @@
   \input{chapters/2014-05-19b.tex}
   \clearpage
 }{}
+
+% Bayesian Inference Examples
+\input{chapters/2014-05-23.tex}
+\clearpage
 
 
 % Frequentist Inference Examples
