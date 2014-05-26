@@ -61,10 +61,9 @@ The first and naive way is to discretize the sample space $\mathbb{R}$ into bins
 \end{tikzpicture}
 \end{center}
 
-Note that \textbf{the area describes the probability}. For the second box, we would assign a y-value of 7, such that the width (0.1) times the height equals the probability ($0.1\cdot 7 = 0.7$).
+Note that \textbf{the area describes the probability}. For the second box, one would assign a y-value of 7, such that the width (0.1) times the height equals the probability ($0.1\cdot 7 = 0.7$).
 
-For a finer granularity we can now change the resolution of the bins and split the probabilities among them.
-
+For a finer granularity one can now change the resolution of the bins and split the probabilities among them.
 
 \begin{center}
 \begin{tikzpicture}
@@ -131,6 +130,91 @@ For a finer granularity we can now change the resolution of the bins and split t
 \end{tikzpicture}
 \end{center}
 
+\textbf{Extreme cases}
+\vspace{1em}
+
+Usually this will yield a nice distribution of how beliefs are. However, there are two special extreme cases.
+
+\vspace{1em}
+
+The first case is that all values are equally probable: Since we have infinitely many values on the real number line, the probability for each individual value is $\frac{1}{n} \Rightarrow \lim\limits_{n\rightarrow\infty} \frac{1}{n} = 0$. 
+
+\vspace{1em}
+
+The second case is that the full probability gets assigned to one single value. Since a single value has the width 0, again the probability will become 0 for that value as well.
+
+\vspace{1em}
+
+\textbf{The probability density function}
+
+However, if the resulting histogram is somewhere between those extreme cases, then the limit of the distribution yields the probability density function.
+
+\begin{center}
+\begin{tikzpicture}
+
+  % horizontal axis
+  \draw[->] (0, 0) -- (5.5, 0);
+  % ticks horizontal
+  \foreach \x in {0,...,5}
+    \draw (\x,1pt) -- (\x,-3pt);
+  % labels horizontal
+  \draw	(0,-0.1) node[anchor=north] {1.4}
+		    (1,-0.1) node[anchor=north] {1.5}
+		    (2,-0.1) node[anchor=north] {1.6}
+		    (3,-0.1) node[anchor=north] {1.7}
+		    (4,-0.1) node[anchor=north] {1.8}
+		    (5,-0.1) node[anchor=north] {1.9}
+        ;
+  % axis label
+  \draw (2.5,-0.8) node {height in $m$};
+  
+  % vertical axis
+  \draw[->] (0, 0) -- (0, 2.5);
+  % ticks vertical
+  \foreach \y in {0,0.5,1,1.5,2}
+    \draw (1pt, \y) -- (-3pt, \y);
+  % labels vertical
+  \draw (-0.2,0.0) node[anchor=east]  {0}
+        (-0.2,0.5) node[anchor=east]  {2.5}
+        (-0.2,1.0) node[anchor=east]  {5}
+        (-0.2,1.5) node[anchor=east]  {7.5}
+        (-0.2,2.0) node[anchor=east] {10}
+        ;
+  % axis label
+  \draw (-1,1) node[rotate=90] {density};
+  
+  % first box
+  \draw[thick] (1.0, 0.0) parabola (1.25, 0.1) parabola (1.75, 0.3) parabola (2.25, 1.2);
+  \draw[thick] (1.5, 0) -- (1.5, 0.3) -- (2.0, 0.3) -- (2.0, 0);
+  % second box
+  \draw[thick] (2.0, 0) -- (2.0, 1.2) -- (2.5, 1.2) -- (2.5, 0);
+  \draw[thick] (2.5, 0) -- (2.5, 1.6) -- (3.0, 1.6) -- (3.0, 0);
+  % third box
+  \draw[thick] (3.0, 0) parabola[bend at end] (3.5, 0.45);
+  \draw[thick] (3.5, 0) -- (3.5, 0.35) parabola[bend at end] (4.0, 0.35) -- (4.0, 0);
+  
+  % box labels
+  \draw (1.5, 2.2) node{$10 \%$};
+  \draw (2.5, 2.2) node{$70 \%$};
+  \draw (3.5, 2.2) node{$20 \%$};
+  
+  \draw (1.0, 0.4) node[anchor=west]{$2.5 \%$};
+  \draw (1.5, 0.7) node[anchor=west]{$7.5 \%$};
+  \draw (2.0, 1.0) node[anchor=west]{$25 \%$};
+  \draw (2.5, 1.3) node[anchor=west]{$45 \%$};
+  \draw (3.0, 1.0) node[anchor=west]{$11 \%$};
+  \draw (3.5, 0.7) node[anchor=west]{$ 9 \%$};
+  
+  % vertical separation lines
+  \draw[thin, dashed] (1, 0) -- (1, 2.5);
+  \draw[thin, dashed] (2, 0) -- (2, 2.5);
+  \draw[thin, dashed] (3, 0) -- (3, 2.5);
+  \draw[thin, dashed] (4, 0) -- (4, 2.5);
+  
+\end{tikzpicture}
+\end{center}
+
+
 \textit{From here on it's just notes for the rest of this section, working on it!}
 
 Histogram! -> Limit of the histogram: Probability density function (PDF)
@@ -138,7 +222,7 @@ Make discrete space: 150-160, 160-170, etc.
 Assign probabilities to those bins.
 Change resolution (150-155, 155-160), reassign/reorder 
 
-this is the density (and it's = 1 (area/integral))
+this is the density (and it's = 1 (area/integral)) 
 
 two weird extreme cases:
 - reassigning/reordering causes high densities
@@ -173,7 +257,7 @@ Multiple choice tests would be better if you would state ``how your belief is, t
 \vspace{1em}
 
 Take a look at this example: \\ \textit{The EU population is bigger than the US population. \\
-Give the belief for this to be true. (This means 0 = ``I believe this is false'', 1 = ``I believe this is true'', 0.5 = ``I don't know'')}
+Give the belief for this to be true. \\(This means 0 = ``I believe this is false'', 1 = ``I believe this is true'', 0.5 = ``I don't know'')}
 
 \vspace{1em}
 
@@ -195,16 +279,16 @@ E\left(L\left(X,q\right)\right) = p-2pq+q^2 = \left(p-p^2\right) + \left(p^2-2pq
 \subsubsection*{How to answer?}
 If one's belief is p, which q will yield the best gain (i.e. will minimize the expected loss)?
 
-To answer this the expected loss function can be minimized, i.e. we can search the first derivative and set it to zero. 
+To answer this the expected loss function can be minimized, i.e. one can search the first derivative and set it to zero. 
 
 \begin{align*}
-E\left(L\left(X,q\right)\right) &= p\left(1-2q\right)+q^2 \\
-\frac{\partial E\left(L\left(X,q\right)\right)}{\partial q} &= -2p + 2q \\
+E\left(L\left(p,q\right)\right) &= p\left(1-2q\right)+q^2 \\
+\frac{\partial E\left(L\left(p,q\right)\right)}{\partial q} &= -2p + 2q \\
 \rightarrow 0 &= -2p + 2q \\
 \Leftrightarrow p &= q
 \end{align*}
 
-So the best way 
+As can be seen the loss function is minimal if $p=q$, i.e. if the person answering is telling the truth.
 
 
 
