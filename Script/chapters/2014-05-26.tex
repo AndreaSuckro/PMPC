@@ -1,0 +1,85 @@
+\section[Frequentist Inference Examples]{Frequentist Inference Examples \iftoggle{showdates}{\small{\textit{2014-05-26}}}{}}
+
+\subsection{Bayesian Inference for Thumbtacks}
+Data: 01110101101 Binary Strings
+RV: $x_1....x_n =: X$
+
+$P(X|q) = \prod\limits_{i=1}^n{q^{x_i}\left(1-q\right)^{1-x_i}}=\underbrace{q^h\left(1-q\right)^t}_\text{Bernoulli}$
+
+h: \#heads
+t: \#tails
+
+$p(q|X) = \frac{P(X|q)\overbrace{p(q)}^\text{prior}}{\int_0^1 P(X|q)p(q) dq}$
+
+prior: what is it? q: parameter of coin, or my belief about it
+
+Non-Bayesian argument: different-people have different beliefs $\rightarrow$ subjective.
+
+but: if you have lots of data the results will converge to $p(q|X)$
+
+as a result we can also use: 
+
+convenient choice: beta distribution
+
+$p(q) = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{\int_0^1 q^{\alpha-1}(1-q)^{\beta-1}dq} = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{B(\alpha,\beta)}$
+
+\begin{align*}
+p(q|X) &\propto q^h(1-q)^t q^{\alpha-1}(1-q)^{\beta-1} = \underbrace{q^{h+alpha-1}(1-q)^{t+\beta-1}}_\text{new $\beta$-distribution} \\
+\alpha_n &= h+\alpha \\
+\beta_n &= t+\beta \\
+\Rightarrow p(q|X) &= \frac{1}{B(\alpha_n, \beta_n)}\cdot q^{\alpha_n-1}(1-q)^{\beta_n-1}
+\end{align*}
+
+If prior and posterior have the same form, this is called conjugate.
+
+--- graph from notes
+
+\subsection*{Map estimate (maximum a posteriori)}
+Since $\frac{1}{B(\alpha_n, \beta_n)}$ is dependent from $q$ and the result doesn't change if take the logarithm, we just have to maximize $q^{\alpha_n-1}(1-q)^\beta_n-1$.
+
+\begin{align*}
+\log{\left(q^{\alpha_n-1}(1-q)^{\beta_n-1}\right)} &= (\alpha_n-1)\log \est{q} + (\beta_n-1)\log (1-\est{q}) \\
+\frac{\partial \left(\left(\alpha_n-1\right)\log \est{q} + \left(\beta_n-1\right)\log \left(1-\est{q}\right)\right)}{\partial \est{q}} &= \frac{\alpha_n-1}{\est{q}} - \frac{\beta_n-1}{1-\est{q}} = 0 \\
+\frac{\alpha_n-1}{\est{q}} = \frac{\beta_n-1}{1-\est{q}} &\Leftrightarrow \frac{1-\est{q}}{\est{q}} = \frac{\beta_n-1}{\alpha_n-1} \\
+\frac{1}{\est{q}} = \frac{\beta_n-1}{\alpha_n-1}+1 &= \frac{\beta_n-1}{\alpha_n-1} + \frac{\alpha_n-1}{\alpha_n-1} = \frac{\beta_n+\alpha_n-2}{\alpha_n-1} \\
+\est{q} = \frac{\alpha_n-1}{\beta_n+\alpha_n-2} &= \frac{\alpha+h-1}{\alpha+\beta+h+t-2} \\
+\text{for: }\alpha&=\beta=1 \\
+\est{q} &= \frac{h}{h+t}
+\end{align*}
+
+$\alpha$ and $\beta$ are pseudo-counts: represent data you haven't seen but believe in
+
+
+================================================
+\subsection{NHST}
+$p(q)$ makes no sense: q is not a random variable but unknown
+
+$p(q|X) \propto p(q)p(X|q)$ also makes no sense: q is not a distribution
+
+Example: Can someone discriminate between coke and pepsi?
+
+Start with null hypothesis: Subjects can't discriminate: $q = \frac{1}{2}, n = 25$.
+
+Measure H (\# ``Heads'', correct answers).
+
+\begin{align*}
+P(H=h|q) = \underbrace{ \binom{n}{h} \overbrace{q^h (1-q)^{n-h}}^\text{Bernoulli} }_\text{Binomial distribution}
+\end{align*}
+Introduce criterion: subjects can discard if they get >20 correct answers. Then you can reject the null hypothesis.
+
+--- some gauss distribution from notes
+
+\begin{align*}
+P\left(H=h|q\frac{1}{2},n=25\right) \\
+P\left(H>20|q\frac{1}{2},n=25\right) \mbox{ (p-Value)}
+\end{align*}
+
+$\alpha$ is the signal level $\rightarrow$ type I error rate that's acceptable (usually $5\%$). This is the probability that you say there is an effect even if there is none.
+
+say $q = \frac{4}{5}$
+
+--- another plot from notes
+
+type II error $\beta \approx \frac{3}{4}$
+
+tradeoff between $\alpha$ and $\beta$: ``easier'' for $q \rightarrow \frac{1}{2}$ for $n$ big: the power is $1-\beta$.
