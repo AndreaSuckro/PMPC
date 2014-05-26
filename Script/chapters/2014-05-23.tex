@@ -1,11 +1,14 @@
-What is calibration?
+\section[Bayesian Inference Examples]{Bayesian Inference Examples \iftoggle{showdates}{\small{\textit{2014-05-23}}}{}}
 
-80\% of the statements you marked with 80\% should be true. Then you are well-calibrated.
+\subsection{Calibration in a multiple choice test?}
+
+The whole lecture was basically about Exercise 4 on the 4th Tutorial Sheet.
+80\% of the statements you marked with 80\% should be true. Then you are well-calibrated. Calibration is the bridge between frequentist and baysian view on this topic. Calibration can only be measured if you have a huge enough sample space, which is not often the case since you have rather twenty than two hundred questions. Afterwards it is not possible (in our setup) to tell whether wrong answers are due to lying or bad calibration.
 
 
 
 
-
+The idea of proper scoring rules is appealing. Why it is not widely applied has several reasons. First of all it seems not to be common knowledge among multiple-choice testers. Furthermore it does not have such a great effect on the results.
 % write something better
 psychological effects: overestimation, overestimation of small probabilities
 
@@ -19,8 +22,12 @@ once you know that stuff you can use it to correct peoples answers or estimates 
 Binary random variable
 i.e. in Osnabrück there are children born, 0 if they are boys, 1 if they are girls.
 $x=x_1,x_2,x_3,...,x_n \Rightarrow 01011001$
-$P(X|q) = q^{x_1} (1-q)^{1-x_1} \cdot q^{x_2}(1-q)^{1-x_2} = \prod\limits_{i=1}^{n}{q^{x_i}(1-q)^{1-x_i}} = q^{num(1)}(1-q)^{num(0)}$ with $num(Y)$ as the number of occurences of Y
+$P(X|q) = q^{x_1} (1-q)^{1-x_1} \cdot q^{x_2}(1-q)^{1-x_2} = \prod\limits_{i=1}^{n}{q^{x_i}(1-q)^{1-x_i}} = q^{num(1)}(1-q)^{num(0)}$ with $num(Y)$ as the number of occurrences of Y
 
 Bernoulli experiment
 
-Now we want to know $P(q|X) = \frac{P(X|q)P(q)}{P(X)} = \frac{P(X|q)P(q)}{\int\limits_0^1 p(X|q)p(q) dq}$
+Now we want to know:
+\begin{align*}
+ P(q|X) = \frac{P(X|q)P(q)}{P(X)} = \frac{P(X|q)P(q)}{\int\limits_0^1 p(X|q)p(q) dq}
+\end{align*}
+This shows that Bayes Rule can also be applied to continuous random variables.
