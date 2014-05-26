@@ -37,6 +37,8 @@
 
 \setlength\parindent{0pt} % no indentation
 
+\newcommand{\est}[1]{\expandafter\hat#1}  
+
 
 \begin{document}
 
@@ -120,10 +122,6 @@
 \input{chapters/2014-05-23.tex}
 \clearpage
 
-% Frequentist Inference Examples
-%\input{chapters/2014-05-26.tex}
-%\clearpage
-
 % Practice: Bayesian and Frequentist Inference
 \iftoggle{exercises}{
   \includepdf[pages={-},
@@ -137,6 +135,12 @@
   \input{chapters/2014-05-19b.tex}
   \clearpage
 }{}
+
+
+% Frequentist Inference Examples
+\input{chapters/2014-05-26.tex}
+\clearpage
+
 
 % Mid-Term Exam Corrections
 %\input{chapters/2014-06-06.tex}
