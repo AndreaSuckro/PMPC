@@ -241,7 +241,7 @@ This can be done by integration of the PDF:
 
 
 \subsubsection{Solution 3: Parametric Distribution}
-We use the Gaussian distribution
+We can model the probability distribution with a parametric Gaussian distribution.
 
 \begin{align*}
 p(X=x) &= \frac{1}{2\pi\sigma^2}e^{-\frac{1}{2}\left(\frac{\mu-x}{\sigma}\right)^2} = \phi(x;\mu,\sigma) = \phi\left(\frac{\mu-x}{\sigma};0,1\right) \\
@@ -250,6 +250,33 @@ P(X \leq t) &= \int\limits_{-\infty}^{t}{p(X=x)} dx = \Phi(t;\mu,\sigma) \\
 \mbox{probability of the standard deviation: } \\
 P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68\%
 \end{align*}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
+  axis x line*=bottom, axis y line*=left, enlargelimits=upper]
+  \addplot [red]  {gauss(0,0.5)} node[pos=0.4, anchor=east] {$\sigma=0.5$};
+  \addplot [green]{gauss(0,1)}   node[pos=0.6, anchor=west] {$\sigma=1$};
+  \addplot [blue] {gauss(0,2)}   node[pos=0.8, anchor=west] {$\sigma=2$};
+\end{axis}
+\end{tikzpicture}
+\caption{Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$.}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
+  axis x line*=bottom, axis y line*=left, enlargelimits=upper]
+  \addplot [red]  {Gauss(0,0.5)} node[pos=0.5, anchor=west] {$\sigma=0.5$};
+  \addplot [green]{Gauss(0,1)}   node[pos=0.5, anchor=east] {$\sigma=1$};
+  \addplot [blue] {Gauss(0,2)}   node[pos=0.8, anchor=west] {$\sigma=2$};
+\end{axis}
+\end{tikzpicture}
+\caption{Integrals of Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$.}
+\end{figure}
+
 
 \begin{itemize}
 	\item $\mu \pm \sigma \approx 68\%$

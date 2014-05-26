@@ -12,7 +12,16 @@
 \usepackage{pdfpages}          % to include exercise sheets
 
 \usepackage{tikz}              % diagrams
-\usetikzlibrary{trees}         % tree diagram
+\usetikzlibrary{trees}         % tree diagrams
+
+\usepackage{pgfplots}          % complex functions
+\pgfplotsset{compat=1.10}
+% gauss(\mu,\sigma)
+\pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
+\pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
+
+
+%2.718281828459045235360287
 
 \usepackage{eurosym}           % euro symbol
 \DeclareRobustCommand{\officialeuro}{
@@ -20,14 +29,12 @@
   {\fontencoding{U}\fontfamily{eurosym}\selectfont e}} % euro symbol in math
 
 \usepackage{wrapfig}
-\newcommand{\sidenote}[2][.3]{
-\begin{wrapfigure}{o}{#1\textwidth}%
-\vspace{-1.5em}
-\textbf{Note: }\textit{#2}
-\vspace{-1.5em}
-\end{wrapfigure}
-
-}
+\newcommand{\sidenote}[2][.3]{ %sidenote for texts
+  \begin{wrapfigure}{o}{#1\textwidth}
+    \vspace{-1.5em}
+    \textbf{Note: }\textit{#2}
+    \vspace{-1.5em}
+  \end{wrapfigure}}
 
 % Toggles for document layout
 \newtoggle{exercises}   % toggle for exercise sheets
