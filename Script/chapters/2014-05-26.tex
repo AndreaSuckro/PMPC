@@ -34,24 +34,23 @@ If prior and posterior have the same form, this is called conjugate.
 
 --- graph from notes
 
-\subsection*{Map estimate (maximum a posteriori)}
-Since $\frac{1}{B(\alpha_n, \beta_n)}$ is dependent from $q$ and the result doesn't change if take the logarithm, we just have to maximize $q^{\alpha_n-1}(1-q)^\beta_n-1$.
+\subsection{Map estimate (maximum a posteriori)}
+In order to find the maximum posteriori term we need to calculate the first derivative of $p(q|X)$. That seems quite hard but we can reduce the problem by ignoring the normalization term: $\frac{1}{B(\alpha_n, \beta_n)}$ (since it is independent from $q$) and taking the logarithm of the numerator, since this does not change the location of any maxima. By this we just have to maximize $\log(q^{\alpha_n-1}(1-q)^\beta_n-1)$.
 
 \begin{align*}
 \log{\left(q^{\alpha_n-1}(1-q)^{\beta_n-1}\right)} &= (\alpha_n-1)\log \est{q} + (\beta_n-1)\log (1-\est{q}) \\
 \frac{\partial \left(\left(\alpha_n-1\right)\log \est{q} + \left(\beta_n-1\right)\log \left(1-\est{q}\right)\right)}{\partial \est{q}} &= \frac{\alpha_n-1}{\est{q}} - \frac{\beta_n-1}{1-\est{q}} = 0 \\
 \frac{\alpha_n-1}{\est{q}} = \frac{\beta_n-1}{1-\est{q}} &\Leftrightarrow \frac{1-\est{q}}{\est{q}} = \frac{\beta_n-1}{\alpha_n-1} \\
 \frac{1}{\est{q}} = \frac{\beta_n-1}{\alpha_n-1}+1 &= \frac{\beta_n-1}{\alpha_n-1} + \frac{\alpha_n-1}{\alpha_n-1} = \frac{\beta_n+\alpha_n-2}{\alpha_n-1} \\
-\est{q} = \frac{\alpha_n-1}{\beta_n+\alpha_n-2} &= \frac{\alpha+h-1}{\alpha+\beta+h+t-2} \\
-\text{for: }\alpha&=\beta=1 \\
-\est{q} &= \frac{h}{h+t}
+\est{q} = \frac{\alpha_n-1}{\beta_n+\alpha_n-2} &= \frac{\alpha+h-1}{\alpha+\beta+h+t-2}
 \end{align*}
 
-$\alpha$ and $\beta$ are pseudo-counts: represent data you haven't seen but believe in
+For $\alpha =\beta=1$ we get what we have already suspected before $\est{q}=\frac{h}{h+t}$. Note that $\alpha$ and $\beta$ are pseudo-counters. They represent data points you have not seen but believe to be realistic. This a way to put your prior belief about the problem in the model but is also dangerous. If you have a strong belief in a hypothesis it will need more and more data to prove in the limit that you are wrong.
 
+\textit{Note: The approach to use Bayesian statistics but to use a prior that does not assume or put in any information is called 'Objective Bayes'. It is somehow the middle ground between the two opposing camps.}
 
-================================================
-\subsection{NHST}
+\subsection{NHST (Null Hypothesis Significance Testing)}
+In the previous section we examined how Bayesian people tackle the problem of finding a good model for a problem.
 $p(q)$ makes no sense: q is not a random variable but unknown
 
 $p(q|X) \propto p(q)p(X|q)$ also makes no sense: q is not a distribution
