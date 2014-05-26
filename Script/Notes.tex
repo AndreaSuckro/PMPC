@@ -39,6 +39,9 @@
 
 \newcommand{\est}[1]{\expandafter\hat#1}  
 
+%\begin{filecontents*}{histogramToPDFExample.data}
+  %\input{test.txt}
+%\end{filecontents*}
 
 \begin{document}
 
@@ -122,10 +125,10 @@
 \input{chapters/2014-05-23.tex}
 \clearpage
 
-% Practice: Bayesian and Frequentist Inference
+% Practice: Bayesian and Frequentist Inference I
 \iftoggle{exercises}{
   \includepdf[pages={-},
-      addtotoc={1,section,1,Tutorial Sheet 4: Bayesian and Frequentist Inference,exsheet4},
+      addtotoc={1,section,1,Tutorial Sheet 4: Bayesian and Frequentist Inference I,exsheet4},
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
@@ -141,6 +144,19 @@
 \input{chapters/2014-05-26.tex}
 \clearpage
 
+% Practice: Bayesian and Frequentist Inference II
+\iftoggle{exercises}{
+  \includepdf[pages={-},
+      addtotoc={1,section,1,Tutorial Sheet 5: Bayesian and Frequentist Inference II,exsheet5},
+      viewport=100 50 550 700,
+      scale=0.75,
+      pagecommand=\thispagestyle{plain}
+      ]{exercises/Exercises05.pdf}
+}{}
+\iftoggle{solutions}{
+%  \input{chapters/2014-06-23.tex}
+%  \clearpage
+}{}
 
 % Mid-Term Exam Corrections
 %\input{chapters/2014-06-06.tex}
