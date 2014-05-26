@@ -45,11 +45,11 @@ In order to find the maximum posteriori term we need to calculate the first deri
 \est{q} = \frac{\alpha_n-1}{\beta_n+\alpha_n-2} &= \frac{\alpha+h-1}{\alpha+\beta+h+t-2}
 \end{align*}
 
-For $\alpha =\beta=1$ we get what we have already suspected before $\est{q}=\frac{h}{h+t}$. Note that $\alpha$ and $\beta$ are pseudo-counters. They represent data points you have not seen but believe to be realistic. This a way to put your prior belief about the problem in the model but is also dangerous. If you have a strong belief in a hypothesis it will need more and more data to prove in the limit that you are wrong.
+\sidenote[.4]{The approach to use Bayesian statistics with a prior that does not assume or put in any information is called 'Objective Bayes'. It is somehow the middle ground between the two opposing camps.}
 
-\textit{Note: The approach to use Bayesian statistics but to use a prior that does not assume or put in any information is called 'Objective Bayes'. It is somehow the middle ground between the two opposing camps.}
+For $\alpha = \beta =1$ we get what we have already suspected before $\est{q}=\frac{h}{h+t}$. Note that $\alpha$ and $\beta$ are pseudo-counters. They represent data points you have not seen but believe to be realistic. This a way to put your prior belief about the problem in the model but is also dangerous. If you have a strong belief in a hypothesis it will need more and more data to prove in the limit that you are wrong.
 
-\subsection{NHST (Null Hypothesis Significance Testing)}
+\subsection[Null Hypothesis Significance Testing (NHST)]{NHST Null Hypothesis Significance Testing}
 In the previous section we examined how Bayesian people tackle the problem of finding a good model for a problem.
 $p(q)$ makes no sense: q is not a random variable but unknown
 
