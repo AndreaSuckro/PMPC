@@ -1,26 +1,9 @@
-What is calibration?
+\section[Bayesian Inference Examples]{Bayesian Inference Examples \iftoggle{showdates}{\small{\textit{2014-05-23}}}{}}
 
-80\% of the statements you marked with 80\% should be true. Then you are well-calibrated.
+The whole lecture was basically about Exercise 4 on the 4th Tutorial Sheet. The idea is that we have a multiple choice test where the answers are not simply true or false but can be any value between 0 and 1 representing your belief in this statement to be true (where 0 corresponds to your belief in this statement being false). What does a proper scoring do in this example? What is calibration?
 
+\subsection{Honesty}
+If we use a proper scoring rule the participant can minimize her error if she always states her honest belief in the statement. It is obvious that this does not help in getting any points for statements where you have no clue about it's real truthvalue and you can still get lucky if you gamble and just guess a value for a statement. BUT. For a huge number of questions it is highly unlikely that you gain anything and we proved in the other exercises that it is optimal to state your true belief.
 
-
-
-
-% write something better
-psychological effects: overestimation, overestimation of small probabilities
-
-once you know that stuff you can use it to correct peoples answers or estimates to certain events
-
-
-
-
-
-
-Binary random variable
-i.e. in Osnabrück there are children born, 0 if they are boys, 1 if they are girls.
-$x=x_1,x_2,x_3,...,x_n \Rightarrow 01011001$
-$P(X|q) = q^{x_1} (1-q)^{1-x_1} \cdot q^{x_2}(1-q)^{1-x_2} = \prod\limits_{i=1}^{n}{q^{x_i}(1-q)^{1-x_i}} = q^{num(1)}(1-q)^{num(0)}$ with $num(Y)$ as the number of occurences of Y
-
-Bernoulli experiment
-
-Now we want to know $P(q|X) = \frac{P(X|q)P(q)}{P(X)} = \frac{P(X|q)P(q)}{\int\limits_0^1 p(X|q)p(q) dq}$
+\subsection{Calibration}
+If you are well-calibrated then 80\% of the statements you marked with 80\% should be true. Calibration is the bridge between frequentist and baysian view on this topic. Calibration can only be measured if you have a huge enough sample space, which is not often the case since you have rather twenty than two hundred questions. Afterward it is not possible (in our setup) to tell whether wrong answers are due to lying or bad calibration. There is another problem. It is very hard for a normal person to be (even if they try) well calibrated. Psychological studies show that most people systematically overestimate their own belief. Meaning that they would write 1 where their true belief is rather $0.92$. People also overestimate small probabilities. They think for example that it is rather likely to die in a plane crash although this event is rather unlikely. One could take such studies into account and try to come up with correction terms for the common failures. But this is rather complicated. This is part of the reason why these proper scoring or multiple choice tests in this form are not widley used. The other reason is that not many people know about this stuff and the effect is not that great to even start with all the trouble.
