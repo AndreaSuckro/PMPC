@@ -6,6 +6,17 @@
 
 \usepackage{amsmath, amssymb}  % math package
 
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks
+    %colorlinks,
+    %citecolor=black,
+    %filecolor=black,
+    %linkcolor=black,
+    %urlcolor=black
+}
+\usepackage{bookmark}
+
 \usepackage{graphicx}          % graphics
 \usepackage{multirow}          % for rowspanning table entries
 \usepackage{etoolbox}          % for conditional includes
@@ -63,6 +74,7 @@
 \clearpage
 
 % table of contents and new page
+\belowpdfbookmark{\contentsname}{Contents}
 \tableofcontents
 \clearpage
 
