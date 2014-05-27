@@ -6,16 +6,9 @@
 
 \usepackage{amsmath, amssymb}  % math package
 
-\usepackage{hyperref}
-\hypersetup{
-    hidelinks
-    %colorlinks,
-    %citecolor=black,
-    %filecolor=black,
-    %linkcolor=black,
-    %urlcolor=black
-}
-\usepackage{bookmark}
+\usepackage{hyperref}          % clickable references
+\hypersetup{hidelinks}         % links look like normal text
+\usepackage{bookmark}          % to insert custom bookmarks
 
 \usepackage{graphicx}          % graphics
 \usepackage{multirow}          % for rowspanning table entries
@@ -27,20 +20,22 @@
 
 \usepackage{pgfplots}          % complex functions
 \pgfplotsset{compat=1.10}
-% gauss(\mu,\sigma)
+% gauss(\mu, \sigma)
+% normal gauss function
 \pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
+% Gauss(\mu, \sigma)
+% error function, numerical approximation of the gauss integration
 \pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
 
-
-%2.718281828459045235360287
 
 \usepackage{eurosym}           % euro symbol
 \DeclareRobustCommand{\officialeuro}{
   \ifmmode\expandafter\text\fi
   {\fontencoding{U}\fontfamily{eurosym}\selectfont e}} % euro symbol in math
 
-\usepackage{wrapfig}
-\newcommand{\sidenote}[2][.3]{ %sidenote for texts
+
+\usepackage{wrapfig}           % package used for sidenotes
+\newcommand{\sidenote}[2][.3]{ % sidenotes for texts
   \begin{wrapfigure}{o}{#1\textwidth}
     \vspace{-1.5em}
     \textbf{Note: }\textit{#2}
@@ -53,7 +48,7 @@
 \newtoggle{showdates}   % toggle for dates in headlines
 % use \toggletrue{} and \togglefalse{} to set them 
 
-\toggletrue{exercises} 
+\toggletrue{exercises}
 %\togglefalse{exercises} 
 
 \toggletrue{solutions} 
@@ -64,7 +59,11 @@
 
 \setlength\parindent{0pt} % no indentation
 
-\newcommand{\est}[1]{\expandafter\hat#1}  
+% \est{q} creates the estimation for a variable (i.e. places ^ over it)
+\newcommand{\est}[1]{\expandafter\hat#1}
+
+
+
 
 \begin{document}
 
@@ -73,8 +72,9 @@
 \input{chapters/titlepage.tex}
 \clearpage
 
-% table of contents and new page
+% bookmark for table of contents
 \belowpdfbookmark{\contentsname}{Contents}
+% table of contents and new page
 \tableofcontents
 \clearpage
 
