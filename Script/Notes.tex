@@ -21,6 +21,7 @@
 
 \usepackage{tikz}              % diagrams
 \usetikzlibrary{trees}         % tree diagrams
+\usetikzlibrary{patterns}      % patterns to fill areas below graphs
 
 \usepackage{pgfplots}          % complex functions
 \pgfplotsset{compat=1.10}
@@ -30,6 +31,27 @@
 % Gauss(\mu, \sigma)
 % error function, numerical approximation of the gauss integration
 \pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
+
+% START fill area below graph
+\tikzset{
+  hatch distance/.store in=\hatchdistance,
+  hatch distance=10pt,
+  hatch thickness/.store in=\hatchthickness,
+  hatch thickness=2pt
+}
+\makeatletter
+\pgfdeclarepatternformonly[\hatchdistance,\hatchthickness]{flexible hatch}
+{\pgfqpoint{0pt}{0pt}}
+{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+{\pgfpoint{\hatchdistance-1pt}{\hatchdistance-1pt}}%
+{
+  \pgfsetcolor{\tikz@pattern@color}
+  \pgfsetlinewidth{\hatchthickness}
+  \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+  \pgfpathlineto{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+  \pgfusepath{stroke}
+}
+% END fill area below graph
 
 
 \usepackage{eurosym}           % euro symbol
