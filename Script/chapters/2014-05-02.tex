@@ -8,12 +8,12 @@ Unique events are for example:
 \begin{itemize}
 	\item How sure are people which population is bigger, the EU or the US population?
   \item How can bookkeepers set the odds for soccer games?
-  \item How high is the probability, that a nuclear reactor blows up?
+  \item How high is the probability for a nuclear reactor to blow up?
 \end{itemize}
 
 The frequentist view is not really helpful here: Since those events don't appear numerous times, you can not measure any limits of relative frequencies. But the Bayesian view helps us to use the same math to determine these probabilities.
 
-\subsection{What do you accept as a fair bet?}
+\subsection{What do you accept as a fair bet?}\index{Fair Bet}
 \begin{figure}[ht]
   \begin{center}
     \includegraphics[]{images/Oronsay-Rick-Danley-Horse-Race-ticket-June-30.jpg}
@@ -35,16 +35,15 @@ Ticket =
 \end{align*}
 
 What would be a fair price for that ticket?
-
 \begin{align*}
 \left(\$1 - c\right) P(A) - cP(\neg A) &= 0 \\
 \Leftrightarrow P(A) &= c
 \end{align*}
 
-\subsubsection*{Coherence (fair pricing)}
+\subsubsection*{Coherence (fair pricing)}\index{Coherence}
 \begin{enumerate}
 	\item $P(certain) = 1$, $P(impossible) = 0$
-  \item $\forall A\ 0 \leq P(1) \leq 1$
+  \item $\forall A\ 0 \leq P(A) \leq 1$
   \item $P(A \cap B) = \left\{\right\} \rightarrow P(A \cup B) = P(A) + P(B)$
 \end{enumerate}
 
@@ -55,7 +54,7 @@ Imagine $P(A) + P(\neg A) > 1$. Then the bookkeeper would make money and the bet
 Another case is $A \cap B = \left\{\right\}$, i.e. $A$ and $B$ are mutually exclusive. Then you want to buy $P(A)+P(B)$ but sell $P(A \cup B)$ if $P(A) + P(B) < P(A \cup B)$.
 
 \subsection{Conditional Bets}
-If we don't have repeatable events, how can we justify conditional probabilities?
+If we don't have repeatable events, how can we justify conditional probabilities\index{Conditional Probability}?
 
 Assume a ticket again, this time of the following form:
 \begin{align*}
@@ -85,14 +84,14 @@ P(A|B)     &= \frac{P(A \cap B)}{P(B)}
 \subsection*{Philosophical differences matter}
 Alice has two coins, coin 1 with a probability of 0.5 for heads and tails, coin 2 with probability 0.4 for heads (and 0.6 for tails). 
 
-She chooses a coin and tells Bob she would flip it n times now. Then Bob has to guess which coin she flipped.
+She chooses a coin and tells Bob she would flip it $n$ times now. Then Bob has to guess which coin she flipped.
 
-Bob has two hypotheses, one for each coin. To check his hypotheses, he can now use the data (i.e. the n coin flips) and calculate the probabilities for his hypotheses - then he can compare those and choose the one with higher probability.
+Bob has two hypotheses, one for each coin. To check his hypotheses, he can now use the data (i.e. the $n$ coin flips) and calculate the probabilities for his hypotheses - then he can compare those and choose the one with higher probability.
 
 \begin{align*}
 P(H|D) = \frac{P(D|H)P(H)}{P(D)}
 \end{align*}
 \textit{(with H = Hypothesis, D = Data)}
 
-Note that there is a difference between coherence and calibration, for example you might believe p=0.5, but it is really 0.4. Then you would be coherent but not well calibrated, as you can see from the expected value: $E: 0.5 \cdot 0.4 - 0.5 \cdot 0.6 = -0.1$.
+Note that there is a difference between coherence\index{Coherence} and calibration\index{Calibration}, for example you might believe p=0.5, but it is really 0.4. Then you would be coherent but not well calibrated, as you can see from the expected value: $E: 0.5 \cdot 0.4 - 0.5 \cdot 0.6 = -0.1$.
 

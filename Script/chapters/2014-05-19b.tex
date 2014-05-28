@@ -24,7 +24,7 @@ The value of the density function at 0 is given by:
 p(X=0) & = \frac{1}{\omega^2} \cdot 0 + \frac{1}{\omega} = \frac{1}{\omega}
 \end{align*}
 
-Therefore the value at zero can be bigger than 1 for $\omega >$ 1. This is possible because the density is not equal to the probability (which cannot be bigger than 1) but has to be multiplied with the width of interval for which the probability should be calculated.
+Therefore the value at zero can be greater than 1 for $\omega >$ 1. This is possible because the density is not equal to the probability (which cannot be greater than 1) but has to be multiplied with the width of interval for which the probability should be calculated.
 
 In order to get the probability for coming late at time point $\frac{\omega}{2}$ we have to calculate the probability for arriving after that time point, or in other words the integral from $\frac{\omega}{2}$ to $\omega$ (again the remaining area is zero anyways):
 
@@ -118,4 +118,4 @@ Second derivative:
 \end{align*}
 Since the second derivative is greater than zero in our definition from $0...1$ we found a minimum, so the loss function is good for honest people.
 
-Still usually the first loss function is better, since this function is unforgiving (on a mistake it gives a loss of $\infty$).
+Still usually the first loss function is better, since this second function is unforgiving (a single mistake gives a loss of $\infty$).
