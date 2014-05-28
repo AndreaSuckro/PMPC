@@ -13,7 +13,7 @@ where $\left[ 1, 2 \right]$ represents the card with 1 on the red and 2 on the b
 To describe the following examples we first have to define some terms and relations.
 
 \begin{itemize}
-	\item $x \in \Omega$ is the \textbf{random variable} $x$ which can be drawn from $\Omega$.
+	\item $x \in \Omega$ is the \textbf{random variable}\index{Random Variable} $x$ which can be drawn from $\Omega$.
     \begin{itemize}
       \item Example: $\left[ 1, 2 \right]$, i.e. the card with a red 1 and a blue 2.
     \end{itemize}
@@ -21,7 +21,7 @@ To describe the following examples we first have to define some terms and relati
     \begin{itemize}
       \item Example: $|\left\{1,2\right\}| = 2$
     \end{itemize}
-  \item $E \subset \Omega$ is an \textbf{Event} $E$ (\textit{something you can bet on}).
+  \item $E \subset \Omega$ is an \textbf{Event}\index{Event} $E$ (\textit{something you can bet on}).
     \begin{itemize}
       \item Example: Drawing a card with the number on the red site smaller than number on its blue site.
     \end{itemize}
@@ -96,6 +96,7 @@ Note that we can calculate $P$ for all events by adding up singleton events.
 \end{description}
 
 \subsection{Random Variables \& Joint Distribution}
+\index{Joint Distribution}\index{Random Variable}
 An example for a joint distribution: You roll two dice, one is six-sided and red, the other one is four-sided and blue.
 \begin{align*}
 \mbox{R: }\Omega_R = \{1, ..., 6\} & & P(R=\omega) = \frac{1}{6}\ \forall\ \omega \in \Omega_R\\
@@ -103,7 +104,7 @@ An example for a joint distribution: You roll two dice, one is six-sided and red
 \end{align*}
 The joint sample space $\Omega$ is $\Omega = \Omega_R \times \Omega_B$.
 
-Since R and B are independent the joint probability is $ P(R, B) = \frac{1}{24}$ for each value of R, B.
+Since R and B are independent the joint probability\index{Joint Probability} is $ P(R, B) = \frac{1}{24}$ for each value of R, B.
 
 More formally speaking it holds that $P(R=i, B=j) = \frac{1}{24}$ for all values of $i, j$ since $P(R, B) = P(R) \cdot P(B)$ for all independent $R, B$.
 
@@ -113,7 +114,7 @@ More formally speaking it holds that $P(R=i, B=j) = \frac{1}{24}$ for all values
 For the following examples please refer to table \ref{tab:2014-04-25_cards} (page \pageref{tab:2014-04-25_cards}).
 
 \subsubsection*{Marginal Probability}
-The \textbf{Marginal Probability} for $P(R=j)$ is:
+The \textbf{Marginal Probability}\index{Marginal Probability} for $P(R=j)$ is:
 
 \begin{align*}
 P(R=j) = 
@@ -138,8 +139,8 @@ P(B) = \sum\limits_R P(R, B) =
 \end{align*}
 
 \subsubsection*{Conditional Probability}
-In case a card was picked and we already know what number the red side shows,
-$P(R, B) \neq P(R) \cdot P(B)$ is \textit{not independent}. $P(R,B)$ is now dependent on the already known red number.
+\index{Conditional Probability}In case a card was picked and we already know what number the red side shows,
+$P(R, B) \neq P(R) \cdot P(B)$ is \textit{not independent}\index{Independence}. $P(R,B)$ is now dependent\index{Dependence} on the already known red number.
 
 The probabilities that follow are:
 \begin{align*}
@@ -161,7 +162,7 @@ P(A, B)        &\mbox{ is a function of A (because B is fixed)}\\
 P(B)           &\mbox{ is the renorm}
 \end{align*}
 
-With the product rule $P(A|B)P(B) = P(A, B) = P(B|A)P(A)$ we can derive \textbf{Bayes' rule}:
+With the product rule\index{Product Rule} $P(A|B)P(B) = P(A, B) = P(B|A)P(A)$ we can derive \textbf{Bayes' rule}\index{Bayes' rule}:
 \begin{align*}
 P(B|A) &= \frac{P(A|B)P(B)}{P(A)} = \frac{P(A|B)P(B)}{\sum\limits_B P(A|B)P(B)} \\
 \mbox{where we call}   & \\
