@@ -1,38 +1,35 @@
 \section[Frequentist Inference Examples]{Frequentist Inference Examples \iftoggle{showdates}{\small{\textit{2014-05-26}}}{}}
 
 \subsection{Bayesian Inference for Thumbtacks}
-Data: 01110101101 Binary Strings
-RV: $x_1....x_n =: X$
-
-$P(X|q) = \prod\limits_{i=1}^n{q^{x_i}\left(1-q\right)^{1-x_i}}=\underbrace{q^h\left(1-q\right)^t}_\text{Bernoulli}$
-
+We return to the example from the first lecture. Let us imagine we have thrown a thumbtack $n$ times. The series of data we get from that may be: 01110101101, a binary string consisting of $n$ entries (0 encodes tail, 1 head). Let $x_1....x_n =: X$ be a random variable. What is the probability of the data given our vague belief about q (for a coin we have the strong intuition of believing that $q=0.5$, but for the thumbtack we are not sure)? The probability of the whole data($X$) is the product of the probability of all single events($x_i$):
+\begin{align*}
+P(X|q) = \prod\limits_{i=1}^n{q^{x_i}\left(1-q\right)^{1-x_i}}=\underbrace{q^h\left(1-q\right)^t}_\text{Bernoulli}
+\end{align*}
 h: \#heads
 t: \#tails
 
-$p(q|X) = \frac{P(X|q)\overbrace{p(q)}^\text{prior}}{\int_0^1 P(X|q)p(q) dq}$
-
-prior: what is it? q: parameter of coin, or my belief about it
-
-Non-Bayesian argument: different-people have different beliefs $\rightarrow$ subjective.
-
-but: if you have lots of data the results will converge to $p(q|X)$
-
-as a result we can also use: 
-
-convenient choice: beta distribution
-
-$p(q) = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{\int_0^1 q^{\alpha-1}(1-q)^{\beta-1}dq} = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{B(\alpha,\beta)}$
+But since we do not know $q$ we would also like to find the best $q$ that explains the observed data. In other words: what is the probability of a specific $q$ given the data. This can again be expressed with Bayes' Rule:
 
 \begin{align*}
-p(q|X) &\propto q^h(1-q)^t q^{\alpha-1}(1-q)^{\beta-1} = \underbrace{q^{h+alpha-1}(1-q)^{t+\beta-1}}_\text{new $\beta$-distribution} \\
-\alpha_n &= h+\alpha \\
-\beta_n &= t+\beta \\
-\Rightarrow p(q|X) &= \frac{1}{B(\alpha_n, \beta_n)}\cdot q^{\alpha_n-1}(1-q)^{\beta_n-1}
+\overbrace{p(q|X)}^\text{posterior} = \frac{P(X|q)\overbrace{p(q)}^\text{prior}}{\int_0^1 P(X|q)p(q) dq}
 \end{align*}
 
-If prior and posterior have the same form, this is called conjugate.
+The question arising here is what shall we take as the prior? In principle it is just our personal belief about the thumbtack, one experimenter might belief it is $0.7$, others belief different values. This \textit{subjectivity} troubles many Non-Bayesians. The good thing is, that it does not really matter which prior you choose, if you have enough data the result will still converge to the real $p(q|X)$!
 
---- graph from notes
+Since we have no concrete clue and it is not that important anyway, we may choose a distribution by pure convenience for $p(q)$. The distribution is called \textit{$\beta$ Distribution}:
+\begin{align*}
+p(q) &= \frac{q^{\alpha-1}(1-q)^{\beta-1}}{\int_0^1 q^{\alpha-1}(1-q)^{\beta-1}dq} = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{B(\alpha,\beta)}
+\end{align*}
+We can now neglect the normalization term in the original $p(q|X)$. So we get rid of the integral in the denominator, since it is independent of $q$.
+\begin{align*}
+p(q|X) &\propto \underbrace{q^h(1-q)^t}_{P(X|q)} \underbrace{q^{\alpha-1}(1-q)^{\beta-1}}_{p(q)} = \underbrace{q^{h+\alpha-1}(1-q)^{t+\beta-1}}_\text{new $\beta$-distribution}
+\end{align*}
+If we now choose $\alpha_n = h+\alpha, \beta_n = t+\beta$, we can express the new $\beta$ Distribution as:
+\begin{align*}
+p(q|X) &= \frac{q^{\alpha_n-1}(1-q)^{\beta_n-1}}{B(\alpha_n, \beta_n)} 
+\end{align*}
+
+If the prior and posterior have the same distribution (like in this case) it is called \textit{conjugate}.
 
 \subsection{Map estimate (maximum a posteriori)}
 In order to find the maximum posteriori term we need to calculate the first derivative of $p(q|X)$. That seems quite hard but we can reduce the problem by ignoring the normalization term: $\frac{1}{B(\alpha_n, \beta_n)}$ (since it is independent from $q$) and taking the logarithm of the numerator, since this does not change the location of any maxima. By this we just have to maximize $\log(q^{\alpha_n-1}(1-q)^\beta_n-1)$.
