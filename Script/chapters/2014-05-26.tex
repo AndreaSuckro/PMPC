@@ -1,22 +1,22 @@
 \section[Frequentist Inference Examples]{Frequentist Inference Examples \iftoggle{showdates}{\small{\textit{2014-05-26}}}{}}
 
 \subsection{Bayesian Inference for Thumbtacks}
-We return to the example from the first lecture (see page \pageref{example:Thumbtack Toss}). Let us imagine we have thrown a thumbtack $n$ times. The series of data we get from that may be: 01110101101, a binary string consisting of $n$ entries (0 encodes tail, 1 head). Let $x_1....x_n =: X$ be a random variable. What is the probability of the data given our vague belief about q (for a coin we have the strong intuition of believing that $q=0.5$, but for the thumbtack we are not sure)? The probability of the whole data($X$) is the product of the probability of all single events($x_i$):
+We return to the example from the first lecture (see page \pageref{example:Thumbtack Toss}). Let us imagine we have thrown a thumbtack $n$ times. The series of data we get from that may be: 01110101101, a binary string consisting of $n$ entries (0 encodes tail, 1 head). Let $x_1....x_n =: X$ be a random variable. What is the probability of the data given our vague belief about q (for a coin we have the strong intuition of believing that $q=0.5$, but for the thumbtack we are not sure)? The probability of the whole data ($X$) is the product of the probability of all single events ($x_i$):
 \begin{align*}
 P(X|q) = \prod\limits_{i=1}^n{q^{x_i}\left(1-q\right)^{1-x_i}}=\underbrace{q^h\left(1-q\right)^t}_\text{Bernoulli}
 \end{align*}
 h: \#heads
 t: \#tails
 
-But since we do not know $q$ we would also like to find the best $q$ that explains the observed data. In other words: what is the probability of a specific $q$ given the data. This can again be expressed with Bayes' Rule:
+But since we do not know $q$ we would also like to find the best $q$ that explains the observed data. In other words: what is the probability of a specific $q$ given the data? This can again be expressed with Bayes' Rule\index{Bayes' Rule}:
 
 \begin{align*}
 \overbrace{p(q|X)}^\text{posterior} = \frac{P(X|q)\overbrace{p(q)}^\text{prior}}{\int_0^1 P(X|q)p(q) dq}
 \end{align*}
 
-The question arising here is what shall we take as the prior? In principle it is just our personal belief about the thumbtack, one experimenter might belief it is $0.7$, others belief different values. This \textit{subjectivity} troubles many Non-Bayesians. The good thing is, that it does not really matter which prior you choose, if you have enough data the result will still converge to the real $p(q|X)$!
+The question arising here is what shall we take as the prior? In principle it is just our personal belief about the thumbtack, one experimenter might believe it is $0.7$, others believe different values. This \textit{subjectivity} troubles many Non-Bayesians. The good thing is, that it does not really matter which prior you choose, if you have enough data the result will still converge to the real $p(q|X)$!
 
-Since we have no concrete clue and it is not that important anyway, we may choose a distribution by pure convenience for $p(q)$. The distribution is called \textit{$\beta$ Distribution}:
+Since we have no concrete clue and it is not that important anyway, we may choose a distribution by pure convenience for $p(q)$. The distribution is called \textit{$\beta$ Distribution}\index{$\beta$-Distribution@B} :
 \begin{align*}
 p(q) &= \frac{q^{\alpha-1}(1-q)^{\beta-1}}{\int_0^1 q^{\alpha-1}(1-q)^{\beta-1}dq} = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{B(\alpha,\beta)}
 \end{align*}
@@ -29,10 +29,10 @@ If we now choose $\alpha_n = h+\alpha, \beta_n = t+\beta$, we can express the ne
 p(q|X) &= \frac{q^{\alpha_n-1}(1-q)^{\beta_n-1}}{B(\alpha_n, \beta_n)} 
 \end{align*}
 
-If the prior and posterior have the same distribution (like in this case) it is called \textit{conjugate}.
+If the prior and posterior have the same distribution (like in this case) it is called \textit{conjugate}\index{Conjugation}.
 
 \subsection{Map estimate (maximum a posteriori)}
-In order to find the maximum posteriori term we need to calculate the first derivative of $p(q|X)$. That seems quite hard but we can reduce the problem by ignoring the normalization term: $\frac{1}{B(\alpha_n, \beta_n)}$ (since it is independent from $q$) and taking the logarithm of the numerator, since this does not change the location of any maxima. By this we just have to maximize $\log(q^{\alpha_n-1}(1-q)^\beta_n-1)$.
+In order to find the maximum posteriori term we need to calculate the first derivative of $p(q|X)$. That seems quite hard but we can reduce the problem by ignoring the normalization term $\frac{1}{B(\alpha_n, \beta_n)}$ (since it is independent from $q$) and taking the logarithm of the numerator, since this does not change the location of any maxima. By this we just have to maximize $\log(q^{\alpha_n-1}(1-q)^\beta_n-1)$.
 
 \begin{align*}
 \log{\left(q^{\alpha_n-1}(1-q)^{\beta_n-1}\right)} &= (\alpha_n-1)\log \est{q} + (\beta_n-1)\log (1-\est{q}) \\
@@ -44,25 +44,25 @@ In order to find the maximum posteriori term we need to calculate the first deri
 
 \sidenote[.35]{The approach of using Bayes\-ian statistics with a prior that does not assume or put in any information is called 'Objective Bayes'. It is somehow the middle ground between the two opposing camps.}
 
-For $\alpha = \beta =1$ we get what we have already suspected before: $\est{q}=\frac{h}{h+t}$. $\alpha$ and $\beta$ are also called pseudo-counters. They represent data points you have not seen but believe to be realistic. This a way to put your prior belief about the problem in the model but is also dangerous. If you have a strong belief in a hypothesis it will need more and more data to prove in the limit that you are wrong.
+For $\alpha = \beta = 1$ we get what we have already suspected before: $\est{q}=\frac{h}{h+t}$. $\alpha$ and $\beta$ are also called pseudo-counters. They represent data points you have not seen but believe to be realistic. This is a way to put your prior belief about the problem in the model - but it is also dangerous. If you have a strong belief in a hypothesis it will need more and more data to prove in the limit that you are wrong.
 
 \subsection[Null Hypothesis Significance Testing (NHST)]{NHST Null Hypothesis Significance Testing}
-In the previous section we examined how Bayesian people tackle the problem of finding a good model for a problem. For Frequentists it is a bit more complicated. Remember that probabilities (like the probability for heads for a fair coin) are objective/fixed properties of the object. Writing $p(q)$ (as well as $p(q|X) \propto p(q)p(X|q)$) makes no sense for this reason. q is not a random variable but a property and we need to find out its concrete value.
+In the previous section we examined how Bayesian people tackle the problem of finding a good model for a problem. For frequentists it is a bit more complicated. Remember that probabilities (like the probability for heads for a fair coin) are objective/fixed properties of the object. Writing $p(q)$ (as well as $p(q|X) \propto p(q)p(X|q)$) makes no sense for this reason. $q$ is not a random variable but a property and we need to find out its concrete value.
 
 \subsubsection*{Experiment: Can someone discriminate between coke and pepsi?}
 
-We would like to know what $p(q)$ is. But as frequentists we can't do that. So we start with the null hypothesis $H_o$: Subjects can't discriminate: $q = \frac{1}{2}, n = 25$. Where $q$ denotes the discrimination factor for the testsubjects and $n$ is the number of trials. We now measure H (\# ``Heads'', correct discriminations).
+We would like to know what $p(q)$ is. But as frequentists we can't do that. So we start with the null hypothesis $H_0$: Subjects can't discriminate: $q = \frac{1}{2}, n = 25$. Where $q$ denotes the discrimination factor for the subjects and $n$ is the number of trials. We now measure H (\# ``Heads'': correct discriminations).
 
 \begin{align*}
-P(H=h|q) = \underbrace{ \binom{n}{h} \overbrace{q^h (1-q)^{n-h}}^\text{Bernoulli} }_\text{Binomial distribution}
+P(H=h|q) = \underbrace{ \binom{n}{h} \overbrace{q^h (1-q)^{n-h}}^\text{Bernoulli} }_\text{Binomial distribution}\index{Binomial Distribution}
 \end{align*}
 Now we introduce a criterion: subjects can discriminate if they get >20 correct answers. In that case you reject the null hypothesis.
 
 --- some gauss distribution from notes
 
 \begin{align*}
-&P\left(H=h |q\frac{1}{2},n=25\right) \\
-&P\left(H>20 |q\frac{1}{2},n=25\right) \mbox{ (p-Value)}
+&P\left(H=h |q=\frac{1}{2},n=25\right) \\
+&P\left(H>20 |q=\frac{1}{2},n=25\right) \mbox{ (p-Value)}
 \end{align*}
 
 $\alpha$ is the signal level $\rightarrow$ type I error rate that's acceptable (usually $5\%$). This is the probability that you say there is an effect even if there is none.
