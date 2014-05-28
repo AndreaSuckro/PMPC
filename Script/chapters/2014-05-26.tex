@@ -16,7 +16,7 @@ But since we do not know $q$ we would also like to find the best $q$ that explai
 
 The question arising here is what shall we take as the prior? In principle it is just our personal belief about the thumbtack, one experimenter might believe it is $0.7$, others believe different values. This \textit{subjectivity} troubles many Non-Bayesians. The good thing is, that it does not really matter which prior you choose, if you have enough data the result will still converge to the real $p(q|X)$!
 
-Since we have no concrete clue and it is not that important anyway, we may choose a distribution by pure convenience for $p(q)$. The distribution is called \textit{$\beta$ Distribution}\index{$\beta$-Distribution@B} :
+Since we have no concrete clue and it is not that important anyway, we may choose a distribution by pure convenience for $p(q)$. The distribution is called \textit{$\beta$ Distribution}\index{B@$\beta$-Distribution} :
 \begin{align*}
 p(q) &= \frac{q^{\alpha-1}(1-q)^{\beta-1}}{\int_0^1 q^{\alpha-1}(1-q)^{\beta-1}dq} = \frac{q^{\alpha-1}(1-q)^{\beta-1}}{B(\alpha,\beta)}
 \end{align*}
