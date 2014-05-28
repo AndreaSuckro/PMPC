@@ -14,9 +14,9 @@ E(even\ numbers) &= \left(35 \cdot \frac{1}{37} - 1 \cdot \frac{36}{37} \right) 
 \end{align*}
 So basically both variants are the same. 
 
-\emptyline
+\bigskip
 
-\sidenote{This is from our homework research. In the lecture we just dealt with the setting above.}
+\sidenote{This paragraph is from our homework research. In the lecture we just dealt with the scenario above.}
 However, in European roulette there usually exists the so-called ``en prison''-rule. This rule freezes (``imprisons'') the stakes made on the small bets (``odd'', ``even'', ``red'', ``black'', ``high'', ``low'') when $0$ comes up until the specific bet was fulfilled twice in a row. When it came up twice in a row, you are allowed to get your stakes back. Alternatively, if you want to play with your bets, you can keep half of them instead of letting them being frozen, losing the other half. This modifies the expected value (assuming \textit{return} and \textit{freeze} are used with a chance of $0.5$):
 
 \begin{align*}
@@ -28,7 +28,7 @@ E(even) &= \frac{\frac{1}{37} E(even, 0) + \frac{36}{37} E(even, \neg 0)}{2} = -
 
 With the ``en prison'' rule betting on ``even'' is therefore better than betting on all even numbers.
 
-\emptyline
+\bigskip
 
 The bank makes money because of the $0$: For calculating the odds they assume not 37 but 36 numbers.
 
@@ -37,7 +37,7 @@ The bank makes money because of the $0$: For calculating the odds they assume no
 \setcounter{equation}{0}
 The union-bound can be proved by induction.
 
-\emptyline
+\bigskip
 
 \begin{samepage}
 \textbf{Induction assumption}
@@ -62,31 +62,30 @@ For $n=1$ we have
 
 We know that $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, so it follows that:
 \begin{align}
-& & P\left(\bigcup\limits_{i=1}^{n+1}E_i\right) & = P\left(\bigcup\limits_{i=1}^{n}E_i\right) + P(E_{n+1}) - P\left(\bigcup\limits_{i=1}^{n}E_i \cap E_{n+1}\right) & & \\
-& & \mbox{We use the induction assumption:} & & & \\
-& & & \leq \sum\limits_{i=1}^{n}(P(E_i)) + P(E_{n+1}) = \sum\limits_{i=1}^{n+1}(P(E_i)) & & 
+P\left(\bigcup\limits_{i=1}^{n+1}E_i\right) &= P\left(\bigcup\limits_{i=1}^{n}E_i\right) + P(E_{n+1}) - P\left(\bigcup\limits_{i=1}^{n}E_i \cap E_{n+1}\right) \\
+                                            &\stackrel{\text{IA}}{\leq} \sum\limits_{i=1}^{n}(P(E_i)) + P(E_{n+1}) = \sum\limits_{i=1}^{n+1}(P(E_i))
 \end{align}
 \end{samepage}
 
 \subsection*{Exercise 3}
 \begin{align*}
-P(A|B) & = \frac{P(B|A)P(A)}{P(B)} \\
+P(A|B)      & = \frac{P(B|A)P(A)}{P(B)} \\
 P(\neg A|B) & = \frac{P(B|\neg A)P(\neg A)}{P(B)}
 \end{align*}
-
+Putting it together:
 \begin{align*}
 \frac{P(A|B)}{P(\neg A|B)} = \frac{P(B|A)}{P(B|\neg A)} \frac{P(A)}{P(\neg A)}
 \end{align*}
 
 This is like:
 \begin{align*}
-Posterior\ Odds\ =\ Likelihood\ Ratio\ \cdot\ Prior Odds
+Posterior\ Odds\ =\ Likelihood\ Ratio\ \cdot\ Prior\ Odds
 \end{align*}
 We can say this is updating your beliefs with new information.
 
 
 \subsection*{Exercise 4}
-We take Bayes' rule to calculate $P(\mbox{Blue Car}|\mbox{Testified by Witness})$
+We use Bayes' rule to calculate $P(\text{Blue Car}|\text{Testified by Witness})$
 \begin{align*}
 P(B|T) = \frac{P(T|B)P(B)}{P(T)}
 \end{align*}
