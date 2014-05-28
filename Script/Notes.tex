@@ -37,10 +37,14 @@
 \usepackage{wrapfig}           % package used for sidenotes
 \newcommand{\sidenote}[2][.3]{ % sidenotes for texts
   \begin{wrapfigure}{o}{#1\textwidth}
-    \vspace{-1.5em}
+    \vspace{-1.3em}
     \textbf{Note: }\textit{#2}
-    \vspace{-1.5em}
+    \vspace{-1.3em}
   \end{wrapfigure}}
+
+% empty lines
+\newcommand{\emptyline}{\vspace{1em}}
+\newcommand{\el}{\emptyline}
 
 % Toggles for document layout
 \newtoggle{exercises}   % toggle for exercise sheets
