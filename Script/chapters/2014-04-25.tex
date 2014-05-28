@@ -96,14 +96,14 @@ Note that we can calculate $P$ for all events by adding up singleton events.
 \end{description}
 
 \subsection{Random Variables \& Joint Distribution}
-An example for a joint distribution: You roll two dice, one is six-sided and red, the other one is four sided and blue.
+An example for a joint distribution: You roll two dice, one is six-sided and red, the other one is four-sided and blue.
 \begin{align*}
 \mbox{R: }\Omega_R = \{1, ..., 6\} & & P(R=\omega) = \frac{1}{6}\ \forall\ \omega \in \Omega_R\\
 \mbox{B: }\Omega_B = \{1, ..., 4\} & & P(B=\omega) = \frac{1}{4}\ \forall\ \omega \in \Omega_B
 \end{align*}
 The joint sample space $\Omega$ is $\Omega = \Omega_R \times \Omega_B$.
 
-Since R and B are independent the joint probability is $ P(R, B) = \frac{1}{24}$ for all value of R, B.
+Since R and B are independent the joint probability is $ P(R, B) = \frac{1}{24}$ for each value of R, B.
 
 More formally speaking it holds that $P(R=i, B=j) = \frac{1}{24}$ for all values of $i, j$ since $P(R, B) = P(R) \cdot P(B)$ for all independent $R, B$.
 
@@ -119,7 +119,7 @@ The \textbf{Marginal Probability} for $P(R=j)$ is:
 P(R=j) = 
 \begin{cases} 
 \frac{5}{25} & \mbox{if } j = 1 \\ 
-\frac{4}{25} & \mbox{if } else
+\frac{4}{25} & \mbox{else}
 \end{cases}
 \end{align*}
 
@@ -133,20 +133,20 @@ This can be written a bit more casual (here for B now):
 P(B) = \sum\limits_R P(R, B) = 
 \begin{cases} 
 \frac{7}{25} & \mbox{if } B = 1 \\ 
-\frac{6}{25} & \mbox{if } else
+\frac{6}{25} & \mbox{else}
 \end{cases}
 \end{align*}
 
 \subsubsection*{Conditional Probability}
-In case a card was picked and it is already known what number the red side shows,
-$P(R, B) \neq P(R) \cdot P(B)$ is \textit{not independent}.
+In case a card was picked and we already know what number the red side shows,
+$P(R, B) \neq P(R) \cdot P(B)$ is \textit{not independent}. $P(R,B)$ is now dependent on the already known red number.
 
-The probabilities are then:
+The probabilities that follow are:
 \begin{align*}
 P(B|R=1) =
 \begin{cases} 
 \frac{2}{5} & \mbox{if } B = 1 \\ 
-\frac{1}{5} & \mbox{if } else
+\frac{1}{5} & \mbox{else}
 \end{cases}\\
 P(B|R=2, ..., 6) = \frac{1}{4}
 \end{align*}
