@@ -15,6 +15,10 @@
 \usepackage{etoolbox}          % for conditional includes
 \usepackage{pdfpages}          % to include exercise sheets
 
+\usepackage{makeidx}           % make a word index
+\makeindex
+\usepackage[totoc]{idxlayout}  % index to table of contents
+
 \usepackage{tikz}              % diagrams
 \usetikzlibrary{trees}         % tree diagrams
 
@@ -42,9 +46,6 @@
     \vspace{-1.3em}
   \end{wrapfigure}}
 
-% empty lines
-\newcommand{\emptyline}{\vspace{1em}}
-\newcommand{\el}{\emptyline}
 
 % Toggles for document layout
 \newtoggle{exercises}   % toggle for exercise sheets
@@ -60,6 +61,7 @@
 
 \toggletrue{showdates}
 %\togglefalse{showdates}
+
 
 \setlength\parindent{0pt} % no indentation
 
@@ -286,5 +288,8 @@
 % Q&A
 %\input{chapters/2014-07-18.tex}
 %\clearpage
+
+\clearpage
+\printindex
 
 \end{document}
