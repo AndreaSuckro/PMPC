@@ -1,5 +1,6 @@
 \section[Solution 3: Measuring Beliefs I]{Solution 3: Measuring Beliefs I \iftoggle{showdates}{\small{\textit{2014-05-19}}}{}}
 \subsection*{Exercise 2}
+\index{Bayes' Rule}
 Before we can calculate any probabilities, we make some assumptions about the circumstances of the case. 
 
 First we assume the number of subjects taking part in the DNA test is still 100,000. 
@@ -24,7 +25,7 @@ P(G|P) &= \frac{P(P|G) \cdot P(G)}{P(P)} \\
 P(G|P) &= \frac{0.99999 \cdot \frac{1}{100,000}}{P(P)}
 \end{align*}
 
-To get the missing factor, $P(P)$ we can use the marginal probability:
+To get the missing factor, $P(P)$ we can use the marginal probability\index{Marginal Probability}:
 \begin{align*}
 P(P) &= \sum\limits_{i=1}^{N} \left( P(P|G_i) \cdot P(G_i) \right) \\
      &= P(P|G) \cdot P(G) + P(P|\neg G) \cdot P(\neg G) \\
@@ -37,7 +38,11 @@ Now we can calculate $P(G|P)$:
 P(G|P) &= \frac{0.99999 \cdot \frac{1}{100,000}}{\frac{1.99998}{100,000}} = 0.5
 \end{align*}
 
-That means the actual probability that the accused person really is guilty is just about 50 \%. Again neglecting the high base rate, at first glance in court  it may seem very likely that the defendant is the murderer but we as clever attorneys, knowing our statistics, can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high even though the test is so accurate. Of course the probability of 50 \% is just an upper bound and can be much less for fewer participants but nevertheless shows the huge mistake one makes by neglecting the effect of a high base rate.  
+That means the actual probability that the accused person really is guilty is just about 50 \%. At first glance in court it may seem very likely that the defendant is the murderer. But we as clever attorneys can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high, even though the test is so accurate. This is again a case of neglecting the base rate\index{Base Rate Neglect}. 
+
+\bigskip
+
+Of course the probability of 50 \% is just an upper bound and can be much less for fewer participants but nevertheless shows the huge mistake one makes by neglecting the effect of a high base rate.  
 
 \subsection*{Exercise 4}
 Boris bet $10\euro$ on Greece with odds of $2 : 5$. The bookmaker bet $10\cdot\frac{5}{2}\euro=25\euro$ on Portugal. Boris won $35\euro$, which is a gain of $25\euro$.
@@ -45,6 +50,7 @@ Boris bet $10\euro$ on Greece with odds of $2 : 5$. The bookmaker bet $10\cdot\f
 Adam bet $10\euro$ on Portugal with odds of $7 : 2$. The bookmaker bet $10\cdot\frac{2}{7}\euro=2.86\euro$ on Greece. Adam would have won $12.86\euro$, which would have been a gain of $2.86\euro$.
 
 \subsection*{Exercise 5}
+\index{Expected Value}\index{Odds}
 Charly's bets were $4.90\euro+1.80\euro=6.70\euro$ in total.
 
 \begin{align*}
@@ -52,14 +58,18 @@ E(Portugal) &= 4.90 \cdot \frac{2}{7} - 1.80 = -0.4 {[}\euro{]} \\
 E(Greece)   &= 1.80 \cdot \frac{7}{2} - 4.90 =  1.4 {[}\euro{]}
 \end{align*}
 
-If the odds were a fair bet, i.e. $7 : 2$ for Portugal and $2 : 7$ for Greece, Charly had either lost $0.40\euro$ in case Portugal won, or he'd gained $1.40\euro$ in case Greece won.
+If the odds\index{Odds} were a fair bet\index{Fair Bet}, i.e. $7 : 2$ for Portugal and $2 : 7$ for Greece, Charly had either lost $0.40\euro$ in case Portugal won, or he'd gained $1.40\euro$ in case Greece won.
+
+\bigskip
 
 The bookmaker however wants to make money, that's why he fixes the odds in a way that he will earn some.
 
-With $7 : 2$ for Portugal Charly's gain in case of Portugal's victory will be $4.90 \cdot \frac{2}{7} - 1.80 = -0.40 {[}\euro{]}$, he in fact loses money.
-With $2 : 5$ for Greece Charly's gain in case of Greece's victory will be $1.80 \cdot \frac{5}{2} - 4.90 = -0.40 {[}\euro{]}$, again he loses money in total.
+\begin{itemize}
+	\item[] With $7 : 2$ for Portugal Charly's gain in case of Portugal's victory will be $4.90 \cdot \frac{2}{7} - 1.80 = -0.40 {[}\euro{]}$, he in fact loses money.
+  \item[] With $2 : 5$ for Greece Charly's gain in case of Greece's victory will be $1.80 \cdot \frac{5}{2} - 4.90 = -0.40 {[}\euro{]}$, again he loses money in total.
+\end{itemize}
 
-So the bookkeeper would always win some money (those $0.40 \euro$).
+So the bookkeeper would always win some money (those $0.40 \euro$ Charly lost in each case).
 
 \subsection*{Exercise 6}
 \begin{align*}
@@ -70,9 +80,10 @@ So the bookkeeper would always win some money (those $0.40 \euro$).
 \end{align*}
 If the probability for Greece to win was higher than $\frac{2}{7}$, we might have been tempted to place a bet.
 
-People bet because they hope to win or assume they have a dutch book. And they will bet if they really have a dutch book.
+People bet because they hope to win or assume they have a dutch book (i.e. a guaranteed win). And they will bet if they really have a dutch book.
 
 \subsection*{Exercise 7}
+\index{Conjunction Fallacy}
 The person believes that $P(A \cap B)>P(A)$.
 
 We can buy cheap $P(A)$ tickets and sell expensive $P(A\cap B)$ tickets, so even before we know the outcome we make money.
@@ -91,22 +102,23 @@ Now we see what could happen:
 So either both parties have the same outcome or we win.
 
 \subsection*{Exercise 8}
+\index{Geometric Distribution}
 \textit{Note: pin $:= 1-p$, head $:= p$}
 
-The sample space is $\Omega = \mathbb{N}$ because we can get pin on the first, second, third, or n-th throw.
+The sample space is $\Omega = \mathbb{N}$ because we can get pin on the first, second, third, or $n$-th throw.
 
 We calculate the probability distribution.
 \begin{align*}
 p(N = n) = p^{n - 1} \left( 1 - p \right)
 \end{align*}
 
-We can use \textit{countable additivity} and add the numbers up to infinity.
+We can use \textit{countable additivity}\index{Countable Additivity} and add the numbers up to infinity.
 \begin{align*}
 1 &\stackrel{?}{=} \sum\limits_{n = 1}^\infty p(N = n) = \sum\limits_{n = 1}^\infty p^{n - 1}\left( 1 - p \right) \\
 &= \left( 1 - p \right) \sum\limits_{n=0}^\infty p^n = \left( 1 - p \right) \frac{1}{\left( 1 - p \right)} \stackrel{!}{=} 1
 \end{align*}
 
-For odd N the probability is accordingly:
+For odd $N$ the probability is accordingly:
 \begin{align*}
 P\left(\mbox{N is odd}\right) &= \sum\limits_{n=0}^\infty p(N=2n+1)\\
 &= \sum\limits_{n=0}^\infty \left( 1 - p \right) p^{2n} \\
@@ -115,6 +127,7 @@ P\left(\mbox{N is odd}\right) &= \sum\limits_{n=0}^\infty p(N=2n+1)\\
 \end{align*}
 
 \subsection*{Exercise 9}
+\index{St. Petersburg Paradox|(}
 \begin{tabular}{ l || c | c | c | c | c }
   $N$           & $1$ & $2$ & $3$ & $...$ & $n$ \\
   $probability$ & $\frac{1}{2}$ & $\frac{1}{4}$ & $\frac{1}{2^3}$ & $...$ & $\frac{1}{2^n}$ \\
@@ -136,14 +149,15 @@ E &= -1000 + \frac{1}{2} \cdot 2^1 + \frac{1}{2} \cdot 2^1 + \frac{1}{2} \cdot 2
 \end{align*}
 
 Although this looks rather promising, of course we don't play the game.
-
+\index{St. Petersburg Paradox|)}
 % maybe some details about logarithmic value of money etc.?
 
 \subsection*{Exercise 10}
+We just check with which model (i.e. with which die) the given data set is more probable - that is the best guess we can make.
 
 \begin{align*}
-P(min|D) &= \frac{P(D|min)P(min)}{P(D)}\\
-P(red|D) &= \frac{P(D|red)P(red)}{P(D)}\\
+P(min|D) &= \frac{P(D|min)P(min)}{P(D)} \\
+P(red|D) &= \frac{P(D|red)P(red)}{P(D)} \\
 P(red)   &= \frac{1}{2}  \\
 P(min)   &= \frac{1}{2}  \\
 P(D|min) &= \frac{5}{36} 
