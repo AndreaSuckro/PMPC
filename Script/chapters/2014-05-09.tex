@@ -1,6 +1,6 @@
 \section[Measuring Beliefs II]{Measuring Beliefs II \iftoggle{showdates}{\small{\textit{2014-05-09}}}{}}
 
-\subsection{Probabilities of Continuous Random Variables}
+\subsection{Probabilities of Continuous Random Variables}\index{Continuous Random Variable}
 How tall is Frank Jäkel? 1.80m, 1.70m, 1.68m, 1.69m, or even 1.7034241m?
 
 Not only are there problems with real numbers like 1.7034241, but also with the question the Bayesian view inevitably asks: ``What do you think is the probability for that size?''
@@ -9,7 +9,7 @@ One sees: continuous random variables are difficult. There is an infinite uncoun
 
 In the following section this problem gets tackled in three ways.
 
-\subsubsection[Probability Density Function (PDF)]{Solution 1: Histograms (Probability Density Function, PDF)}
+\subsubsection[Probability Density Function (PDF)]{Solution 1: Histograms (Probability Density Function, PDF)}\index{PDF}
 The first and naive way is to discretize the sample space $\mathbb{R}$ into bins and assign probabilities to those bins.
 
 \begin{figure}[h]
@@ -134,22 +134,17 @@ For a finer granularity one can now change the resolution of the bins and split 
 \caption{Histogram with higher resolution}
 \end{figure}
 
+\begin{samepage}
 \textbf{Extreme cases}
-\vspace{1em}
-
 Usually this will yield a nice distribution of how beliefs are. However, there are two special extreme cases.
 
-\vspace{1em}
+\begin{enumerate}
+  \item[] The first case is that all values are equally probable: Since we have infinitely many values on the real number line, the probability for each individual value is $\frac{1}{n} \Rightarrow \lim\limits_{n\rightarrow\infty} \frac{1}{n} = 0$. 
+  \item[] The second case is that the full probability gets assigned to one single value. Since a single value has the width 0, again the probability will become 0 for all values.
+\end{enumerate}
+\end{samepage}
 
-The first case is that all values are equally probable: Since we have infinitely many values on the real number line, the probability for each individual value is $\frac{1}{n} \Rightarrow \lim\limits_{n\rightarrow\infty} \frac{1}{n} = 0$. 
-
-\vspace{1em}
-
-The second case is that the full probability gets assigned to one single value. Since a single value has the width 0, again the probability will become 0 for that value as well.
-
-\newpage
 \textbf{The probability density function}
-
 However, if the resulting histogram is somewhere between those extreme cases, then the limit of the distribution yields the probability density function.
 
 \begin{figure}[h]
@@ -194,10 +189,10 @@ However, if the resulting histogram is somewhere between those extreme cases, th
 
 As mentioned before it's still not possible to calculate the probability of a specific number. What is possible though, is calculating the probability of an interval. This is useful, since people always bet on intervals. For instance, betting on ``2'' means to bet on the interval $\left[2,3\right[$.
 
-\subsubsection[Cumulative Density Function (CDF)]{Solution 2: Cumulative Density Function, CDF}
+\subsubsection[Cumulative Density Function (CDF)]{Solution 2: Cumulative Density Function, CDF}\index{CDF}
 To calculate the probability of an interval it's possible to simply sum up all probabilities in the specific interval.
 
-This can be done by integration of the PDF: 
+This can be done by integration of the PDF\index{PDF}: 
 
 \begin{figure}[h]
 \centering
@@ -240,46 +235,78 @@ This can be done by integration of the PDF:
 \end{figure}
 
 
-\subsubsection{Solution 3: Parametric Distribution}
-% TODO: EXPLANATIONS
-\textit{This section is still incomplete}
+\subsubsection[Parametric Gaussian Distribution]{Solution 3: Parametric Distribution}\index{Parametric Distribution}
+The only remaining problem is deriving the correct probability density function. We can avoid this by using a very common statistics method and model the PDF\index{PDF} as a Gaussian distribution\index{Gaussian Distribution}.
 
-We can model the probability distribution with a parametric Gaussian distribution.
+This way we reduce the problem finding the correct function to finding the correct parameters.
 
+\bigskip
+
+The Gaussian distribution (see figure \ref{fig:2014-05-09-diffGaussDistr}) is defined as
 \begin{align*}
-p(X=x) &= \frac{1}{2\pi\sigma^2}e^{-\frac{1}{2}\left(\frac{\mu-x}{\sigma}\right)^2} = \phi(x;\mu,\sigma) = \phi\left(\frac{\mu-x}{\sigma};0,1\right) \\
-\frac{\mu-x}{\sigma}&=z \\
-P(X \leq t) &= \int\limits_{-\infty}^{t}{p(X=x)} dx = \Phi(t;\mu,\sigma) \\
-\mbox{probability of the standard deviation: } \\
-P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68\%
+p(X=x) = \frac{1}{2\pi\sigma^2}e^{-\frac{1}{2}\left(\frac{\mu-x}{\sigma}\right)^2} &= \phi(x;\mu,\sigma) = \phi\left(\frac{\mu-x}{\sigma};0,1\right) \\
+\frac{\mu-x}{\sigma}&=z
 \end{align*}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
 \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
   axis x line*=bottom, axis y line*=left, enlargelimits=upper]
-  \addplot [red]  {gauss(0,0.5)} node[pos=0.4, anchor=east] {$\sigma=0.5$};
-  \addplot [green]{gauss(0,1)}   node[pos=0.6, anchor=west] {$\sigma=1$};
-  \addplot [blue] {gauss(0,2)}   node[pos=0.8, anchor=west] {$\sigma=2$};
+  \addplot [red]    {gauss(0,0.5)} node[pos=0.4,  anchor=east] {$\sigma=0.5$};
+  \addplot [green]  {gauss(0,1)}   node[pos=0.6,  anchor=west] {$\sigma=1$};
+  \addplot [blue]   {gauss(0,2)}   node[pos=0.85, anchor=west] {$\sigma=2$};
+  \addplot [yellow] {gauss(1,1)}   node[pos=0.7,  anchor=west] {$\mu=1,\sigma=1$};
 \end{axis}
 \end{tikzpicture}
-\caption{Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$.}
+\caption{Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$, and $\mu=1, \sigma=1$.}
+\label{fig:2014-05-09-diffGaussDistr}
 \end{figure}
 
-\begin{figure}[h]
+The corresponding integral is $\Phi$ (see figure \ref{fig:2014-05-09-diffGaussInts}).
+
+\begin{align*}
+P(X \leq t) = \int\limits_{-\infty}^{t}{p(X=x)} dx &= \Phi(t;\mu,\sigma)
+\end{align*}
+
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
 \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
   axis x line*=bottom, axis y line*=left, enlargelimits=upper]
-  \addplot [red]  {Gauss(0,0.5)} node[pos=0.5, anchor=west] {$\sigma=0.5$};
-  \addplot [green]{Gauss(0,1)}   node[pos=0.5, anchor=east] {$\sigma=1$};
-  \addplot [blue] {Gauss(0,2)}   node[pos=0.8, anchor=west] {$\sigma=2$};
+  \addplot [red]    {Gauss(0,0.5)} node[pos=0.5,  anchor=west] {$\sigma=0.5$};
+  \addplot [green]  {Gauss(0,1)}   node[pos=0.5,  anchor=east] {$\sigma=1$};
+  \addplot [blue]   {Gauss(0,2)}   node[pos=0.85, anchor=west] {$\sigma=2$};
+  \addplot [yellow] {Gauss(1,1)}   node[pos=0.7,  anchor=west] {$\mu=1,\sigma=1$};
 \end{axis}
 \end{tikzpicture}
-\caption{Integrals of Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$.}
+\caption{Integrals of Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$, and $\mu=1, \sigma=1$.}
+\label{fig:2014-05-09-diffGaussInts}
 \end{figure}
 
+The area of the standard deviation\index{Standard Deviation} ($\mu - \sigma \leq X \leq \mu + \sigma$) has a probability of approximately 68 \% (see figure \ref{fig:2014-05-09-std}).
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=-4:4, y post scale=0.5]
+  \addplot+[domain=-1:1, samples=100, pattern=flexible hatch, mark=none
+            hatch distance=5pt, hatch thickness=0.5pt,
+            draw=green, pattern color=green!40, area legend]
+            {gauss(0,1)} \closedcycle;
+    \addlegendentry{$\approx 68\%$}
+  \addplot[color=red, samples=50, smooth] {gauss(0,1)};
+\end{axis}
+\end{tikzpicture}
+\caption{The area of the standard deviation yields approximately 68 \%}
+\label{fig:2014-05-09-std}
+\end{figure}
+
+\begin{align*}
+P(\mu - \sigma \leq X \leq \mu + \sigma) = \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68 \%
+\end{align*}
+
+We can also find other useful probabilities which are commonly used to do statistics:
 
 \begin{itemize}
 	\item $\mu \pm \sigma \approx 68\%$
@@ -287,7 +314,8 @@ P(\mu\sigma \leq X \leq \mu + \sigma) &= \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-
 	\item $\mu \pm 3\sigma \approx 99\%$
 \end{itemize}
 
-\subsection{Proper Scoring Rules}
+
+\subsection{Proper Scoring Rules}\index{Proper Scoring Rule}
 Multiple choice tests would be better if you would state ``how your belief is, that this is right'', rather than just answering the question (For more about this see page \pageref{ex4_4_solution}).
 
 \vspace{1em}
@@ -314,7 +342,7 @@ E\left(L\left(X,q\right)\right) &= p-2pq+q^2 = \left(p-p^2\right) + \left(p^2-2p
 \subsubsection*{How to answer?}
 If one's belief is p, which q will yield the best gain (i.e. will minimize the expected loss)?
 
-To answer this the expected loss function can be minimized, i.e. one can search the first derivative and set it to zero. 
+To answer this the expected loss\index{Expected Loss} function can be minimized, i.e. one can search the first derivative and set it to zero. 
 
 \begin{align*}
 E\left(L\left(p,q\right)\right) &= p\left(1-2q\right)+q^2 \\
