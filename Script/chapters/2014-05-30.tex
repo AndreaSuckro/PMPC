@@ -1,0 +1,115 @@
+\section[Solution 5: Bayesian and Frequentist Inference I]{Solution 5: Bayesian and Frequentist Inference I \iftoggle{showdates}{\small{\textit{2014-05-30}}}{}}
+
+\subsection*{Exercise 1}
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, x post scale=2, y post scale=2, legend style={at={(0.98,0.5)}, anchor=east}]
+  \addplot[smooth, samples=100, color=blue]    {betaDist(1,1)};
+    \addlegendentry{$\alpha=1,\beta=1$}
+  \addplot[smooth, samples=100, color=purple]  {betaDist(2,2)};
+    \addlegendentry{$\alpha=2,\beta=2$}
+  \addplot[smooth, samples=100, color=yellow]  {betaDist(3,3)};
+    \addlegendentry{$\alpha=3,\beta=3$}
+  \addplot[smooth, samples=100, color=red]     {betaDist(1,2)};
+    \addlegendentry{$\alpha=1,\beta=2$}
+  \addplot[smooth, samples=100, color=magenta] {betaDist(1,3)};
+    \addlegendentry{$\alpha=1,\beta=3$}
+  \addplot[smooth, samples=100, color=orange]  {betaDist(1,5)};
+    \addlegendentry{$\alpha=1,\beta=8$}
+  \addplot[smooth, samples=100, color=cyan]    {betaDist(2,1)};
+    \addlegendentry{$\alpha=2,\beta=1$}
+  \addplot[smooth, samples=100, color=black]   {betaDist(3,1)};
+    \addlegendentry{$\alpha=3,\beta=1$}
+  \addplot[smooth, samples=100, color=green]   {betaDist(5,1)};
+    \addlegendentry{$\alpha=8,\beta=1$}
+  \addplot[smooth, samples=100, color=gray]    {betaDist(3,6)};
+    \addlegendentry{$\alpha=3,\beta=6$}
+  \end{axis}
+\end{tikzpicture}
+\caption{Different $\beta$-distributions}
+\label{fig:2014-05-30_ex1betadistributions}
+\end{figure}
+
+We can easily observe that the $\beta$-distribution\index{B@$\beta$-Distribution} is symmetric for $\alpha=\beta$ and always 1 in case $\alpha=\beta=1$. If we increase one parameter the distribution's peak wanders to one side, towards 0 for higher $\beta$s and towards 1 for higher $\alpha$s.
+
+If we increase both parameters unequally, the distribution's peak moves towards the higher parameter (similar to the movement mentioned before, see $\alpha=3,\beta=6$) and gets for high values much narrower and steeper (not shown in the plot, see figure \ref{fig:2014-05-30_ex3posterior} for an example).
+
+\bigskip
+
+When using the $\beta$-distribution to learn about the probability $q$ for the thumbtack example (page \pageref{example:Thumbtack Toss}) we would start with $\alpha=\beta=1$, i.e. uninformed. After gathering some data we can use it to update our prior belief and adjust the parameters according to our posterior distribution. If we continue doing this iteratively the distribution will get closer to the real $q$ of the thumbtack.
+
+
+\subsection*{Exercise 2}
+We have only very limited information and a best guess is that A will win the elections, since there are 53.3\% of the people supporting him. We are not really sure about that because of the lack of information.
+
+Our prior belief can be expressed as a binomial distribution\index{Binomial Distribution} $P(A) = {1000 \choose 533} p^{533}(1-p)^{1000-533}$. However, since the likelihood can be expressed as a Bernoulli distribution\index{Bernoulli Distribution} ($p^{533}(1-p)^{467}$) we can also use the $\beta$-distribution\index{B@$\beta$-Distribution} to model our prior belief: it's conjugate to the Bernoulli distribution.
+
+\subsection*{Exercise 3}
+We denote $B$ as the number of people believing in UFOs and $D$ as the data (i.e. the poll results) given.
+
+Using the $\beta$-Distribution\index{B@$\beta$-Distribution} we come up with the following model:
+\begin{align*}\index{Bernoulli Distribution}
+                P(B|D) &= \frac{P(D|B)P(B)}{P(D)} \\
+\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{500-230}P(B)}{P(D)}\\
+\Leftrightarrow P(B|D) &= \frac{\overbrace{q^{230}\left(1-q\right)^{270}}^\text{Bernoulli} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha,\beta)} \\
+\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{270} q^{1-1}\left(1-q\right)^{9-1}}{B(\alpha,\beta)} \\
+\Leftrightarrow P(B|D) &= \frac{q^{231-1}\left(1-q\right)^{279-1}}{B(231,279)} \\
+\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{278}}{B(231,279)}
+\end{align*}
+
+The prior distribution (figure \ref{fig:2014-05-30_ex3prior}) is far to the left, as we have a relatively huge $\beta$ compared to $\alpha$.
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1]
+  \plot[smooth, color=blue] file {data/2014-05-30_priorPDF_data.txt};
+    \addlegendentry{$\alpha=1,\beta=9$}
+  \end{axis}
+\end{tikzpicture}
+\caption{Prior $\beta$-Distribution}
+\label{fig:2014-05-30_ex3prior}
+\end{figure}
+
+With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by calculating the CDF\index{CDF} of the posterior $\beta$-distribution and searching for the x-values for $y_{min}=0.025$ and $y_{max}=0.975$. Using these x-values for the corresponding PDF\index{PDF} yields the $95\%$ interval (figure \ref{fig:2014-05-30_ex3posterior}).
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, name=cdf, legend style={at={(0.98,0.5)}, anchor=east}]
+  \plot[smooth, color=blue] file {data/2014-05-30_posteriorCDF_data.txt};
+    \addlegendentry{$\alpha=231,\beta=279$}
+  \plot[color=red] {0.975};
+    \addlegendentry{$x=0.975$}
+  \plot[color=red] {0.025};
+    \addlegendentry{$x=0.025$}
+  \node at (axis cs:0.41,0.025) {$\times$};
+  \node at (axis cs:0.496,0.975) {$\times$};
+  \end{axis}
+  
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, name=pdf, at=(cdf.right of east), anchor=left of west]
+  \plot+[domain=0.41:0.496, samples=1000, pattern=flexible hatch, mark=none
+            hatch distance=0.2pt, hatch thickness=1pt,
+            draw=blue, pattern color=cyan, area legend]
+            file {data/2014-05-30_posteriorPDF_area_data.txt} \closedcycle;
+    \addlegendentry{$95\%$}
+  \plot[smooth, color=red] file {data/2014-05-30_posteriorPDF_data.txt};
+    \addlegendentry{$\alpha=231,\beta=279$}
+  \end{axis}
+\end{tikzpicture}
+\caption{Left: CDF and 95\% intersections. Right: PDF and 95\% interval.}
+\label{fig:2014-05-30_ex3posterior}
+\end{figure}
+
+\bigskip
+
+\texttt{MATLAB} code to try exercise 3 out:
+\lstinputlisting{data/2014-05-30_posteriorBetaDistribution.m}
+
+
+\subsection*{Exercise 4}
+\subsection*{Exercise 5}
+\subsection*{Exercise 6}
+\subsection*{Exercise 7}
+\subsection*{Exercise 8}
