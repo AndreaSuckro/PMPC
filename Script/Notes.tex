@@ -4,6 +4,17 @@
 \usepackage[utf8]{inputenc}    % input encoding
 \usepackage{lmodern}           % correct fonts to make pdf searchable
 
+ % change page layout
+\usepackage[left=2.5cm,right=2.5cm,bottom=3cm,top=3.5cm,a4paper]{geometry}
+
+\usepackage{fancyhdr}          % fancy (=custom) headers/footers
+\fancyhf{}                     % remove old headers
+\pagestyle{fancy}              % enable fancy page style
+% redefine section headersto avoid capitalization
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\fancyhead[C]{\leftmark}       % section name above chapters
+\fancyfoot[C]{\thepage}        % page number in the footer
+
 \usepackage{amsmath, amssymb}  % math package
 
 \usepackage{hyperref}          % clickable references
@@ -16,8 +27,8 @@
 \usepackage{pdfpages}          % to include exercise sheets
 
 \usepackage{makeidx}           % make a word index
-\makeindex
-\usepackage[totoc]{idxlayout}  % index to table of contents
+\makeindex  
+\usepackage[totoc]{idxlayout}  % add index to table of contents
 
 \usepackage{tikz}              % diagrams
 \usetikzlibrary{trees}         % tree diagrams
@@ -31,6 +42,13 @@
 % Gauss(\mu, \sigma)
 % error function, numerical approximation of the gauss integration
 \pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
+
+% betaDist(\alpha, \beta)
+\pgfkeys{/pgf/fpu} % allows calculations with high exponents
+\pgfmathdeclarefunction{betaDist}{2}{\pgfmathparse{( x^(#1-1)*(1-x)^(#2-1) ) / ( ( (#1-1)! * (#2-1)! ) / ( ( #1 + #2 - 1 )! ) )}}
+\edef\tmp{\pgfmathresult}
+\pgfkeys{/pgf/fpu=false}
+
 
 % START fill area below graph
 \tikzset{
@@ -53,6 +71,7 @@
 }
 % END fill area below graph
 
+\usepackage{mcode}             % matlab source
 
 \usepackage{eurosym}           % euro symbol
 \DeclareRobustCommand{\officialeuro}{
@@ -107,7 +126,7 @@
 \clearpage
 
 % from now on headings etc.
-\pagestyle{plain}
+\pagestyle{fancy}
 
 
 % maybe one day we want to include a preface
@@ -205,8 +224,8 @@
       ]{exercises/Exercises05.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-05-30.tex}
-%  \clearpage
+  %\input{chapters/2014-05-30.tex}
+  \clearpage
 }{}
 
 % Mid-Term Exam Corrections
