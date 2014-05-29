@@ -122,13 +122,11 @@ We get the following results:
 
 We can now pick $P(right | N > M, c \in M)$ and $P(right | N > M, c \notin M)$ to 
 calculate the marginal probability $P(right | N > M) = P(right | N > M, c \in M) + P(right | N > M, c \notin M)$.
-
 \begin{align*}
 P(right | N > M) &= \frac{m}{n} + (1 - \frac{m}{n}) \frac{1}{n - m} = \frac{m + 1}{n}
 \end{align*}
 
 Finally we can define $P_{right}(N, M)$ with $P(right | N \leq M)$ and $P(right | N > M)$:
-
 \begin{align*}
 P_{right}(N, M) = 
 \begin{cases} 

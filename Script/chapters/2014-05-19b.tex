@@ -2,7 +2,6 @@
 
 \subsection*{Exercise 1}
 In order to calculate the area under the density function we have to take the integral. As the function is defined differently for separate segments we can first calculate the integral from $-\omega$ to 0 and then from 0 to $\omega$ (the rest is zero anyways).
-
 \begin{align*}
 \int \limits_{-w}^{0}p(x) dx & = \int \limits_{-w}^{0} \frac{x}{\omega^2} + \frac{1}{w} dx \\
 & =     \left[\frac{1}{2\omega ^2} \cdot x^2 + \frac{1}{\omega } \cdot x \right]_{-w}^{0} \\
@@ -19,7 +18,6 @@ In order to calculate the area under the density function we have to take the in
 \end{align*}
 
 The value of the density function at 0 is given by:
-
 \begin{align*}
 p(X=0) & = \frac{1}{\omega^2} \cdot 0 + \frac{1}{\omega} = \frac{1}{\omega}
 \end{align*}
@@ -27,7 +25,6 @@ p(X=0) & = \frac{1}{\omega^2} \cdot 0 + \frac{1}{\omega} = \frac{1}{\omega}
 Therefore the value at zero can be greater than 1 for $\omega >$ 1. This is possible because the density is not equal to the probability (which cannot be greater than 1) but has to be multiplied with the width of interval for which the probability should be calculated.
 
 In order to get the probability for coming late at time point $\frac{\omega}{2}$ we have to calculate the probability for arriving after that time point, or in other words the integral from $\frac{\omega}{2}$ to $\omega$ (again the remaining area is zero anyways):
-
 \begin{align*}
   p\left(X > \frac{\omega}{2}\right) &= \int\limits_{\frac{\omega}{2}}^{\omega} p(x) dx \\
   &= \int\limits_{\frac{\omega}{2}}^{\omega} -\frac{x}{\omega^2} + \frac{1}{w} dx \\
@@ -45,7 +42,6 @@ The probability to arrive exactly at time point $\frac{\omega}{2}$ on the other 
 $\int\limits_{\frac{\omega}{2}}^{\frac{\omega}{2}} p(x)dx = 0$
 
 As we know from the first part of the exercise, the probability to arrive before time point 0 is 50\%. Thus we can just calculate the area after 0 which makes up for 45\% to get the time point at which we can be sure with 95\%  that we will arrive before:
-
 \begin{align*}
   \int\limits_{0}^{t} p(x)dx &\stackrel{!}{=} 0.45 \\
   \left[-\frac{1}{2\omega^2}\cdot x^2 + \frac{1}{\omega}\right]_0^t & = 0.45 \\
