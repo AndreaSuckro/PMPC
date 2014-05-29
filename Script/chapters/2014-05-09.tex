@@ -10,9 +10,9 @@ One sees: continuous random variables are difficult. There is an infinite uncoun
 In the following section this problem gets tackled in three ways.
 
 \subsubsection[Probability Density Function (PDF)]{Solution 1: Histograms (Probability Density Function, PDF)}\index{PDF}
-The first and naive way is to discretize the sample space $\mathbb{R}$ into bins and assign probabilities to those bins.
+The first and naive way is to discretize the sample space $\mathbb{R}$ into bins and assign probabilities to those bins (figure \ref{fig:2014-05-09_Histogram}).
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
 
@@ -61,13 +61,14 @@ The first and naive way is to discretize the sample space $\mathbb{R}$ into bins
   
 \end{tikzpicture}
 \caption{Histogram}
+\label{fig:2014-05-09_Histogram}
 \end{figure}
 
 Note that \textbf{the area describes the probability}. For the second box, one would assign a y-value of 7, such that the width (0.1) times the height equals the probability ($0.1\cdot 7 = 0.7$).
 
-For a finer granularity one can now change the resolution of the bins and split the probabilities among them.
+For a finer granularity one can now change the resolution of the bins and split the probabilities among them (figure \ref{fig:2014-05-09_fineHistogram}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
 
@@ -132,6 +133,7 @@ For a finer granularity one can now change the resolution of the bins and split 
   
 \end{tikzpicture}
 \caption{Histogram with higher resolution}
+\label{fig:2014-05-09_fineHistogram}
 \end{figure}
 
 \begin{samepage}
@@ -145,9 +147,9 @@ Usually this will yield a nice distribution of how beliefs are. However, there a
 \end{samepage}
 
 \textbf{The probability density function}
-However, if the resulting histogram is somewhere between those extreme cases, then the limit of the distribution yields the probability density function.
+However, if the resulting histogram is somewhere between those extreme cases, then the limit of the distribution yields the probability density function (figure \ref{fig:2014-05-09_pdf}).
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
   
@@ -185,6 +187,7 @@ However, if the resulting histogram is somewhere between those extreme cases, th
   \draw[thick] plot[smooth] file {data/2014-05-09_HistogramToPDF.txt};
 \end{tikzpicture}
 \caption{Probability density function}
+\label{fig:2014-05-09_pdf}
 \end{figure}
 
 As mentioned before it's still not possible to calculate the probability of a specific number. What is possible though, is calculating the probability of an interval. This is useful, since people always bet on intervals. For instance, betting on ``2'' means to bet on the interval $\left[2,3\right[$.
@@ -192,9 +195,9 @@ As mentioned before it's still not possible to calculate the probability of a sp
 \subsubsection[Cumulative Density Function (CDF)]{Solution 2: Cumulative Density Function, CDF}\index{CDF}
 To calculate the probability of an interval it's possible to simply sum up all probabilities in the specific interval.
 
-This can be done by integration of the PDF\index{PDF}: 
+This can be done by integration of the PDF\index{PDF} (see figure \ref{fig:2014-05-09_pdf_to_cdf}).
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
   
@@ -232,6 +235,7 @@ This can be done by integration of the PDF\index{PDF}:
   \draw[thick] plot[smooth] file {data/2014-05-09_CDF.txt};
 \end{tikzpicture}
 \caption{Cumulative density function}
+\label{fig:2014-05-09_pdf_to_cdf}
 \end{figure}
 
 
@@ -248,43 +252,46 @@ p(X=x) = \frac{1}{2\pi\sigma^2}e^{-\frac{1}{2}\left(\frac{\mu-x}{\sigma}\right)^
 \frac{\mu-x}{\sigma}&=z
 \end{align*}
 
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
-  axis x line*=bottom, axis y line*=left, enlargelimits=upper]
-  \addplot [red]    {gauss(0,0.5)} node[pos=0.4,  anchor=east] {$\sigma=0.5$};
-  \addplot [green]  {gauss(0,1)}   node[pos=0.6,  anchor=west] {$\sigma=1$};
-  \addplot [blue]   {gauss(0,2)}   node[pos=0.85, anchor=west] {$\sigma=2$};
-  \addplot [yellow] {gauss(1,1)}   node[pos=0.7,  anchor=west] {$\mu=1,\sigma=1$};
-\end{axis}
-\end{tikzpicture}
-\caption{Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$, and $\mu=1, \sigma=1$.}
-\label{fig:2014-05-09-diffGaussDistr}
-\end{figure}
-
-The corresponding integral is $\Phi$ (see figure \ref{fig:2014-05-09-diffGaussInts}).
-
+The corresponding integral is $\Phi$ (see figure \ref{fig:2014-05-09-diffGaussDistr}).
 \begin{align*}
 P(X \leq t) = \int\limits_{-\infty}^{t}{p(X=x)} dx &= \Phi(t;\mu,\sigma)
 \end{align*}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
-\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
-  axis x line*=bottom, axis y line*=left, enlargelimits=upper]
-  \addplot [red]    {Gauss(0,0.5)} node[pos=0.5,  anchor=west] {$\sigma=0.5$};
-  \addplot [green]  {Gauss(0,1)}   node[pos=0.5,  anchor=east] {$\sigma=1$};
-  \addplot [blue]   {Gauss(0,2)}   node[pos=0.85, anchor=west] {$\sigma=2$};
-  \addplot [yellow] {Gauss(1,1)}   node[pos=0.7,  anchor=west] {$\mu=1,\sigma=1$};
-\end{axis}
+  \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
+    axis x line*=bottom, axis y line*=left, enlargelimits=upper, name=gauss]
+    \addplot [red]    {gauss(0,0.5)};% node[pos=0.4,  anchor=east] {$\sigma=0.5$};
+      \addlegendentry{$\mu=0,\sigma=0.5$}
+    \addplot [green]  {gauss(0,1)};%   node[pos=0.6,  anchor=west] {$\sigma=1$};
+      \addlegendentry{$\mu=0,\sigma=1$}
+    \addplot [blue]   {gauss(0,2)};%   node[pos=0.85, anchor=west] {$\sigma=2$};
+      \addlegendentry{$\mu=0,\sigma=2$}
+    \addplot [yellow] {gauss(1,1)};%   node[pos=0.7,  anchor=west] {$\mu=1,\sigma=1$};
+      \addlegendentry{$\mu=1,\sigma=1$}
+  \end{axis}
+
+  \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, legend style={at={(0.98,0.02)}, anchor=south east}, 
+    axis x line*=bottom, axis y line*=left, enlargelimits=upper, name=Gauss, at=(gauss.right of east), anchor=left of west]
+    \addplot [red]    {Gauss(0,0.5)};% node[pos=0.5,  anchor=west] {$\sigma=0.5$};
+      \addlegendentry{$\mu=0,\sigma=0.5$}
+    \addplot [green]  {Gauss(0,1)};%   node[pos=0.5,  anchor=east] {$\sigma=1$};
+      \addlegendentry{$\mu=0,\sigma=1$}
+    \addplot [blue]   {Gauss(0,2)};%   node[pos=0.85, anchor=west] {$\sigma=2$};
+      \addlegendentry{$\mu=0,\sigma=1$}
+    \addplot [yellow] {Gauss(1,1)};%   node[pos=0.7,  anchor=west] {$\mu=1,\sigma=1$};
+      \addlegendentry{$\mu=1,\sigma=1$}
+  \end{axis}
 \end{tikzpicture}
-\caption{Integrals of Gaussian distributions with $\mu=0$ and $\sigma = 0.5, 1, 2$, and $\mu=1, \sigma=1$.}
-\label{fig:2014-05-09-diffGaussInts}
+\caption{Left: Gaussian distributions. Right: Their corresponding integrals. Parameters: $\mu=0$ and $\sigma = 0.5, 1, 2$, and $\mu=1, \sigma=1$.}
+\label{fig:2014-05-09-diffGaussDistr}
 \end{figure}
 
 The area of the standard deviation\index{Standard Deviation} ($\mu - \sigma \leq X \leq \mu + \sigma$) has a probability of approximately 68 \% (see figure \ref{fig:2014-05-09-std}).
+\begin{align*}
+P(\mu - \sigma \leq X \leq \mu + \sigma) = \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68 \%
+\end{align*}
 
 \begin{figure}[!ht]
 \centering
@@ -296,34 +303,32 @@ The area of the standard deviation\index{Standard Deviation} ($\mu - \sigma \leq
             {gauss(0,1)} \closedcycle;
     \addlegendentry{$\approx 68\%$}
   \addplot[color=red, samples=50, smooth] {gauss(0,1)};
+    \addlegendentry{$\mu=0,\sigma=1$}
 \end{axis}
 \end{tikzpicture}
 \caption{The area of the standard deviation yields approximately 68 \%}
 \label{fig:2014-05-09-std}
 \end{figure}
 
-\begin{align*}
-P(\mu - \sigma \leq X \leq \mu + \sigma) = \Phi(\mu+\sigma;\mu,\sigma) - \Phi(\mu-\sigma;\mu,\sigma) \approx 68 \%
-\end{align*}
-
+\begin{samepage}
 We can also find other useful probabilities which are commonly used to do statistics:
-
 \begin{itemize}
 	\item $\mu \pm \sigma \approx 68\%$
 	\item $\mu \pm 2\sigma \approx 95\%$
 	\item $\mu \pm 3\sigma \approx 99\%$
 \end{itemize}
+\end{samepage}
 
 
 \subsection{Proper Scoring Rules}\index{Proper Scoring Rule}
 Multiple choice tests would be better if you would state ``how your belief is, that this is right'', rather than just answering the question (For more about this see page \pageref{ex4_4_solution}).
 
-\vspace{1em}
+\bigskip
 
 Take a look at this example: \\ \textit{The EU population is bigger than the US population. \\
 Give the belief for this to be true. \\(This means 0 = ``I believe this is false'', 1 = ``I believe this is true'', 0.5 = ``I don't know'')}
 
-\vspace{1em}
+\bigskip
 
 The aim of a proper scoring rule is to yield a high gain if the answer is true and the belief in it is high, but yield no gain if the answer is false but the belief in it high.
 
