@@ -48,7 +48,7 @@ Our prior belief can be expressed as a binomial distribution\index{Binomial Dist
 We try to find to find $P(A|Poll)$, i.e. the probability that A wins the election given the poll results.
 \begin{align*}
 P(A|Poll) &= \frac{P(Poll|A)P(A)}{P(Poll)}\\
-P(A|Poll) &= \frac{p^{533}(1-p)^{467} \cdot p^{\alpha-1}(1-p)^{\beta-1}}{B(\alpha,\beta)}\\
+P(A|Poll) &= \frac{p^{533}(1-p)^{467} \cdot p^{\alpha-1}(1-p)^{\beta-1}}{B(\alpha_n,\beta_n)}\\
 \text{using $\alpha=533$ and $\beta=467$:}\\
 P(A|Poll) &= \frac{p^{533}(1-p)^{467} \cdot p^{533-1}(1-p)^{467-1}}{B(533,467)}\\
 P(A|Poll) &= \frac{p^{1065}(1-p)^{933}}{B(1066,934)}
@@ -76,8 +76,8 @@ Using the $\beta$-Distribution\index{B@$\beta$-Distribution} we come up with the
 \begin{align*}\index{Bernoulli Distribution}
                 P(B|D) &= \frac{P(D|B)P(B)}{P(D)} \\
 \Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{500-230}P(B)}{P(D)}\\
-\Leftrightarrow P(B|D) &= \frac{\overbrace{q^{230}\left(1-q\right)^{270}}^\text{Bernoulli} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha,\beta)} \\
-\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{270} q^{1-1}\left(1-q\right)^{9-1}}{B(\alpha,\beta)} \\
+\Leftrightarrow P(B|D) &= \frac{\overbrace{q^{230}\left(1-q\right)^{270}}^\text{Bernoulli} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha_n,\beta_n)} \\
+\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{270} q^{1-1}\left(1-q\right)^{9-1}}{B(\alpha_n,\beta_n)} \\
 \Leftrightarrow P(B|D) &= \frac{q^{231-1}\left(1-q\right)^{279-1}}{B(231,279)} \\
 \Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{278}}{B(231,279)}
 \end{align*}
@@ -128,7 +128,7 @@ With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by
 
 \bigskip
 
-\texttt{MATLAB} code to try exercise 3 out:
+\texttt{MATLAB} code to try out exercise 3:
 \lstinputlisting{data/2014-05-30_posteriorBetaDistribution.m}
 
 
