@@ -44,7 +44,7 @@
 \pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
 
 % betaDist(\alpha, \beta)
-\pgfkeys{/pgf/fpu} % allows calculations with high exponents
+\pgfkeys{/pgf/fpu} % allows calculations with high exponents, still better pre-calculate results for alpha/beta > 250
 \pgfmathdeclarefunction{betaDist}{2}{\pgfmathparse{( x^(#1-1)*(1-x)^(#2-1) ) / ( ( (#1-1)! * (#2-1)! ) / ( ( #1 + #2 - 1 )! ) )}}
 \edef\tmp{\pgfmathresult}
 \pgfkeys{/pgf/fpu=false}
