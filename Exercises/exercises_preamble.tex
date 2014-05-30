@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 
+\usepackage[margin=2.5cm]{geometry}
+
 \usepackage{eurosym}
 \DeclareRobustCommand{\officialeuro}{
   \ifmmode\expandafter\text\fi
@@ -12,6 +14,46 @@
 
 \usepackage{tikz}
 \usetikzlibrary{trees}
+\usetikzlibrary{patterns}
+
+\usepackage{pgfplots}          % complex functions
+\pgfplotsset{compat=1.9}
+% gauss(\mu, \sigma)
+% normal gauss function
+\pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
+% Gauss(\mu, \sigma)
+% error function, numerical approximation of the gauss integration
+\pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
+
+% betaDist(\alpha, \beta)
+\pgfkeys{/pgf/fpu} % allows calculations with high exponents, still better pre-calculate results for alpha/beta > 250
+\pgfmathdeclarefunction{betaDist}{2}{\pgfmathparse{( x^(#1-1)*(1-x)^(#2-1) ) / ( ( (#1-1)! * (#2-1)! ) / ( ( #1 + #2 - 1 )! ) )}}
+\edef\tmp{\pgfmathresult}
+\pgfkeys{/pgf/fpu=false}
+
+
+% START fill area below graph
+\tikzset{
+  hatch distance/.store in=\hatchdistance,
+  hatch distance=10pt,
+  hatch thickness/.store in=\hatchthickness,
+  hatch thickness=2pt
+}
+\makeatletter
+\pgfdeclarepatternformonly[\hatchdistance,\hatchthickness]{flexible hatch}
+{\pgfqpoint{0pt}{0pt}}
+{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+{\pgfpoint{\hatchdistance-1pt}{\hatchdistance-1pt}}%
+{
+  \pgfsetcolor{\tikz@pattern@color}
+  \pgfsetlinewidth{\hatchthickness}
+  \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+  \pgfpathlineto{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+  \pgfusepath{stroke}
+}
+% END fill area below graph
+
+\usepackage{mcode}             % matlab source
 
 \setlength\parindent{0pt}
 
