@@ -9,11 +9,11 @@ h: \#heads
 t: \#tails
 
 But since we do not know $q$ we would also like to find the best $q$ that explains the observed data. In other words: what is the probability of a specific $q$ given the data? This can again be expressed with Bayes' Rule\index{Bayes' Rule}:
-
 \begin{align*}
 \overbrace{p(q|X)}^\text{posterior} = \frac{P(X|q)\overbrace{p(q)}^\text{prior}}{\int_0^1 P(X|q)p(q) dq}
 \end{align*}
 
+\sidenote{$B(\alpha,\beta) = \frac{(\alpha-1)!(\beta-1)!}{(\alpha+\beta-1)!}$}
 The question arising here is what shall we take as the prior? In principle it is just our personal belief about the thumbtack, one experimenter might believe it is $0.7$, others believe different values. This \textit{subjectivity} troubles many Non-Bayesians. The good thing is, that it does not really matter which prior you choose, if you have enough data the result will still converge to the real $p(q|X)$!
 
 Since we have no concrete clue and it is not that important anyway, we may choose a distribution by pure convenience for $p(q)$. The distribution is called \textit{$\beta$ Distribution}\index{B@$\beta$-Distribution} :
@@ -46,11 +46,12 @@ In order to find the maximum posteriori term we need to calculate the first deri
 
 For $\alpha = \beta = 1$ we get what we have already suspected before: $\est{q}=\frac{h}{h+t}$. $\alpha$ and $\beta$ are also called pseudo-counters. They represent data points you have not seen but believe to be realistic. This is a way to put your prior belief about the problem in the model - but it is also dangerous. If you have a strong belief in a hypothesis it will need more and more data to prove in the limit that you are wrong.
 
-\subsection[Null Hypothesis Significance Testing (NHST)]{NHST Null Hypothesis Significance Testing}
+\subsection[Null Hypothesis Significance Testing (NHST)]{NHST Null Hypothesis Significance Testing}\index{NHST}
 In the previous section we examined how Bayesian people tackle the problem of finding a good model for a problem. For frequentists it is a bit more complicated. Remember that probabilities (like the probability for heads for a fair coin) are objective/fixed properties of the object. Writing $p(q)$ (as well as $p(q|X) \propto p(q)p(X|q)$) makes no sense for this reason. $q$ is not a random variable but a property and we need to find out its concrete value.
 
 \subsubsection*{Experiment: Can someone discriminate between coke and pepsi?}
-
+\label{sol:sheet5ex4}
+\sidenote{This is exercise 4 of Tutorial Sheet 5 (page \pageref{exsheet5}).}
 We would like to know what $p(q)$ is. But as frequentists we can't do that. So we start with the null hypothesis $H_0$: Subjects can't discriminate: $q = \frac{1}{2}, n = 25$. Where $q$ denotes the discrimination factor for the subjects and $n$ is the number of trials. We now measure H (\# ``Heads'': correct discriminations).
 \begin{align*}
 P(H=h|q) = \underbrace{ \binom{n}{h} \overbrace{q^h (1-q)^{n-h}}^\text{Bernoulli} }_\text{Binomial distribution}\index{Binomial Distribution}
