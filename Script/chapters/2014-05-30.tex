@@ -4,7 +4,7 @@
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
-  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(0.98,0.5)}, anchor=east}]
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(0.98,0.5)}, anchor=east}, x post scale=2, y post scale=2]
   \addplot[smooth, samples=100, color=blue]    {betaDist(1,1)};
     \addlegendentry{$\alpha=1,\beta=1$}
   \addplot[smooth, samples=100, color=purple]  {betaDist(2,2)};
@@ -37,31 +37,32 @@ If we increase both parameters unequally, the distribution's peak moves towards 
 
 \bigskip
 
-When using the $\beta$-distribution to learn about the probability $q$ for the thumbtack example (page \pageref{example:Thumbtack Toss}) we would start with $\alpha=\beta=1$, i.e. uninformed. After gathering some data we can use it to update our prior belief and adjust the parameters according to our posterior distribution. If we continue doing this iteratively the distribution will get closer to the real $q$ of the thumbtack.
+When using the $\beta$-distribution to learn about the probability $q$ for the thumbtack example (page \pageref{example:Thumbtack Toss}) we would start with $\alpha=\beta=1$, i.e. uninformed. After gathering some data we can use it to update our prior belief and adjust the parameters according to our posterior distribution. If we continue doing this iteratively the distribution will get closer to the real $q$ of the thumbtack. % Note: We should find out which distribution we have with n throws and k successes (probably binomial)
 
 
 \subsection*{Exercise 2}
 We have only very limited information and a best guess is that A will win the elections, since there are 53.3\% of the people supporting him. We are not really sure about that because of the lack of information.
 
-Our prior belief can be expressed as a binomial distribution\index{Binomial Distribution} $P(A) = \binom{1000}{533} p^{533}(1-p)^{1000-533}$. However, since the likelihood can be expressed as a Bernoulli distribution\index{Bernoulli Distribution} ($p^{533}(1-p)^{467}$) we can also use the $\beta$-distribution\index{B@$\beta$-Distribution} to model our prior belief: it is conjugate to the Bernoulli distribution. 
+Our prior belief is uninformed, i.e. we have no idea about the outcome (Assuming we don't know the poll). The likelihood is our data sample, i.e. the poll's data. It is a binomial distribution\index{Binomial Distribution}: $P(Poll|A) = \binom{1000}{533} p^{533}(1-p)^{1000-533}$. We use the $\beta$-distribution\index{B@$\beta$-Distribution} to model our prior belief: it is conjugate to the Binomial distribution. 
 
 We try to find to find $P(A|Poll)$, i.e. the probability that A wins the election given the poll results.
 \begin{align*}
 P(A|Poll) &= \frac{P(Poll|A)P(A)}{P(Poll)}\\
-P(A|Poll) &= \frac{p^{533}(1-p)^{467} \cdot p^{\alpha-1}(1-p)^{\beta-1}}{B(\alpha_n,\beta_n)}\\
-\text{using $\alpha=533$ and $\beta=467$:}\\
-P(A|Poll) &= \frac{p^{533}(1-p)^{467} \cdot p^{533-1}(1-p)^{467-1}}{B(533,467)}\\
-P(A|Poll) &= \frac{p^{1065}(1-p)^{933}}{B(1066,934)}
+P(A|Poll) &= \frac{\binom{1000}{533}p^{533}(1-p)^{467} \cdot p^{\alpha-1}(1-p)^{\beta-1}}{B(\alpha,\beta)}\\
+\text{using an uninformed prior, i.e. }\alpha=1, \beta=1\\
+P(A|Poll) &= \frac{\binom{1000}{533}p^{533}(1-p)^{467} \cdot p^{1-1}(1-p)^{1-1}}{B(1,1)}\\
+P(A|Poll) &\propto \frac{p^{533+1-1}(1-p)^{467+1-1}}{B(534,468)}
 \end{align*}
 
-We can plot this posterior belief $P(A|Poll)$ (figure \ref{fig:2014-05-30_ex2plot}) and see how likely it is that A wins.
+We can plot this posterior belief $P(A|Poll)$ (figure \ref{fig:2014-05-30_ex2plot}) and see how likely it is that A wins. Since the highest density is above 0.5, it's more likely that A wins the election.
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
-  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, x post scale=2, y post scale=2, legend style={at={(0.98,0.5)}, anchor=east}]
-  % csvwrite('beta.txt',[[0:0.001:1]' betapdf(0:0.001:1,1066,934)'])
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(0.98,0.5)}, anchor=east}]
+  % csvwrite('2014-05-30_exercise2_pdf.txt',[[0:0.001:1]' betapdf(0:0.001:1,534,468)'])
   \addplot[smooth] file {data/2014-05-30_exercise2_pdf.txt};
-    \addlegendentry{$\alpha=1066,\beta=934$}
+    \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=534}{\beta=468}$}
+  \draw ({axis cs:0.5,0}|-{rel axis cs:0,0}) -- ({axis cs:0.5,0}|-{rel axis cs:0,1});
   \end{axis}
 \end{tikzpicture}
 \caption{How likely is it, that A wins the election?}
@@ -73,17 +74,15 @@ We can plot this posterior belief $P(A|Poll)$ (figure \ref{fig:2014-05-30_ex2plo
 We denote $B$ as the number of people believing in UFOs and $D$ as the data (i.e. the poll results) given.
 
 Using the $\beta$-Distribution\index{B@$\beta$-Distribution} we come up with the following model:
-\begin{align*}\index{Bernoulli Distribution}
+\begin{align*}\index{Binomial Distribution}
                 P(B|D) &= \frac{P(D|B)P(B)}{P(D)} \\
-\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{500-230}P(B)}{P(D)}\\
-\Leftrightarrow P(B|D) &= \frac{\overbrace{q^{230}\left(1-q\right)^{270}}^\text{Bernoulli} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha_n,\beta_n)} \\
-\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{270} q^{1-1}\left(1-q\right)^{9-1}}{B(\alpha_n,\beta_n)} \\
-\Leftrightarrow P(B|D) &= \frac{q^{231-1}\left(1-q\right)^{279-1}}{B(231,279)} \\
-\Leftrightarrow P(B|D) &= \frac{q^{230}\left(1-q\right)^{278}}{B(231,279)}
+\Leftrightarrow P(B|D) &= \frac{\binom{500}{230}q^{230}\left(1-q\right)^{500-230}P(B)}{P(D)}\\
+\Leftrightarrow P(B|D) &= \frac{\overbrace{\binom{500}{230}q^{230}\left(1-q\right)^{270}}^\text{Binomial} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha,\beta)} \\
+\Leftrightarrow P(B|D) &\propto q^{230+1-1}\left(1-q\right)^{270+9-1} \\
+\Leftrightarrow P(B|D) &\Rightarrow \frac{q^{231-1}\left(1-q\right)^{279-1}}{B(231,279)}
 \end{align*}
 
 The prior distribution (figure \ref{fig:2014-05-30_ex3prior}) is far to the left, as we have a relatively huge $\beta$ compared to $\alpha$.
-
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
@@ -96,20 +95,20 @@ The prior distribution (figure \ref{fig:2014-05-30_ex3prior}) is far to the left
 \label{fig:2014-05-30_ex3prior}
 \end{figure}
 
-With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by calculating the CDF\index{CDF} of the posterior $\beta$-distribution and searching for the x-values for $y_{min}=0.025$ and $y_{max}=0.975$. Using these x-values for the corresponding PDF\index{PDF} yields the $95\%$ interval (figure \ref{fig:2014-05-30_ex3posterior}).
+With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by calculating the CDF\index{CDF} of the posterior $\beta$-distribution and searching for the x-values for $y_{min}=0.025$ and $y_{max}=0.975$. Using these x-values for the corresponding PDF\index{PDF} yields the $95\%$ interval (figure \ref{fig:2014-05-30_ex3posterior}). The left figure shows the CDF and the intersections for a visual explanation: By using the inverse of the CDF we can calculate the x-values much easier.
 
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, name=cdf, legend style={at={(0.98,0.5)}, anchor=east}]
   \plot[smooth, color=blue] file {data/2014-05-30_posteriorCDF_data.txt};
-    \addlegendentry{$\alpha=231,\beta=279$}
+    \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=231}{\beta=279}$}
   \plot[color=red] {0.975};
     \addlegendentry{$x=0.975$}
   \plot[color=red] {0.025};
     \addlegendentry{$x=0.025$}
-  \node at (axis cs:0.41,0.025) {$\times$};
-  \node at (axis cs:0.496,0.975) {$\times$};
+  \node at (axis cs:0.41,0.025) {$\times$};  \node at(axis cs:0.27,0.1) {(0.41|0.025)};
+  \node at (axis cs:0.496,0.975) {$\times$}; \node at(axis cs:0.3,0.9) {(0.496|0.975)};
   \end{axis}
   
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, name=pdf, at=(cdf.right of east), anchor=left of west]
@@ -119,40 +118,72 @@ With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by
             file {data/2014-05-30_posteriorPDF_area_data.txt} \closedcycle;
     \addlegendentry{$95\%$}
   \plot[smooth, color=red] file {data/2014-05-30_posteriorPDF_data.txt};
-    \addlegendentry{$\alpha=231,\beta=279$}
+    \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=231}{\beta=279}$}
+  \plot[smooth, color=gray] file {data/2014-05-30_priorPDF_data.txt};
+    \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=1}{\beta=9}$}
   \end{axis}
 \end{tikzpicture}
-\caption{Left: CDF and 95\% intersections. Right: PDF and 95\% interval.}
+\caption{Left: Posterior CDF and 95\% intersections. Right: Posterior PDF and 95\% interval, prior PDF for comparison.}
 \label{fig:2014-05-30_ex3posterior}
 \end{figure}
 
 \bigskip
 
 \texttt{MATLAB} code to try out exercise 3:
-\lstinputlisting{data/2014-05-30_posteriorBetaDistribution.m}
+\lstinputlisting{data/sheet5_posteriorBetaDistribution.m}
 
 
 \subsection*{Exercise 4}
-See page \pageref{sol:sheet5ex4} for details on this exercise.
+To make a guess we can run a simulation with $n$ subjects who have to do the task 25 times. We measure how often they answer correctly and in the end we check how many people $g$ out of $n$ had more than 20 correct answers.
+
+One possibly result was: \\
+\texttt{0.0473\% (473) of 1000000 subjects scored more than 20 out of 25.}
+
+\bigskip
+
+\texttt{MATLAB} code to try out exercise 4:
+\lstinputlisting{data/sheet5_inferenceSimulation.m}
 
 
 \subsection*{Exercise 5}\index{NHST}
 \begin{enumerate}
-	\item Since $p < 0.01$ it's not absolutely disproved.
+	\item Since $p < 0.01$ it's not absolutely disproved, because we still have to take $\beta$ into account.
   \item You don't find the probability of the $H_0$ ($p(q=\frac{1}{2}|H=h,n=25)$), but instead you find $p(H>20|q=\frac{1}{2},n=25)$ - the p-value. But the p-value is not sufficient to know the probability of $H_0$.
   \item As in 1: it's not certain.
   \item Finding $p(q>\frac{1}{2}|H=h,n=25)$ is only possible with Bayes' rule\index{Bayes' Rule}, so it's impossible from a frequentist point of view.
-  \item To know the probability that the decision taken was wrong you need to know the type II ($\beta$-) error. This is not possible if you don't know $q$, which you don't in a NHST.
+  \item To know the probability that the decision taken was wrong you need to know the type II ($\beta$-) error. This is not possible if you don't know $q$, which you don't in an NHST.
   \item It's not possible to know what happens if you repeat an experiment. The results might be similar or totally different - so they are definitely not significant with a probability of 99\%.
-  \item This is the only true fact in this list that we can derive from a NHST.
+  \item This is the only true fact in this list that we can derive from an NHST. % TODO: Why?
 \end{enumerate}
 
-\subsection*{Exercise 6}
+
+\subsection*{Exercise 6}\index{NHST}
+We want to find out the relative proportion of true hypotheses to hypotheses which were wrongly found out to be true, i.e. $\frac{\text{true hypotheses}}{\text{hypotheses found true}}$.
+
+By assuming that the probability for a hypotheses to be true is $q$, we can come up with a simple probability tree (figure \ref{fig:2014-05-30_ex6tree}).
+
+\begin{figure}[!ht]
+  \input{images/sheet5exercise6tree.tex}
+  \caption{Probability tree}
+  \label{fig:2014-05-30_ex6tree}
+\end{figure}
+
+By using the formulas for hypotheses which were found to be true we can fill the formula mentioned above.
+\begin{align*}
+\frac{\overbrace{(1-\beta)q}^\text{true hypotheses}}{\underbrace{(1-\beta)q+\alpha(1-q)}_\text{hypotheses found true}}
+\end{align*}
+We can solve this for $q$ by plugging in the given values $\alpha=5\%,1-\beta=75\%$ and setting it to be smaller than $\frac{1}{2}$.
+\begin{align*}
+\frac{1}{2}&>\frac{(1-\beta)q}{(1-\beta)q+\alpha(1-q)} \\
+\frac{1}{2}&>\frac{0.75q}{0.75q+0.05(1-q)} \\
+\frac{1}{2}&>\frac{0.75q}{0.75q+0.05-0.05q} \\
+\frac{1}{2}&>\frac{0.75q}{0.7q+0.05} \\
+0.7q+0.05  &>1.5q \\
+0.05       &>0.8q \\
+0.0625     &>q
+\end{align*}
+So if $q$ is smaller than $\frac{1}{16}$, the probability that the effect is real is less than 50\%.
 
 
 \subsection*{Exercise 8}
-\begin{align*}
-E(f(X)) &= \sum_{x\in\Omega}p(x)f(x) \\
-E(a\cdot f(X) + b) &= \sum_{x\in\Omega}ap(x)f(x)+b = b+a\sum_{x\in\Omega}p(x)f(x) = b+a\cdot E(f(X))\\
-                   &= a\cdot E(f(x)) + b
-\end{align*}
+to be continued...

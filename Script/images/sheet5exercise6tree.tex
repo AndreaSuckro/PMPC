@@ -1,0 +1,46 @@
+\tikzstyle{level 1}=[level distance=3cm, sibling distance=4.5cm]
+\tikzstyle{level 2}=[level distance=3cm, sibling distance=2.5cm]
+\tikzstyle{level 3}=[level distance=3cm, sibling distance=2.0cm]
+
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt, fill, inner sep=0pt]
+
+\begin{tikzpicture}[grow=right, sloped]
+\node[bag] {all hypotheses}
+    child {
+        node[bag] {true}
+        child {
+            node[end, label=right: {NHST false: $\beta q$}] {}
+            edge from parent
+            node[above] {}
+            node[below] {$\beta$}
+        }
+        child {
+            node[end, label=right: {NHST true: $(1-\beta)q$}] {}
+            edge from parent
+            node[above] {$1-\beta$}
+            node[below] {}
+        }
+        edge from parent         
+        node[above] {}
+        node[below] {$q$}
+    }
+    child {
+        node[bag] {false}
+        child {
+            node[end, label=right: {NHST false: $(1-\alpha)(1-q)$}] {}
+            edge from parent
+            node[above] {}
+            node[below] {$1-\alpha$}
+        }
+        child {
+            node[end, label=right: {NHST true: $\alpha(1-q)$}] {}
+            edge from parent
+            node[above] {$\alpha$}
+            node[below] {}
+        }
+        edge from parent         
+        node[above] {$1-q$}
+        node[below] {}
+    };
+\end{tikzpicture}
