@@ -3,7 +3,7 @@
 \subsection{Bayesian Inference for Thumbtacks}
 We return to the example from the first lecture (see page \pageref{example:Thumbtack Toss}). Let us imagine we have thrown a thumbtack $n$ times. The series of data we get from that may be: 01110101101, a binary string consisting of $n$ entries (0 encodes tail, 1 head). Let $x_1....x_n =: X$ be a random variable. What is the probability of the data given our vague belief about q (for a coin we have the strong intuition of believing that $q=0.5$, but for the thumbtack we are not sure)? The probability of the whole data ($X$) is the product of the probability of all single events ($x_i$):
 \begin{align*}
-P(X|q) = \prod\limits_{i=1}^n{q^{x_i}\left(1-q\right)^{1-x_i}}=\underbrace{q^h\left(1-q\right)^t}_\text{Bernoulli}
+P(X|q) = \prod\limits_{i=1}^n{\underbrace{q^{x_i}\left(1-q\right)^{1-x_i}}_\text{Bernoulli}}=q^h\left(1-q\right)^t
 \end{align*}
 h: \#heads
 t: \#tails
