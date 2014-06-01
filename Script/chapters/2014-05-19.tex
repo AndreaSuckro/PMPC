@@ -15,28 +15,28 @@ and therefore
 P(\neg G) = \frac{99,999}{100,000}
 \end{align*}
 
-A positive match with the correct DNA (i.e. matching the guilty person) has the probability of $P(P|G) = 0.99999$.
+A positive match with the correct DNA (i.e. matching the guilty person) has the probability of $P(P|G) = 1$.
 
 The actual probability we are interested in is the one of really being guilty given a positive test result:
-\begin{align*}g
+\begin{align*}
 P(G|P) &= \frac{P(P|G) \cdot P(G)}{P(P)} \\
-P(G|P) &= \frac{0.99999 \cdot \frac{1}{100,000}}{P(P)}
+P(G|P) &= \frac{1 \cdot \frac{1}{100,000}}{P(P)}
 \end{align*}
 
 To get the missing factor, $P(P)$ we can use the marginal probability\index{Marginal Probability}:
 \begin{align*}
 P(P) &= \sum\limits_{i=1}^{N} \left( P(P|G_i) \cdot P(G_i) \right) \\
      &= P(P|G) \cdot P(G) + P(P|\neg G) \cdot P(\neg G) \\
-     &= 0.99999 \cdot \frac{1}{100,000} + 0.00001 \cdot \frac{99,999}{100,000} \\
-     &= \frac{1.99998}{100,000}
+     &= 1 \cdot \frac{1}{100,000} + 0.00001 \cdot \frac{99,999}{100,000} \\
+     &= \frac{1.99999}{100,000}
 \end{align*}
 
 Now we can calculate $P(G|P)$:
 \begin{align*}
-P(G|P) &= \frac{0.99999 \cdot \frac{1}{100,000}}{\frac{1.99998}{100,000}} = 0.5
+P(G|P) &= \frac{1 \cdot \frac{1}{100,000}}{\frac{1.99999}{100,000}} = \frac{1}{1.99999} > \frac{1}{2}
 \end{align*}
 
-That means the actual probability that the accused person really is guilty is just about 50 \%. At first glance in court it may seem very likely that the defendant is the murderer. But we as clever attorneys can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high, even though the test is so accurate. This is again a case of neglecting the base rate\index{Base Rate Neglect}. 
+That means the actual probability that the accused person really is guilty is slightly above 50 \%. At first glance in court it may seem very likely that the defendant is the murderer. But we as clever attorneys can argue that with 100,000 participants taking part in the DNA test, the chance for a false alarm is still pretty high, even though the test is so accurate. This is again a case of neglecting the base rate\index{Base Rate Neglect}. 
 
 \bigskip
 
@@ -146,7 +146,7 @@ p\left(\mbox{lose money}\right) = p(N<10) = \sum\limits_{n=1}^9 \frac{1}{2^n} \a
 
 Now the expected gain is:
 \begin{align*}
-E &= -1000 + \frac{1}{2} \cdot 2^1 + \frac{1}{2} \cdot 2^1 + \frac{1}{2} \cdot 2^1 + ... \\
+E &= -1000 + \frac{1}{2} \cdot 2^1 + \frac{1}{4} \cdot 2^2 + \frac{1}{8} \cdot 2^3 + ... \\
   &= -1000 + \sum\limits_{n=1}^\infty \frac{1}{2^n} \cdot 2^n \\
   &= -1000 + \sum\limits_{n=1}^\infty 1 \\
   &= +\infty
