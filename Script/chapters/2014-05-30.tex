@@ -77,9 +77,9 @@ Using the $\beta$-Distribution\index{B@$\beta$-Distribution} we come up with the
 \begin{align*}\index{Binomial Distribution}
                 P(B|D) &= \frac{P(D|B)P(B)}{P(D)} \\
 \Leftrightarrow P(B|D) &= \frac{\binom{500}{230}q^{230}\left(1-q\right)^{500-230}P(B)}{P(D)}\\
-\Leftrightarrow P(B|D) &= \frac{\overbrace{\binom{500}{230}q^{230}\left(1-q\right)^{270}}^\text{Binomial} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha,\beta)} \\
-\Leftrightarrow P(B|D) &\propto q^{230+1-1}\left(1-q\right)^{270+9-1} \\
-\Leftrightarrow P(B|D) &\Rightarrow \frac{q^{231-1}\left(1-q\right)^{279-1}}{B(231,279)}
+                P(B|D) &= \frac{\overbrace{\binom{500}{230}q^{230}\left(1-q\right)^{270}}^\text{Binomial} \overbrace{q^{\alpha-1}\left(1-q\right)^{\beta-1}}^\text{$\beta$-Distribution}}{B(\alpha,\beta)} \\
+                P(B|D) &\propto q^{230+1-1}\left(1-q\right)^{270+9-1} \\
+                P(B|D) &\Rightarrow \frac{q^{231-1}\left(1-q\right)^{279-1}}{B(231,279)}
 \end{align*}
 
 The prior distribution (figure \ref{fig:2014-05-30_ex3prior}) is far to the left, as we have a relatively huge $\beta$ compared to $\alpha$.
