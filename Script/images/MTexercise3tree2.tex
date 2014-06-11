@@ -1,0 +1,58 @@
+\tikzstyle{level 1}=[level distance=1.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=1.5cm, sibling distance=2cm]
+\tikzstyle{level 3}=[level distance=1.5cm, sibling distance=3cm]
+
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt, fill, inner sep=0pt]
+
+\begin{tikzpicture}[grow=down, sloped]
+\node[bag] {champ}
+    child {
+        node[bag] {father}
+        child {
+            node[end, label=below: {$\times$}] {}
+            edge from parent
+            node[above] {loss}
+            node[below] {$1-f$}
+        }
+        child {
+            node[bag] {champ}
+            child {
+              node[end, label=below: {$\times$}] {}
+              edge from parent
+              node[above] {loss}
+              node[below] {$1-c$}
+            }
+            child {
+              node[end, label=below: {$\checkmark$}] {}
+              edge from parent
+              node[above] {win}
+              node[below] {$c$}
+            }
+            edge from parent
+            node[above] {win}
+            node[below] {$f$}
+        }
+        edge from parent         
+        node[above] {loss}
+        node[below] {$1-c$}
+    }
+    child {
+        node[bag] {father}
+        child {
+            node[end, label=below: {$\times$}] {}
+            edge from parent
+            node[above] {loss}
+            node[below] {$1-f$}
+        }
+        child {
+            node[end, label=below: {$\checkmark$}] {}
+            edge from parent
+            node[above] {win}
+            node[below] {$f$}
+        }
+        edge from parent         
+        node[above] {win}
+        node[below] {$c$}
+    };
+\end{tikzpicture}

@@ -22,6 +22,7 @@
 \usepackage{bookmark}          % to insert custom bookmarks
 
 \usepackage{graphicx}          % graphics
+\usepackage{subcaption}        % multiple figures
 \usepackage{multirow}          % for rowspanning table entries
 \usepackage{etoolbox}          % for conditional includes
 \usepackage{pdfpages}          % to include exercise sheets
@@ -228,9 +229,17 @@
   \clearpage
 }{}
 
-% Mid-Term Exam Corrections
-%\input{chapters/2014-06-06.tex}
-%\clearpage
+% Mid-Term exam
+\iftoggle{exercises}{
+  \pagestyle{plain}
+  \input{exercises/midterm.tex}
+  \clearpage
+  \pagestyle{fancy}
+}{}
+\iftoggle{solutions}{
+  \input{chapters/2014-06-06.tex}
+  \clearpage
+}{}
 
 % Signal Detection Theory I
 %\input{chapters/2014-06-13.tex}
