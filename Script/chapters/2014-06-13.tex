@@ -1,0 +1,96 @@
+\section[Signal Detection Theory I]{Signal Detection Theory I \iftoggle{showdates}{\small{\textit{2014-06-13}}}{}}
+
+\subsection{Detection tasks}
+
+Detection tasks a simple yes/no response task -- is there a signal or is there no signal -- the difficulty of such a task stems from the fact that there is always noise in the system, so we can't be sure whether or not your answer is correct.
+
+\paragraph{Examples}
+\begin{itemize}
+\item Binary signal transmission over noise channel (cable, radio)
+\item Information retrieval
+\item airport security scans (is this a weapon or just a hair dryer)
+\end{itemize}
+
+\setlength{\extrarowheight}{.2cm}
+\begin{tabular}{ x{1.3}|c|c|}
+  \diag{0}{1.3cm}{\small Result}{\small Signal}       & \multicolumn{1}{c}{S = yes}   & \multicolumn{1}{c}{S = no} \\ \cline{2-3}
+  \multicolumn{1}{l|}{R = yes}	& Hits      & False Alarms          \\ \cline{2-3}
+\multicolumn{1}{l|}{R = no}  & Misses    & Correct Rejections    \\ \cline{2-3}
+\end{tabular}
+
+\paragraph{Response strategy}
+Todo: Fancy plot
+
+We are now looking for a set of values for which our response will be \emph{yes}. This is called the response strategy.
+
+Formally $\text{if} x\in A \text{then YES else NO}$
+
+Our response strategy should not only depend on the probabilities, but also on the cost of being wrong.
+
+\paragraph{Losses}
+
+The loss function $L(S,R)$ is given by the following table.
+
+\setlength{\extrarowheight}{.2cm}
+\begin{tabular}{ x{1.3}|c|c|}
+  \diag{0}{1.3cm}{\small Result}{\small Signal}       & \multicolumn{1}{c}{S = yes}   & \multicolumn{1}{c}{S = no} \\ \cline{2-3}
+  \multicolumn{1}{l|}{R = yes}  & $C_H$      & $C_{FA}$          \\ \cline{2-3}
+\multicolumn{1}{l|}{R = no}  & $C_M$    & $C_{CR}$    \\ \cline{2-3}
+\end{tabular}
+
+\paragraph{Probabilities}
+
+\begin{align}
+P(H) &= \int_A p(X \mid S=yes)dx &= P(R=y \mid S=y) \\
+P(FA) &= \int_A p(X \mid S=no)dx &= P(R=y \mid S=n) \\
+P(M)  &= 1 - P(H) &= P(R=n \mid S=y)\\
+P(CR) &= 1 - P(FA) &= P(R=n \mid S=n)
+\end{align}
+
+\paragraph{Idea: Minimize expected loss }
+
+\begin{gather*}
+E(L(S=y,R)) = P(H) \times C_H +  \underbrace{P(M)}_{1-P(H)} \times C_M \\
+E(L(S=n,R)) = P(FA) \times C_{FA} +  \underbrace{P(CR)}_{1-P(FA)} \times C_{CR} \\
+\text{Shorthand} \\
+\pi_y = P(S=y) \\
+\pi_n = P(S=n)
+\end{gather*}
+
+\begin{align*}
+E(L(S,R)) &= \pi_y  E(L(S=y, R)) + \pi_n E(L(S=n, R)) &= \\
+&= \pi_y C_H  P(H) + \pi_y C_M - \pi_y C_M P(H) + \pi_n C_{CR} - \pi_n C_{CR} P(FA) + \pi_n C{FA} P(FA) &= \\
+&= \pi_y P(H) (C_H - C_M) + \pi_n P(FA) (C{FA} - C{CR}) + \underbrace{(\pi_y C_M + \pi_n C_{CR})}_{\text{independent of } A} &
+\end{align*}
+
+Now we minimize only the parts dependent on $A$
+
+\begin{align*}
+& \pi_y P(H) (C_H - C_M) + \pi_n P(FA) (C_{FA} - C_{CR}) &= \\
+&= \pi_y (\int_A p(X \mid S=yes) dx)(C_H - C_M) + \pi_n (\int_A p(X \mid S=no) dx) (C_{FA} - C_{CR}) &= \\
+&= \int_A [\pi_y p(X \mid S=yes)(C_H - C_M) + \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) dx] & \\
+\end{align*}
+
+Choose $A$ such that we only integrate over the negative part.
+
+\begin{align*}
+\pi_y p(X \mid S=yes)(C_H - C_M) + \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) &< 0 \\
+\pi_y p(X \mid S=yes)(C_H - C_M) &\leqq - \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) \\
+\pi_y p(X \mid S=yes)(C_H - C_M) &\leqq \pi_n p(X \mid S=no)(C_{CR} - C_{FA}) \\
+\end{align*}
+\begin{equation}
+\underbrace{\frac{\pi_y p(X \mid S=yes)}{\pi_n p(X \mid S=no)}}_\text{posterior odds} \geqq \underbrace{\frac{C_{CR} - C_{FA}}{C_H - C_M}}_\text{costs threshold}
+\end{equation}
+
+Interpretation: We choose $A$ so that the posterior odds are greater then the costs.
+
+Other way of writing:
+
+\begin{equation}
+\underbrace{\frac{p(X \mid S=yes)}{p(X \mid S=no)}}_\text{likelihood ratio} \geqq \underbrace{\frac{\pi_n(C_{CR} - C_{FA})}{\pi_y(C_H - C_M)}}_\beta
+\end{equation}
+
+\paragraph{Examples Gaussian}
+TODO
+\subsection{Signal to Noise Ratio}
+TODO
