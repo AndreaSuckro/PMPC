@@ -26,6 +26,9 @@
 \usepackage{multirow}          % for rowspanning table entries
 \usepackage{etoolbox}          % for conditional includes
 \usepackage{pdfpages}          % to include exercise sheets
+\usepackage{array}             % better tables
+\usepackage{makecell}          % better tables
+\newcolumntype{x}[1]{>{\centering\arraybackslash}p{#1}}
 
 \usepackage{makeidx}           % make a word index
 \makeindex  
@@ -49,6 +52,18 @@
 \pgfmathdeclarefunction{betaDist}{2}{\pgfmathparse{( x^(#1-1)*(1-x)^(#2-1) ) / ( ( (#1-1)! * (#2-1)! ) / ( ( #1 + #2 - 1 )! ) )}}
 \edef\tmp{\pgfmathresult}
 \pgfkeys{/pgf/fpu=false}
+
+% Create diagonal seperated cell
+\newcommand\diag[4]{%
+  \multicolumn{1}{p{#2}}{\hskip-\tabcolsep
+  $\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
+  \path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
+  \node[minimum width={#2+2\tabcolsep-\pgflinewidth},
+        minimum  height=\baselineskip+\extrarowheight-\pgflinewidth] (box) {};
+  \draw[line cap=round] (box.north west) -- (box.south east);
+  \node[anchor=south west] at (box.south west) {#3};
+  \node[anchor=north east] at (box.north east) {#4};
+ \end{tikzpicture}}$\hskip-\tabcolsep}}
 
 
 % START fill area below graph
@@ -242,8 +257,8 @@
 }{}
 
 % Signal Detection Theory I
-%\input{chapters/2014-06-13.tex}
-%\clearpage
+\input{chapters/2014-06-13.tex}
+\clearpage
 
 % Signal Detection Theory II
 %\input{chapters/2014-06-16.tex}
