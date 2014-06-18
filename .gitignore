@@ -24,3 +24,6 @@ Tutorial Sheet*.pdf
 *.ind
 *.tmp
 Exercises/output*
+*chapters/*.pdf
+*main/*.pdf
+Thumbs.db

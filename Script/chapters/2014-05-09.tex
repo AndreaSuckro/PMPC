@@ -1,3 +1,6 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
 \section[Measuring Beliefs II]{Measuring Beliefs II \iftoggle{showdates}{\small{\textit{2014-05-09}}}{}}
 
 \subsection{Probabilities of Continuous Random Variables}\index{Continuous Random Variable}
@@ -184,7 +187,7 @@ However, if the resulting histogram is somewhere between those extreme cases, th
   % axis label
   \draw (-1,1) node[rotate=90] {density};
   
-  \draw[thick] plot[smooth] file {data/2014-05-09_HistogramToPDF.txt};
+  \draw[thick] plot[smooth] file {../data/2014-05-09_HistogramToPDF.txt};
 \end{tikzpicture}
 \caption{Probability density function}
 \label{fig:2014-05-09_pdf}
@@ -232,7 +235,7 @@ This can be done by integration of the PDF\index{PDF} (see figure \ref{fig:2014-
   % axis label
   \draw (-1.5,1) node[rotate=90] {density};
   
-  \draw[thick] plot[smooth] file {data/2014-05-09_CDF.txt};
+  \draw[thick] plot[smooth] file {../data/2014-05-09_CDF.txt};
 \end{tikzpicture}
 \caption{Cumulative density function}
 \label{fig:2014-05-09_pdf_to_cdf}
@@ -357,3 +360,5 @@ E\left(L\left(p,q\right)\right) &= p\left(1-2q\right)+q^2 \\
 \end{align*}
 
 As can be seen the loss function is minimal if $p=q$, i.e. if the person answering is telling the truth.
+
+\end{document}

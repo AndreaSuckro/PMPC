@@ -1,5 +1,7 @@
 \documentclass[a4paper,oneside,10pt]{article}
 
+\usepackage{subfiles}          % single chapter compiling
+
 \usepackage[T1]{fontenc}       % font encoding
 \usepackage[utf8]{inputenc}    % input encoding
 \usepackage{lmodern}           % correct fonts to make pdf searchable
@@ -12,7 +14,7 @@
 \pagestyle{fancy}              % enable fancy page style
 % redefine section headersto avoid capitalization
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
-\fancyhead[C]{\leftmark}       % section name above chapters
+\fancyhead[C]{\leftmark}       % section name above ../chapters
 \fancyfoot[C]{\thepage}        % page number in the footer
 
 \usepackage{amsmath, amssymb}  % math package
@@ -28,8 +30,8 @@
 \usepackage{pdfpages}          % to include exercise sheets
 \usepackage{array}             % better tables
 \usepackage{makecell}          % better tables
-\newcolumntype{x}[1]{>{\centering\arraybackslash}p{#1}}
-
+%\newcolumntype{x}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{slashbox}
 \usepackage{makeidx}           % make a word index
 \makeindex  
 \usepackage[totoc]{idxlayout}  % add index to table of contents
@@ -54,16 +56,16 @@
 \pgfkeys{/pgf/fpu=false}
 
 % Create diagonal seperated cell
-\newcommand\diag[4]{%
-  \multicolumn{1}{p{#2}}{\hskip-\tabcolsep
-  $\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
-  \path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
-  \node[minimum width={#2+2\tabcolsep-\pgflinewidth},
-        minimum  height=\baselineskip+\extrarowheight-\pgflinewidth] (box) {};
-  \draw[line cap=round] (box.north west) -- (box.south east);
-  \node[anchor=south west] at (box.south west) {#3};
-  \node[anchor=north east] at (box.north east) {#4};
- \end{tikzpicture}}$\hskip-\tabcolsep}}
+%\newcommand\diag[4]{%
+  %\multicolumn{1}{p{#2}}{\hskip-\tabcolsep
+  %$\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
+  %\path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
+  %\node[minimum width={#2+2\tabcolsep-\pgflinewidth},
+        %minimum  height=\baselineskip+\extrarowheight-\pgflinewidth] (box) {};
+  %\draw[line cap=round] (box.north west) -- (box.south east);
+  %\node[anchor=south west] at (box.south west) {#3};
+  %\node[anchor=north east] at (box.north east) {#4};
+ %\end{tikzpicture}}$\hskip-\tabcolsep}}
 
 
 % START fill area below graph
@@ -87,7 +89,7 @@
 }
 % END fill area below graph
 
-\usepackage{mcode}             % matlab source
+\usepackage{mcode} % matlab source
 
 \usepackage{eurosym}           % euro symbol
 \DeclareRobustCommand{\officialeuro}{
@@ -119,7 +121,6 @@
 \toggletrue{showdates}
 %\togglefalse{showdates}
 
-
 \setlength\parindent{0pt} % no indentation
 
 % \est{q} creates the estimation for a variable (i.e. places ^ over it)
@@ -132,7 +133,7 @@
 
 % title, no headings etc.
 \pagestyle{empty}
-\input{chapters/titlepage.tex}
+\subfile{../chapters/titlepage.tex}
 \clearpage
 
 % bookmark for table of contents
@@ -146,12 +147,12 @@
 
 
 % maybe one day we want to include a preface
-%\input{chapters/preface.tex}
+%\subfile{../chapters/preface.tex}
 %\clearpage
 
 
 % Probability Refresher I
-\input{chapters/2014-04-22.tex}
+\subfile{../chapters/2014-04-22.tex}
 \clearpage
 
 % Practice: Probability Refresher I
@@ -161,15 +162,15 @@
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
-      ]{exercises/Exercises01.pdf}
+      ]{../exercises/Exercises01.pdf}
 }{}
 \iftoggle{solutions}{
-  \input{chapters/2014-04-28.tex}
+  \subfile{../chapters/2014-04-28.tex}
   \clearpage
 }{}
 
 % Probability Refresher II
-\input{chapters/2014-04-25.tex}
+\subfile{../chapters/2014-04-25.tex}
 \clearpage
 
 % Practice: Probability Refresher II
@@ -179,15 +180,15 @@
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
-      ]{exercises/Exercises02.pdf}
+      ]{../exercises/Exercises02.pdf}
 }{}
 \iftoggle{solutions}{
-  \input{chapters/2014-05-05.tex}
+  \subfile{../chapters/2014-05-05.tex}
   \clearpage
 }{}
 
 % Measuring Beliefs I
-\input{chapters/2014-05-02.tex}
+\subfile{../chapters/2014-05-02.tex}
 \clearpage
 
 % Practice: Measuring Beliefs I
@@ -197,15 +198,15 @@
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
-      ]{exercises/Exercises03.pdf}
+      ]{../exercises/Exercises03.pdf}
 }{}
 \iftoggle{solutions}{
-  \input{chapters/2014-05-19.tex}
+  \subfile{../chapters/2014-05-19.tex}
   \clearpage
 }{}
 
 % Measuring Beliefs II
-\input{chapters/2014-05-09.tex}
+\subfile{../chapters/2014-05-09.tex}
 \clearpage
 
 % Practice: Measuring Beliefs II
@@ -215,19 +216,19 @@
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
-      ]{exercises/Exercises04.pdf}
+      ]{../exercises/Exercises04.pdf}
 }{}
 \iftoggle{solutions}{
-  \input{chapters/2014-05-19b.tex}
+  \subfile{../chapters/2014-05-19b.tex}
   \clearpage
 }{}
 
 % Bayesian Inference Examples
-\input{chapters/2014-05-23.tex}
+\subfile{../chapters/2014-05-23.tex}
 \clearpage
 
 % Frequentist Inference Examples
-\input{chapters/2014-05-26.tex}
+\subfile{../chapters/2014-05-26.tex}
 \clearpage
 
 % Practice: Bayesian and Frequentist Inference
@@ -237,31 +238,31 @@
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
-      ]{exercises/Exercises05.pdf}
+      ]{../exercises/Exercises05.pdf}
 }{}
 \iftoggle{solutions}{
-  \input{chapters/2014-05-30.tex}
+  \subfile{../chapters/2014-05-30.tex}
   \clearpage
 }{}
 
 % Mid-Term exam
 \iftoggle{exercises}{
   \pagestyle{plain}
-  \input{exercises/midterm.tex}
+  \subfile{../exercises/midterm.tex}
   \clearpage
   \pagestyle{fancy}
 }{}
 \iftoggle{solutions}{
-  \input{chapters/2014-06-06.tex}
+  \subfile{../chapters/2014-06-06.tex}
   \clearpage
 }{}
 
 % Signal Detection Theory I
-\input{chapters/2014-06-13.tex}
+\subfile{../chapters/2014-06-13.tex}
 \clearpage
 
 % Signal Detection Theory II
-%\input{chapters/2014-06-16.tex}
+%\subfile{../chapters/2014-06-16.tex}
 %\clearpage
 
 % Practice: Signal Detection Theory I+II
@@ -271,15 +272,15 @@
       %viewport=100 50 550 700,
       %scale=0.75,
       %pagecommand=\thispagestyle{plain}
-      %]{exercises/Exercises0.pdf}
+      %]{../exercises/Exercises0.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-06-23.tex}
+%  \subfile{../chapters/2014-06-23.tex}
 %  \clearpage
 }{}
 
 % Signal Detection Theory III
-%\input{chapters/2014-06-20.tex}
+%\subfile{../chapters/2014-06-20.tex}
 %\clearpage
 
 % Practice: Signal Detection Theory III
@@ -289,15 +290,15 @@
       %viewport=100 50 550 700,
       %scale=0.75,
       %pagecommand=\thispagestyle{plain}
-      %]{exercises/Exercises0.pdf}
+      %]{../exercises/Exercises0.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-06-30.tex}
+%  \subfile{../chapters/2014-06-30.tex}
 %  \clearpage
 }{}
 
 % Choice Models I
-%\input{chapters/2014-06-27.tex}
+%\subfile{../chapters/2014-06-27.tex}
 %\clearpage
 
 % Practice: Choice Models I
@@ -307,15 +308,15 @@
       %viewport=100 50 550 700,
       %scale=0.75,
       %pagecommand=\thispagestyle{plain}
-      %]{exercises/Exercises0.pdf}
+      %]{../exercises/Exercises0.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-07-07.tex}
+%  \subfile{../chapters/2014-07-07.tex}
 %  \clearpage
 }{}
 
 % Choice Models II
-%\input{chapters/2014-07-04.tex}
+%\subfile{../chapters/2014-07-04.tex}
 %\clearpage
 
 % Practice: Choice Models II
@@ -325,15 +326,15 @@
       %viewport=100 50 550 700,
       %scale=0.75,
       %pagecommand=\thispagestyle{plain}
-      %]{exercises/Exercises0.pdf}
+      %]{../exercises/Exercises0.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-07-14.tex}
+%  \subfile{../chapters/2014-07-14.tex}
 %  \clearpage
 }{}
 
 % Everyday Predictions
-%\input{chapters/2014-07-11.tex}
+%\subfile{../chapters/2014-07-11.tex}
 %\clearpage
 
 % Practice: Everyday Predictions
@@ -343,15 +344,15 @@
       %viewport=100 50 550 700,
       %scale=0.75,
       %pagecommand=\thispagestyle{plain}
-      %]{exercises/Exercises0.pdf}
+      %]{../exercises/Exercises0.pdf}
 }{}
 \iftoggle{solutions}{
-%  \input{chapters/2014-07-18.tex}
+%  \subfile{../chapters/2014-07-18.tex}
 %  \clearpage
 }{}
 
 % Q&A
-%\input{chapters/2014-07-18.tex}
+%\subfile{../chapters/2014-07-18.tex}
 %\clearpage
 
 \clearpage
