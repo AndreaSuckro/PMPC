@@ -1,3 +1,6 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
 \section[Solution 5: Bayesian and Frequentist Inference I]{Solution 5: Bayesian and Frequentist Inference I \iftoggle{showdates}{\small{\textit{2014-05-30}}}{}}
 
 \subsection*{Exercise 1}
@@ -60,7 +63,7 @@ We can plot this posterior belief $P(A|Poll)$ (figure \ref{fig:2014-05-30_ex2plo
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(0.98,0.5)}, anchor=east}]
   % csvwrite('2014-05-30_exercise2_pdf.txt',[[0:0.001:1]' betapdf(0:0.001:1,534,468)'])
-  \addplot[smooth] file {data/2014-05-30_exercise2_pdf.txt};
+  \addplot[smooth] file {../data/2014-05-30_exercise2_pdf.txt};
     \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=534}{\beta=468}$}
   \draw ({axis cs:0.5,0}|-{rel axis cs:0,0}) -- ({axis cs:0.5,0}|-{rel axis cs:0,1});
   \end{axis}
@@ -87,7 +90,7 @@ The prior distribution (figure \ref{fig:2014-05-30_ex3prior}) is far to the left
 \centering
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1]
-  \plot[smooth, color=blue] file {data/2014-05-30_priorPDF_data.txt};
+  \plot[smooth, color=blue] file {../data/2014-05-30_priorPDF_data.txt};
     \addlegendentry{$\alpha=1,\beta=9$}
   \end{axis}
 \end{tikzpicture}
@@ -101,7 +104,7 @@ With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by
 \centering
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, name=cdf, legend style={at={(0.98,0.5)}, anchor=east}]
-  \plot[smooth, color=blue] file {data/2014-05-30_posteriorCDF_data.txt};
+  \plot[smooth, color=blue] file {../data/2014-05-30_posteriorCDF_data.txt};
     \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=231}{\beta=279}$}
   \plot[color=red] {0.975};
     \addlegendentry{$x=0.975$}
@@ -115,11 +118,11 @@ With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by
   \plot+[domain=0.41:0.496, samples=1000, pattern=flexible hatch, mark=none
             hatch distance=0.2pt, hatch thickness=1pt,
             draw=blue, pattern color=cyan, area legend]
-            file {data/2014-05-30_posteriorPDF_area_data.txt} \closedcycle;
+            file {../data/2014-05-30_posteriorPDF_area_data.txt} \closedcycle;
     \addlegendentry{$95\%$}
-  \plot[smooth, color=red] file {data/2014-05-30_posteriorPDF_data.txt};
+  \plot[smooth, color=red] file {../data/2014-05-30_posteriorPDF_data.txt};
     \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=231}{\beta=279}$}
-  \plot[smooth, color=gray] file {data/2014-05-30_priorPDF_data.txt};
+  \plot[smooth, color=gray] file {../data/2014-05-30_priorPDF_data.txt};
     \addlegendentry{$\genfrac{}{}{0pt}{}{\alpha=1}{\beta=9}$}
   \end{axis}
 \end{tikzpicture}
@@ -130,7 +133,7 @@ With the new $\alpha = 231$ and $\beta = 279$ we can find the $95\%$ interval by
 \bigskip
 
 \texttt{MATLAB} code to try out exercise 3:
-\lstinputlisting{data/sheet5_posteriorBetaDistribution.m}
+\lstinputlisting{../data/sheet5_posteriorBetaDistribution.m}
 
 
 \subsection*{Exercise 4}
@@ -142,7 +145,7 @@ One possibly result was: \\
 \bigskip
 
 \texttt{MATLAB} code to try out exercise 4:
-\lstinputlisting{data/sheet5_inferenceSimulation.m}
+\lstinputlisting{../data/sheet5_inferenceSimulation.m}
 
 
 \subsection*{Exercise 5}\index{NHST}
@@ -164,7 +167,7 @@ By assuming that the probability for a hypotheses to be true is $q$, we can come
 
 \index{Probability tree}
 \begin{figure}[!ht]
-  \input{images/sheet5exercise6tree.tex}
+  \input{../images/sheet5exercise6tree.tex}
   \caption{Probability tree}
   \label{fig:2014-05-30_ex6tree}
 \end{figure}
@@ -188,3 +191,5 @@ So if $q$ is smaller than $\frac{1}{16}$, the probability that the effect is rea
 
 \subsection*{Exercise 8}
 to be continued...
+
+\end{document}
