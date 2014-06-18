@@ -152,4 +152,10 @@ SNR = \frac{\mu_y-\mu_n}{\sigma}
 As we want to know the actual percept of a subject and not his decision-criterion when to say yes, we have to come up with a measure independent of the subjects threshold.
 Receiver operator characteristics (ROC) allow for that by systematically varying the threshold, such that all possible criteria are covered (from always saying yes, to always saying no). Then we get a curve describing the perception of a subject independently of his criteria.
 
- 
+
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
+  \addplot[smooth] file {data/2014-06-13_dist5.txt};
+  \addlegendentry{ROC}
+  \end{axis}
+\end{tikzpicture}
