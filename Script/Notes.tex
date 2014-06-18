@@ -39,7 +39,7 @@
 \usetikzlibrary{patterns}      % patterns to fill areas below graphs
 
 \usepackage{pgfplots}          % complex functions
-\pgfplotsset{compat=1.9}
+\pgfplotsset{compat=1.8}
 % gauss(\mu, \sigma)
 % normal gauss function
 \pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
