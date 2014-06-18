@@ -23,15 +23,18 @@ Detection tasks are simple yes/no response tasks -- is there a signal or is ther
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
-  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(0.98,0.5)}, anchor=east}]
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
   \addplot[smooth] file {data/2014-06-13_dist1.txt};
-  \addplot[smooth] file {data/2014-06-13_dist2.txt};
+  \addlegendentry{P(X|S=yes)}
+  \addplot[smooth, dashed] file {data/2014-06-13_dist2.txt};
+  \addlegendentry{P(X|S=no)}
   \addplot[smooth] file {data/2014-06-13_dist3.txt};
   \addplot[smooth] file {data/2014-06-13_dist4.txt};
-   \addlegendentry{$\genfrac{}{}{0pt}{}{P(X|S=yes)}{P(X|S=no)}$}
   \draw ({axis cs:0.5,0}|-{rel axis cs:0,0}) -- ({axis cs:0.5,0}|-{rel axis cs:0,1});
+%  \draw[decorate,decoration={brace,amplitude=15pt},rotate=90] (12.5,0)--(0,0) node {};
+% Here should be a working underbrace 
   \end{axis}
-  \put(0,1){$\underbrace{\hspace{3.62cm}}_{A}$}
+ % \put(0,1){$\underbrace{\hspace{3.65cm}}_{A}$}
 \end{tikzpicture}
 
 \label{fig:2014-06-13_ex1plot}
@@ -136,5 +139,17 @@ In the case of $\beta = 1$ and equal prior probabilities that means:
   x \geq \frac{\left(\mu_n-\mu_y\right)\cdot \left(\mu_n+\mu_y\right)}{2\left(\mu_n-\mu_y\right)}
 \end{align*}
 i.e. the best threshold is just in the middle of the two Gaussians.
+
 \subsection{Signal to Noise Ratio}
-TODO
+
+Now we want to find the limits of perception - how few light can we detect, or in other words: What is a persons signal to noise ratio for light detection.
+The signal to noise ratio is defined as:
+
+\begin{align*}
+SNR = \frac{\mu_y-\mu_n}{\sigma}  
+\end{align*} 
+
+As we want to know the actual percept of a subject and not his decision-criterion when to say yes, we have to come up with a measure independent of the subjects threshold.
+Receiver operator characteristics (ROC) allow for that by systematically varying the threshold, such that all possible criteria are covered (from always saying yes, to always saying no). Then we get a curve describing the perception of a subject independently of his criteria.
+
+ 
