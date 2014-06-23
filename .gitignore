@@ -26,6 +26,6 @@ Tutorial Sheet*.pdf
 Exercises/output*
 *main/*.pdf
 Thumbs.db
-#Script/chapters/*.pdf
+Script/chapters/*.pdf
 *.md5
 *.auxlock
