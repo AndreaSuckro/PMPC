@@ -4,13 +4,23 @@
 \section[Signal Detection Theory II]{Signal Detection Theory II \iftoggle{showdates}{\small{\textit{2014-06-16}}}{}}
 
 \subsection{Objective Sensitivity}
-In the previous lecture we saw how ROC curves helped us to measure the sensitivity of a subject in a decision task. We could compare the curves for several subjects and find out which one has the 'better' sensitivity. But it would be better to have a single value to compare the sensitivity. For the case where signal and noise are gaussians with same variance this value is the SNR(Signal to Noise Ratio).
+In the previous lecture we saw how ROC curves helped us to measure the sensitivity of a subject in a decision task. We could compare the curves for several subjects and find out which one has the 'better' sensitivity.
 
-FANCY PLOT HIER
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom,xlabel = P(FA), ylabel={P(H)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
+  \addplot [black] file {../data/2014-06-16_ROC.txt};
+  \end{axis}
+\end{tikzpicture}
+\caption{ROC-Curve}%
+\label{}%
+\end{figure}
 
-Let's calculate that!
+But it would be better to have a single value to compare the sensitivity. For the case where signal and noise are gaussians with same variance this value is the SNR(Signal to Noise Ratio). We can calculate that!
 
-We subtract now the mean of the No-responses. 
+\bigskip
+First we subtract the mean of the No-responses to make it zero-centered. 
 \begin{align*}
 p(H) = \int_{0}^{\infty} \varphi \left( x,\mu_y,\delta \right)dx &= 1 - \Phi\left(\theta,x_y,\delta\right)\\
                                                                  &= 1 - \Phi\left(\theta-\mu_n,\mu_y-\mu_n,\delta \right)\\ 
@@ -38,7 +48,77 @@ d' &= \theta'+\Phi^{-1}\left(P(H)\right)\\
 \end{align*}
 By this we disentangled the sensitivity and the response bias of the subject. $\theta$ is rather a bias than a threshold.
 
+
 \subsection{Is there a sensory threshold?}
+A long time ago, people thought that our sensors work in a 0-1 like manner. There is an internal threshold and either the signal is strong enough to surpass this threshold or not. Detection experiments were conducted to find that threshold of consciousness.
 
+\begin{figure}[ht!]
+\centering
+\begin{minipage}{.5\textwidth}
+\centering
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
+  \addplot [black] file {../data/2014-06-16_SignalThresh.txt};
+  \addplot [black, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
+  \end{axis}
+\end{tikzpicture}
+\captionof{figure}{Model of a Sensory Threshold}
+\label{fig:2014-06-16_sigPlot}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
+  \addplot [black,smooth] file {../data/2014-06-16_SignalThreshReal.txt};
+  \addplot [black, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
+  \end{axis}
+\end{tikzpicture}
+  \captionof{figure}{The Real Data}
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
 
+As seen in the plots, the real data that was measured does not really fit the model. Two reasons could explain this difference. First of all there could be noise in the threshold (depending on some hidden neuron mechanisms). Another explanation could be noise in the stimulus.
+
+\bigskip
+The function $F_\theta(\theta)=\frac{1}{2}$ is called the psychometric function. This is all fine, as long as the subject is honest and not lying about her sensation (R is the response and D is whether the subject detected the stimulus):
+\begin{align*}
+P(R=y|D=y)=P(R=n|D=n)=1
+\end{align*}
+To measure the subjects honesty we introduce catch-trials! For $50\%$ of the trials we have a stimulus and for the other half we do not. Our model for the subject may be:
+\begin{align*}
+P(R=y|D=y)=1\\
+P(R=y|D=n)=q
+\end{align*}
+So the subject only lies when she detected nothing with a certain probability. The probability for hit(H) and false alarm (FA) is therefore:
+\begin{align*}
+P(H)&=P(D=y|S=s)\cdot 1+(1-P(D=y|S=s))\cdot q\\
+    &=q+(1-q)P(D=y|S=s)\\
+    &=q+(1-q)F_\theta(s)\\
+    &=P(FA)+(1-P(FA))F_\theta(s)\\
+P(FA)&=P(D=y|s=0)\cdot 1 + (1-P(D=y|s=0))\cdot q\\
+     &=q+(1-q)P(D=y|s=0)
+     &=q
+\end{align*}
+We assume that we have a high threshold so that $P(D=y|s=0)\approx 0$. If we solve the first equation for $F_\theta(s)$, we get:
+\begin{align*}
+F_\theta(s)=\frac{P(H)-P(FA)}{1-P(FA)}
+\end{align*}
+Since we know from the psychometric that for $\theta$ this equation should be $\frac{1}{2}$ we can find $\theta$!
+
+\subsection{Why High Threshold Theory is wrong!}
+\subsubsection*{1. ROC-Curves}
+If HT-Theory would be right, the ROC-Curves would be straight lines and not curves. But we get curves from the real data.
+\subsubsection*{2. Relation between Y-N and 2-AFC}
+In a Y-N experiment I may state for each frame if there was a stimulus (Y) or not (N). In 2-AFC the subject sees 2 frames and has to decide in which frame the stimulus was. If we did not see the stimulus we have a $50\%$ chance to get the answer right. The probability of a correct answer should be:
+\begin{align*}
+P(C) &=F_\theta(s)+(1-F_\theta(s))\cdot\frac{1}{2}\\
+     &=\frac{1}{2} + \frac{1}{2}F_\theta(s)\\
+F_\theta(s)&=2P(C)-1    
+\end{align*}
+But this formulars do not match up with the real data.
+\subsubsection*{3. $2^{nd}$Choice in 4-AFC Task}
+In this case the difference becomes even more obvious. In the experiment you have 4 screens where the stimulus could appear on. If you got it wrong on the first try you may choose again. In HT-Theory one can expect that the chance to get it right in the second round should be $\frac{1}{3}$, because I saw nothing on those screens. But in reality the data shows that people are way better than $\frac{1}{3}$!  
+\subsubsection*{4. Rating Data}
+This experiment has been conducted with Y-N tasks with $50\%$ catch trials.The subjects should always rate their answers on a scale from 1 (unsure) to 5(super sure). Results show that people seem to be able to rate how sure they are about their perception. And this rating fits the data very well. HT-Theory can not account for this, since there are only all-or-none responses.
 \end{document}
