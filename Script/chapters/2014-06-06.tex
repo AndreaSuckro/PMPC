@@ -27,7 +27,84 @@ The probability that A is infected with HIV is just below 0.5.
 
 
 \subsection*{Question 2}
-to be added...
+We can draw tables (See table \ref{tab:2014-06-06_planes}) to visualize in which cases the airplane will crash.
+
+\begin{table}[h]
+  \centering
+  \begin{subtable}[t]{.45\linewidth}
+  \centering
+  \vspace{0pt}
+    \begin{tabular}{cc}
+    E1 & E2 \\
+    \hline
+    O & O \\
+    X & O \\
+    O & X \\
+    X & X \\
+    \end{tabular}
+  \caption{two engine plane}
+  \end{subtable}
+  \hfill
+  \begin{subtable}[t]{.45\linewidth}
+  \centering
+    \begin{tabular}{cccc}
+    E1 & E2 & E3 & E4 \\
+    \hline
+    O & O & O & O \\
+    X & O & O & O \\
+    O & X & O & O \\
+    \multicolumn{4}{c}{\vdots} \\
+    O & X & X & X \\
+    X & O & X & X \\
+    X & X & O & X \\
+    X & X & X & O \\
+    X & X & X & X 
+    \end{tabular}
+  \caption{four engine plane}
+  \end{subtable}
+  
+\caption{Tables for the two airplanes. Note that an X indicates an engine failure while the marked rows are those in which more than 50\% of the engines fail, i.e. the planes crash.}
+\label{tab:2014-06-06_planes}
+\end{table}
+
+
+\begin{table}[h]
+  \centering
+  
+  \begin{subtable}[t]{.45\linewidth}
+  \centering
+    \begin{tabular}{cccc}
+    E1 & E2 & E3 & E4 \\
+    \hline
+    O & O & O & O \\
+    X & O & O & O \\
+    O & X & O & O \\
+    \multicolumn{4}{c}{\vdots} \\
+    O & X & X & X \\
+    X & O & X & X \\
+    X & X & O & X \\
+    X & X & X & O \\
+    X & X & X & X 
+    \end{tabular}
+  \caption{four engine plane}
+  \end{subtable}
+    
+  \begin{subtable}[t]{.45\linewidth}
+  \centering
+    \begin{tabular}{cc}
+    E1 & E2 \\
+    \hline
+    O & O \\
+    X & O \\
+    O & X \\
+    X & X \\
+    \end{tabular}
+  \caption{two engine plane}
+  \end{subtable}\hfill
+  
+\caption{Tables for the two airplanes. Note that an X indicates an engine failure while the marked rows are those in which more than 50\% of the engines fail, i.e. the planes crash.}
+\label{tab:2014-06-06_planes2}
+\end{table}
 
 
 
