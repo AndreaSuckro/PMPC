@@ -28,3 +28,5 @@ Exercises/output*
 *main/*.pdf
 Thumbs.db
 Script/chapters/*.pdf
+*.md5
+*.auxlock
