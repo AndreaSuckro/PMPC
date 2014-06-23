@@ -1,0 +1,44 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
+\section[Signal Detection Theory II]{Signal Detection Theory II \iftoggle{showdates}{\small{\textit{2014-06-16}}}{}}
+
+\subsection{Objective Sensitivity}
+In the previous lecture we saw how ROC curves helped us to measure the sensitivity of a subject in a decision task. We could compare the curves for several subjects and find out which one has the 'better' sensitivity. But it would be better to have a single value to compare the sensitivity. For the case where signal and noise are gaussians with same variance this value is the SNR(Signal to Noise Ratio).
+
+FANCY PLOT HIER
+
+Let's calculate that!
+
+We subtract now the mean of the No-responses. 
+\begin{align*}
+p(H) = \int_{0}^{\infty} \varphi \left( x,\mu_y,\delta \right)dx &= 1 - \Phi\left(\theta,x_y,\delta\right)\\
+                                                                 &= 1 - \Phi\left(\theta-\mu_n,\mu_y-\mu_n,\delta \right)\\ 
+p(FA) = \int_{\theta}^{\infty} \varphi \left( x,\mu_n,\delta \right)dx &= 1 - \Phi\left(\theta,x_n,\delta\right)\\
+                                                                       &= 1 - \Phi\left(\theta-\mu_n,0,\delta \right)   
+\end{align*}
+We may also adapt no the variance by dividing through $\delta$.
+\begin{align*}
+p(H) = 1 - \Phi\left(\frac{\theta-\mu_n}{\delta},\frac{\mu_y-\mu_n}{\delta},1 \right) &= 1 - \Phi\left(\theta'-d',0,1\right)\\
+                                                                                      &= 1 - \Phi\left(\theta'-d'\right)\\
+p(FA) = 1 - \Phi\left(\frac{\theta-\mu_n}{\delta},0,1 \right) &= 1 - \Phi\left(\theta' \right) 
+\end{align*}
+We can rearrange the last formular to:
+\begin{align*}
+\Phi\left(\theta'\right) &= 1 - P(FA)\\
+\theta'&=\Phi^{-1}\left(1-P(FA)\right)\\
+&=-\Phi^{-1}\left(P(FA)\right)
+\end{align*}
+The last step is possible because the gaussian is symmetric. Now we try to find a formula for $d'$ as well. 
+\begin{align*}
+\Phi\left(\theta'-d'\right) &= 1 - P(H)\\
+\theta'-d'&=\Phi^{-1}\left(1-P(H)\right)\\
+d' &= \theta'+\Phi^{-1}\left(P(H)\right)\\
+   &= \Phi^{-1}\left(P(H)\right)-\Phi^{-1}\left(P(FA)\right)
+\end{align*}
+By this we disentangled the sensitivity and the response bias of the subject. $\theta$ is rather a bias than a threshold.
+
+\subsection{Is there a sensory threshold?}
+
+
+\end{document}
