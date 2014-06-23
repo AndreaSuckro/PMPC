@@ -3,6 +3,120 @@
 
 \section[Solution 6: Signal Detection Theory I+II]{Solution 6: Signal Detection Theory I+II \iftoggle{showdates}{\small{\textit{2014-06-23}}}{}}
 
-\end{document}
+\subsection{Excercise 2}
 
+We want to get a better feeling of what the Expected Value of a random variable is and how to work with it. As we have already seen intuitively the Expected Value is just a weighted average over the sample space, so formally we get:
+
+\begin{align*}
+  E\left(f\left(X\right)\right) = \sum_{x \in \Omega} f\left(x\right)\cdot p\left(x\right)
+\end{align*}
+
+For equal probabilities we get the average as we know it.
+One important use of the Expected Value is that we can use it as moments of a distribution and thereby fully describe the distribution. The moments of a distribution are:
+
+\begin{align*}
+  E\left(X\right)\\
+  E\left(X^2\right)\\
+  E\left(X^3\right)\\
+  .\\.
+\end{align*} 
+Using only $E\left(X\right)$ and $E\left(X^2\right)$ we can for example completely characterize the normal distribution as they describe mean and variance. 
+Noting the importance of the expected Value we are going to look at some rules.
+First we show the linearity:
+\begin{align*}
+  E\left(a\cdot f\left(X\right)+b\right) &= \sum_{x\in\Omega} \left[a\cdot f\left(x\right)+b\right]\cdot p\left(x\right)\\
+  &= a \cdot\underbrace{\sum f\left(x\right)p\left(x\right)}_{E\left(f\left(X\right)\right)} + \underbrace{\sum b\cdot p\left(x\right)}_{b}\\
+  &= a \cdot E\left(f\left(X\right)\right) + b
+\end{align*} 
+From the definition of the Expected Value follows directly:
+\begin{align*}
+  E\left(f\left(X,Y\right)\right) = \sum_{x\in\Omega}\sum_{y\in\Omega}p(x,y)\cdot f\left(x,y\right)
+\end{align*}
+And thereby we can deduce for independent random variables: 
+\begin{align*}
+  E\left(X+Y\right) &= \sum_{x\in\Omega}\sum_{y\in\Omega}p(x,y)\cdot f\left(x+y\right)\\
+  &=  \sum_{x\in\Omega}\sum_{y\in\Omega} p\left(x\right)p\left(y\right) \cdot \left(x+y)\right)\\
+  &= \sum_{x\in\Omega}\sum_{y\in\Omega} p\left(x\right)p\left(y\right) x + p\left(x\right)p\left(x\right)p\left(y\right) y\\
+  &= \underbrace{\sum_{x\in\Omega}\sum_{y\in\Omega}p\left(x\right)p\left(y\right)x}_{E\left(X\right)} + \underbrace{\sum_{x\in\Omega}\sum_{y\in\Omega}p\left(x\right)p\left(y\right)y}_{\underbrace{\sum_x p\left(x\right)\sum_y p\left(y\right)y}_{E\left(Y\right)\footnotemark}}\\
+  &= E\left(X\right) + E\left(Y\right) 
+\end{align*}
+\footnotetext{Because $\sum_x p\left(x\right)$ normalizes to one.}\newpage
+
+Further we note:
+\begin{align*}
+  E\left(X\cdot Y\right) &= \sum_{x\in\Omega}\sum_{y\in\Omega} p\left(x\right)p\left(y\right)\cdot \left(x\cdot y\right)\\
+  &= \sum_x p\left(x\right) x \cdot \sum_y p\left(y\right)y\\
+  &= E\left(X\right) \cdot E\left(Y\right)
+\end{align*}
+
+That we can use to derive an expression for the variance starting with the standard definition:
+
+\begin{align*}
+  var\left(X\right) &= E\left(\left(X-E\left(X\right)\right)^2\right)\\
+  &= E\left(X^2 - 2E\left(X\right)X + E\left(X\right)^2\right)\\
+  &= E\left(X^2\right) + 2E\left(X\right)E\left(X\right) + E\left(X\right)^2\\
+  &= E\left(X^2\right) - E\left(X\right)^2
+\end{align*}
+
+And from this we get:
+
+\begin{align*}
+  var\left(X+Y\right) &= E\left(\left(X+Y\right)^2\right)-E\left(X+Y\right)^2\\
+  &= E\left(X^2 + 2XY + Y^2\right) - \left(E\left(X\right)+E\left(Y\right)\right)^2\\
+  &= E\left(X^2\right) + 2E\left(XY\right)+E\left(Y^2\right)  - E\left(X\right)^2 + 2E\left(X\right)E\left(Y\right) + E\left(Y^2\right)\\
+  &= E\left(X^2\right)- E\left(X\right)^2 + E\left(Y^2\right) - E\left(Y\right)^2\\
+  &= var\left(X\right)+ var\left(Y\right)
+\end{align*}
+
+Applying the gained knowledge to a thumbtack experiment with n tosses and $X_1...X_n$ outcomes as random variables. 
+Now we can calculate the Expected Value and the Variance for the $X_i$:
+
+\begin{align*}
+  E\left(X_i\right) & = \left(1-p\right) \cdot 0 + p \cdot 1\\
+  &= p\\
+  \\
+  var\left(X_i\right) & = \underbrace{E\left(X_i^2\right)}_{E\left(X_i\right)} - \underbrace{E\left(X_i\right)^2}_{p^2}\\
+  &= p-p^2\\
+  &= p\cdot\left(1-p\right)
+\end{align*}
+
+
+For the sum of the $X_i$ as new random variable $N=\sum_{i=1}^n X_i$ we get:
+\begin{align*}
+  E\left(N\right) &= n\cdot p\\
+  var\left(N\right) &= n\cdot p \cdot \left(1-p\right)
+\end{align*}
+
+\subsubsection{Excercise 3}
+
+As we want to get the ROC we have to look at the Hits and the False Alarms which we get assuming a high threshold model:
+
+\begin{align*}
+  P\left(H\right) &= P\left(Response=old|Stimulus=old\right)\\
+  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \cdot \underbrace{P\left(M=old|S=old\right)}_{q} + P\left(R=old|M=new\right) \cdot P\left(M=old|S=old\right)\\
+  &= \underbrace{P\left(M=old|S=old\right)}_{P_r} + q\cdot\left(1-P_r\right)\\
+\end{align*}
+With q as the probability with which we say we remember a Stimulus even though we don't.
+\begin{align*}
+  P\left(FA\right)&= P\left(R=old|S=new\right)\\
+  &= \underbrace{P\left(R=old|M=old\right)}_{1} \cdot \underbrace{P\left(M=old|S=new\right)}_{0} + \underbrace{P\left(R=old|M=new\right)}_{q} \cdot \underbrace{P\left(M=new|S=new\right)}_{1}\\
+  &= q
+\end{align*}
+
+That means we can express $P\left(H\right)$ as a linear function of the False Alarms:
+\begin{equation}
+  P\left(H\right) = P_r + P\left(FA\right) \cdot \left(1-P_r\right)
+\end{equation}
+And therefore we would get a linear ROC curve which, as we already have seen, does not correspond to the data. It would mean that we only have false alarms because we chose to answer opposite to our actual memory and not because we falsely remember any stimuli. 
+
+\begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.5,0.2)}, anchor=east},xlabel ={P(FA)}, ylabel={P(H)}]
+  \addplot[smooth,dashed] file {../data/2014-06-13_dist5.txt};
+  \addlegendentry{Signal Detection Theory and actual Data}
+  \addplot[smooth] file {../data/2014-06-23_dist1.txt};
+  \addlegendentry{High Threshold Theory}
+  \end{axis}
+\end{tikzpicture}
+
+\end{document}
 
