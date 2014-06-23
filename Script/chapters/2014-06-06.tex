@@ -33,77 +33,37 @@ We can draw tables (See table \ref{tab:2014-06-06_planes}) to visualize in which
   \centering
   \begin{subtable}[t]{.45\linewidth}
   \centering
-  \vspace{0pt}
-    \begin{tabular}{cc}
-    E1 & E2 \\
+    \begin{tabular}{r|cc}
+    \# & E1 & E2 \\
     \hline
-    O & O \\
-    X & O \\
-    O & X \\
-    X & X \\
+    1 & O & O \\
+    2 & X & O \\
+    3 & O & X \\
+    \rowcolor{red!10}{}4 & X & X \\
     \end{tabular}
   \caption{two engine plane}
   \end{subtable}
   \hfill
   \begin{subtable}[t]{.45\linewidth}
   \centering
-    \begin{tabular}{cccc}
-    E1 & E2 & E3 & E4 \\
+    \begin{tabular}{r|cccc}
+    \# & E1 & E2 & E3 & E4 \\
     \hline
-    O & O & O & O \\
-    X & O & O & O \\
-    O & X & O & O \\
-    \multicolumn{4}{c}{\vdots} \\
-    O & X & X & X \\
-    X & O & X & X \\
-    X & X & O & X \\
-    X & X & X & O \\
-    X & X & X & X 
+    1 & O & O & O & O \\
+    2 & X & O & O & O \\
+    3 & O & X & O & O \\
+      & \multicolumn{4}{c}{\vdots} \\
+    \rowcolor{red!10}{}12 & O & X & X & X \\
+    \rowcolor{red!10}{}13 & X & O & X & X \\
+    \rowcolor{red!10}{}14 & X & X & O & X \\
+    \rowcolor{red!10}{}15 & X & X & X & O \\
+    \rowcolor{red!10}{}16 & X & X & X & X 
     \end{tabular}
   \caption{four engine plane}
   \end{subtable}
   
 \caption{Tables for the two airplanes. Note that an X indicates an engine failure while the marked rows are those in which more than 50\% of the engines fail, i.e. the planes crash.}
 \label{tab:2014-06-06_planes}
-\end{table}
-
-
-\begin{table}[h]
-  \centering
-  
-  \begin{subtable}[t]{.45\linewidth}
-  \centering
-    \begin{tabular}{cccc}
-    E1 & E2 & E3 & E4 \\
-    \hline
-    O & O & O & O \\
-    X & O & O & O \\
-    O & X & O & O \\
-    \multicolumn{4}{c}{\vdots} \\
-    O & X & X & X \\
-    X & O & X & X \\
-    X & X & O & X \\
-    X & X & X & O \\
-    X & X & X & X 
-    \end{tabular}
-  \caption{four engine plane}
-  \end{subtable}
-    
-  \begin{subtable}[t]{.45\linewidth}
-  \centering
-    \begin{tabular}{cc}
-    E1 & E2 \\
-    \hline
-    O & O \\
-    X & O \\
-    O & X \\
-    X & X \\
-    \end{tabular}
-  \caption{two engine plane}
-  \end{subtable}\hfill
-  
-\caption{Tables for the two airplanes. Note that an X indicates an engine failure while the marked rows are those in which more than 50\% of the engines fail, i.e. the planes crash.}
-\label{tab:2014-06-06_planes2}
 \end{table}
 
 
