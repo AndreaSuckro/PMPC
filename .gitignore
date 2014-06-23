@@ -24,9 +24,8 @@ Tutorial Sheet*.pdf
 *.ind
 *.tmp
 Exercises/output*
-*chapters/*.pdf
 *main/*.pdf
 Thumbs.db
-Script/chapters/*.pdf
+#Script/chapters/*.pdf
 *.md5
 *.auxlock
