@@ -66,10 +66,30 @@ We can draw tables (See table \ref{tab:2014-06-06_planes}) to visualize in which
 \label{tab:2014-06-06_planes}
 \end{table}
 
+Probability for a crash with 
+\begin{itemize}
+	\item two engines: $p^2$
+  \item four engines: $p^4 + 4p^3\left(1-p\right)$
+\end{itemize}
+
+To check which case is better we plug these probabilities into an inequality and simplify it until we are sure it either holds or not. \emph{Note that we divide by $p^2$, which is only possible under the assumption that $p>0$!}
+\begin{align*}
+          p^2 &\stackrel{?}{\geq} p^4 + 4p^3 \left(1-p\right) \\
+              &= p^4 + 4p^3 - 4p^4 \\
+              &= -3p^4 + 4p^3 \\
+            1 &\geq -3p^2 + 4p \\
+1 - 4p + 3p^2 &\stackrel{?}{\geq} 0 \\
+  (1-p)(1-3p) &\stackrel{?}{\geq} 0 \\
+            p &\geq \frac{1}{3}
+\end{align*}
+
+If $p\geq\frac{1}{3}$, we should fly with the two engine airplane, otherwise with the four engine airplane. The choice is dependent on $p$.
+% TODO: isn't it the other way around?
+
 
 
 \subsection*{Question 3}
-The important clue for this question is that he has two win \textit{two consecutive} sets.
+The important clue for this question is that Elmer has two win \textit{two consecutive} sets.
 
 We can draw two simple probability trees\index{Probability tree}(figure \ref{fig:2014-06-06_mt3trees}) to calculate Elmer's chances. We use $f$ and $c$ (probability to win against father and champ, respectively) where $f > c$ denote the chances to win each set.
 \begin{figure}[!ht]
@@ -132,12 +152,27 @@ So we can take advantage by betting $x$ on win at B and $y$ on loss at A as long
 
 
 \subsection*{Question 5}
-to be added...
+For each trial the picture either shows the stimulus or not. So the probability to get the stimulus on the $n^{th}$ trial is $\frac{1}{2}^n$.
+That means the distribution over the number of trials $n$ is simply: $P(n) = \frac{1}{2^2}$.
+
+The probabilities to make $x$ mistakes can be simply derived: there are four features. So the subject will pick the right feature directly with a probability of $\frac{1}{4}$ (this means 0 mistakes). If the subject was wrong (1 mistake), which happens in $\frac{3}{4}$ of the cases, it has a chance of $\frac{1}{3}$ to get it correct the second time, and so on.
+\begin{enumerate}
+	\item[$x$=0:] $\frac{1}{4} = \frac{1}{4}$ 
+	\item[$x$=1:] $\frac{3}{4}\cdot\frac{1}{3} = \frac{1}{4}$ 
+	\item[$x$=2:] $\frac{3}{4}\cdot\frac{2}{3}\cdot\frac{1}{2} = \frac{1}{4}$ 
+	\item[$x$=3:] $\frac{3}{4}\cdot\frac{2}{3}\cdot\frac{1}{2}\cdot\frac{1}{1} = \frac{1}{4}$ 
+\end{enumerate}
+
+% todo: does this mean, that it's normal distributed?
 
 
 
 \subsection*{Question 6}\index{Change of variable}
-to be added...
+\begin{align*}
+P(X\leq t) &= \left[-e^{-x}\right]_0^t=1-e^{-t} \\
+P(Y\leq t) &= P(X\leq t^2)=1-e^{-\left(t^2\right)} \\
+\text{pdf: }&2ye^{-\left(y^2\right)}
+\end{align*}
 
 
 
@@ -167,6 +202,6 @@ The $1^{st}$ derivative has an extreme value at $1-p=q$, however since this is a
 
 
 \subsection*{Question 8}\index{NHST}
-to be added...
+\emph{Sorry, we don't have the solution for this. If you have it, feel free to contact us.}
 
 \end{document}
