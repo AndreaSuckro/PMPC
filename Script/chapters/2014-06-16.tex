@@ -54,28 +54,29 @@ A long time ago, people thought that our sensors work in a 0-1 like manner. Ther
 
 \begin{figure}[ht!]
 \centering
-\begin{minipage}{.5\textwidth}
+\begin{subfigure}{.45\textwidth}
 \centering
 \begin{tikzpicture}
-  \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
+  \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east, x post scale=0.8, y post scale=0.8}]
   \addplot [black] file {../data/2014-06-16_SignalThresh.txt};
   \addplot [black, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
   \end{axis}
 \end{tikzpicture}
 \captionof{figure}{Model of a Sensory Threshold}
-\label{fig:2014-06-16_sigPlot}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
+\label{fig:2014-06-16_sigPlot1}
+\end{subfigure}
+\begin{subfigure}{.45\textwidth}
   \centering
 \begin{tikzpicture}
-  \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
+  \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east, x post scale=0.8, y post scale=0.8}]
   \addplot [black,smooth] file {../data/2014-06-16_SignalThreshReal.txt};
   \addplot [black, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
   \end{axis}
 \end{tikzpicture}
   \captionof{figure}{The Real Data}
-  \label{fig:test2}
-\end{minipage}
+  \label{fig:2014-06-16_sigPlot2}
+\end{subfigure}
+\label{fig:2014-06-16_sigPlot_compl}
 \end{figure}
 
 As seen in the plots, the real data that was measured does not really fit the model. Two reasons could explain this difference. First of all there could be noise in the threshold (depending on some hidden neuron mechanisms). Another explanation could be noise in the stimulus.
