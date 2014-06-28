@@ -3,7 +3,7 @@
 
 \section[Solution 6: Signal Detection Theory I+II]{Solution 6: Signal Detection Theory I+II \iftoggle{showdates}{\small{\textit{2014-06-23}}}{}}
 
-\subsection{Excercise 2}
+\subsection{Excercise 2}\index{Expected Value}
 
 We want to get a better feeling of what the Expected Value of a random variable is and how to work with it. As we have already seen intuitively the Expected Value is just a weighted average over the sample space, so formally we get:
 
@@ -87,13 +87,13 @@ For the sum of the $X_i$ as new random variable $N=\sum_{i=1}^n X_i$ we get:
   var\left(N\right) &= n\cdot p \cdot \left(1-p\right)
 \end{align*}
 
-\subsubsection{Excercise 3}
+\subsubsection{Excercise 3}\index{ROC Curve}
 
 As we want to get the ROC we have to look at the Hits and the False Alarms which we get assuming a high threshold model:
 
 \begin{align*}
   P\left(H\right) &= P\left(Response=old|Stimulus=old\right)\\
-  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \cdot \underbrace{P\left(M=old|S=old\right)}_{q} + P\left(R=old|M=new\right) \cdot P\left(M=old|S=old\right)\\
+  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \underbrace{P\left(M=old|S=old\right)}_{q} + P\left(R=old|M=new\right) P\left(M=old|S=old\right)\\
   &= \underbrace{P\left(M=old|S=old\right)}_{P_r} + q\cdot\left(1-P_r\right)\\
 \end{align*}
 With q as the probability with which we say we remember a Stimulus even though we don't.
@@ -113,7 +113,7 @@ And therefore we would get a linear ROC curve which, as we already have seen, do
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.5,0.2)}, anchor=east},xlabel ={P(FA)}, ylabel={P(H)}]
   \addplot[smooth,dashed] file {../data/2014-06-13_dist5.txt};
   \addlegendentry{Signal Detection Theory and actual Data}
-  \addplot[smooth] file {../data/2014-06-23_dist1.txt};
+  \addplot[smooth] file {../data/2014-06-13_dist1.txt};
   \addlegendentry{High Threshold Theory}
   \end{axis}
 \end{tikzpicture}
