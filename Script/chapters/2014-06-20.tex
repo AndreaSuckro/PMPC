@@ -2,59 +2,88 @@
 \begin{document}
 
 \section[Signal Detection Theory III]{Signal Detection Theory III \iftoggle{showdates}{\small{\textit{2014-06-20}}}{}}
-% quick workaround due to file loss, not the wrong chapter numbering
-%\includepdf[pages={-},addtotoc={1,section,1,Signal Detection Theory III,signaldettheoryIII}]{../chapters/2014-06-20vorlaeufig.pdf}
 
-\subsection{From YN to 2AFC}
-In comparison to simple Yes-No-task there exists an alternative task design which is the 2-Alternative-Forced-Choice-task. In each trial the subject is presented with two intervals with a light stimulus in one of it, therefore there are two "stimulations" $X_{1}$,$X_{2}$. The probabilities for this experiment are given in the following.\\
-\begin{tabular}{l l l}
-\begin{tabular}{l}
-$\left( X_{1}|S=1\right)\sim N\left( \Delta \mu , \sigma^{2}\right)$ \tikz[remember picture] \node[coordinate,yshift=0.5em, xshift=9.5cm] (n1) {}; \\ \\ \\ \smallskip \\
-$\left( X_{2}|S=1\right)\sim N\left( 0 , \sigma^{2}\right)$ \tikz[remember picture] \node[coordinate] (n2) {};
-\end{tabular} & 
-\begin{tabular}{l}
-\small - The probability distribution for a stimulation in the first\\ \small interval given that the signal was in the first interval \\  \\ \\ \\
-\end{tabular} &
-\begin{tikzpicture}[overlay,remember picture]
-      \path (n2) -| node[coordinate] (n3) {} (n1);
-      \draw[thick,decorate,decoration={brace,amplitude=3pt}]
-            (n1) -- (n3) node[midway, right=4pt] {\small equal variance signal};
-  \end{tikzpicture}
-\\ \smallskip \\
-\begin{tabular}{l}
-% \\  \\
-$\left( X_{1}|S=2\right)\sim N\left( 0 , \sigma^{2}\right)$\\ \\ \\ \smallskip \\
-$\left( X_{2}|S=2\right)\sim N\left( \Delta \mu , \sigma^{2}\right)$
-\end{tabular} &
-\begin{tabular}{l}
+\subsection{From YN to 2AFC}\index{YN-Task}\index{2AFC}
+In comparison to simple Yes-No-task there exists an alternative task design which is the 2-Alternative-Forced-Choice-task. In each trial the subject is presented with two intervals with a light stimulus in one of it, therefore there are two ``stimulations'' $X_{1}$ and $X_{2}$. The probabilities for this experiment are given in the following.
+
+\begin{tabularx}{\textwidth}{lXl}
+$\left(X_{1}|S=1\right)\sim N\left(\Delta\mu,\sigma^{2}\right)$ & {\small - The probability distribution for a stimulation in the first interval given that the signal was in the first interval} & \multirow{2}{*}{
+\begin{tikzpicture}
+  \draw[thick,decorate,decoration={brace,amplitude=3pt}] (0,2.5) -- (0,1) node[midway, right=4pt, align=left] {\small equal variance signal\\\small detection model};
+\end{tikzpicture}
+} \\
+$\left(X_{2}|S=1\right)\sim N\left(0,\sigma^{2}\right)$ & \multirow{3}{*}{  
 \begin{tikzpicture}[scale=0.5]
-\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
-    axis x line*=bottom, axis y line*=left, ticks=none, ylabel={S=1}, enlargelimits=upper, name=gauss]
-    \addplot [red, ultra thick]    {gauss(-2,0.5)};% node[pos=0.4,  anchor=east] {$\sigma=0.5$};
-    \addplot [green, ultra thick]  {gauss(2.5,0.5)};%   node[pos=0.6,  anchor=west] {$\sigma=1$};
-    \node [above] at (axis cs:  -2, 0) {$0$};
-\node [above] at (axis cs:  2.5, 0) {$\Delta \mu$};
+  \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, axis x line*=bottom, axis y line*=left, ticks=none, ylabel={S=1}, enlargelimits=upper, name=gauss]
+    \addplot [red, ultra thick]    {gauss(-2,0.5)};
+    \addplot [green, ultra thick]  {gauss(2.5,0.5)};
+    \node [above] at (axis cs: -2, 0)  {$0$};
+    \node [above] at (axis cs: 2.5, 0) {$\Delta \mu$};
   \end{axis}
-  \draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](0,0) -- (3,0) node[black,midway,yshift=-0.6cm] {\footnotesize $2^{nd}interval$};
-\draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](3.5,0) -- (6.5,0) node[black,midway,yshift=-0.6cm] {\footnotesize $1^{st}interval$};  \end{tikzpicture}
-  \begin{tikzpicture}[scale=0.5]
-\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
-    axis x line*=bottom, axis y line*=left, ticks=none, ylabel={S=2}, enlargelimits=upper, name=gauss]
-    \addplot [red, ultra thick]    {gauss(-2,0.5)};% node[pos=0.4,  anchor=east] {$\sigma=0.5$};
-    \addplot [green, ultra thick]  {gauss(2.5,0.5)};%   node[pos=0.6,  anchor=west] {$\sigma=1$};
-    \node [above] at (axis cs:  -2, 0) {$0$};
-\node [above] at (axis cs:  2.5, 0) {$\Delta \mu$};
+  \draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](0,0)   -- (3,0)   node[black,midway,yshift=-0.6cm] {\footnotesize $2^{nd}interval$};
+  \draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](3.5,0) -- (6.5,0) node[black,midway,yshift=-0.6cm] {\footnotesize $1^{st}interval$}; 
+\end{tikzpicture}
+\begin{tikzpicture}[scale=0.5]
+  \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, axis x line*=bottom, axis y line*=left, ticks=none, ylabel={S=2}, enlargelimits=upper, name=gauss]
+    \addplot [red, ultra thick]   {gauss(-2,0.5)};
+    \addplot [green, ultra thick] {gauss(2.5,0.5)};
+    \node [above] at (axis cs: -2, 0)   {$0$};
+    \node [above] at (axis cs:  2.5, 0) {$\Delta \mu$};
   \end{axis}
-  \draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](0,0) -- (3,0) node[black,midway,yshift=-0.6cm] {\footnotesize $1^{st}interval$};
-\draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](3.5,0) -- (6.5,0) node[black,midway,yshift=-0.6cm] {\footnotesize $2^{nd}interval$};
-\end{tikzpicture} 
-\end{tabular} &
-\end{tabular}
+  \draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](0,0)   -- (3,0)   node[black,midway,yshift=-0.6cm] {\footnotesize $1^{st}interval$};
+  \draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](3.5,0) -- (6.5,0) node[black,midway,yshift=-0.6cm] {\footnotesize $2^{nd}interval$};
+\end{tikzpicture}
+} & \\
+$\left(X_{1}|S=2\right)\sim N\left(0,\sigma^{2}\right)$ & & \\
+$\left(X_{2}|S=2\right)\sim N\left(\Delta\mu,\sigma^{2}\right)$ & &
+\end{tabularx}
+
+%\begin{tabular}{l l l}
+%\begin{tabular}{l}
+%$\left( X_{1}|S=1\right)\sim N\left( \Delta \mu , \sigma^{2}\right)$ \tikz[remember picture] \node[coordinate,yshift=0.5em, xshift=9.5cm] (n1) {}; \\ \\ \\ \smallskip \\
+%$\left( X_{2}|S=1\right)\sim N\left( 0 , \sigma^{2}\right)$ \tikz[remember picture] \node[coordinate] (n2) {};
+%\end{tabular} & 
+%\begin{tabular}{l}
+%\small - The probability distribution for a stimulation in the first\\ \small interval given that the signal was in the first interval \\  \\ \\ \\
+%\end{tabular} &
+%\begin{tikzpicture}[overlay,remember picture]
+      %\path (n2) -| node[coordinate] (n3) {} (n1);
+      %\draw[thick,decorate,decoration={brace,amplitude=3pt}]
+            %(n1) -- (n3) node[midway, right=4pt] {\small equal variance signal detection model};
+  %\end{tikzpicture}
+%\\ \smallskip \\
+%\begin{tabular}{l}
+%% \\  \\
+%$\left( X_{1}|S=2\right)\sim N\left( 0 , \sigma^{2}\right)$\\ \\ \\ \smallskip \\
+%$\left( X_{2}|S=2\right)\sim N\left( \Delta \mu , \sigma^{2}\right)$
+%\end{tabular} &
+%\begin{tabular}{l}
+%\begin{tikzpicture}[scale=0.5]
+%\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
+    %axis x line*=bottom, axis y line*=left, ticks=none, ylabel={S=1}, enlargelimits=upper, name=gauss]
+    %\addplot [red, ultra thick]    {gauss(-2,0.5)};
+    %\addplot [green, ultra thick]  {gauss(2.5,0.5)};
+    %\node [above] at (axis cs:  -2, 0) {$0$};
+%\node [above] at (axis cs:  2.5, 0) {$\Delta \mu$};
+  %\end{axis}
+  %\draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](0,0) -- (3,0) node[black,midway,yshift=-0.6cm] {\footnotesize $2^{nd}interval$};
+%\draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](3.5,0) -- (6.5,0) node[black,midway,yshift=-0.6cm] {\footnotesize $1^{st}interval$};  \end{tikzpicture}
+  %\begin{tikzpicture}[scale=0.5]
+%\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
+    %axis x line*=bottom, axis y line*=left, ticks=none, ylabel={S=2}, enlargelimits=upper, name=gauss]
+    %\addplot [red, ultra thick]    {gauss(-2,0.5)};% node[pos=0.4,  anchor=east] {$\sigma=0.5$};
+    %\addplot [green, ultra thick]  {gauss(2.5,0.5)};%   node[pos=0.6,  anchor=west] {$\sigma=1$};
+    %\node [above] at (axis cs:  -2, 0) {$0$};
+%\node [above] at (axis cs:  2.5, 0) {$\Delta \mu$};
+  %\end{axis}
+  %\draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](0,0) -- (3,0) node[black,midway,yshift=-0.6cm] {\footnotesize $1^{st}interval$};
+%\draw [black,decorate,decoration={brace,amplitude=5pt,mirror},xshift=0.4pt,yshift=-0.4pt](3.5,0) -- (6.5,0) node[black,midway,yshift=-0.6cm] {\footnotesize $2^{nd}interval$};
+%\end{tikzpicture} 
+%\end{tabular} &
+%\end{tabular}
 
 
 \begin{tikzpicture}[scale=0.9]
-\begin{axis}[hide axis, domain=-4:4, y domain=-4:4, x=4.75cm, y=4.75cm, ticks=none ]
-\end{axis}
 \draw (4.7,1) circle (1cm);
 \draw (4.7,1) circle (0.8cm);
 \draw (4.7,1) circle (0.6cm);
@@ -74,6 +103,7 @@ $\left( X_{2}|S=2\right)\sim N\left( \Delta \mu , \sigma^{2}\right)$
 \draw[->, thick] (1, 0) -- (1, 6);
 \draw (1, 4.7) -- (2,5.7);
 \draw (4.7, 1) -- (5.7,2);
+
 \begin{axis}[hide axis, yshift=0cm, every axis plot post/.append style={mark=none, domain=-4:5.75, samples=50, smooth}, 
     axis x line*=bottom, axis y line*=left, ticks=none, enlargelimits=upper,rotate=315, x=0.75cm, y=1.25cm]
 \addplot [yellow, fill=yellow, fill opacity=0.4]  {gauss(-2.14,0.5)};
@@ -160,26 +190,23 @@ Ernst \& Banks (2002) - Visuo-haptic cue combination
 \begin{tikzpicture}[overlay]
 \begin{axis}[scale=0.75, every axis plot post/.append style={mark=none, domain=-2.25:4, samples=50, smooth}, 
     axis x line*=bottom, axis y line*=left, ticks=none, enlargelimits=upper, name=gauss]
-    \addplot [red, ultra thick]    {gauss(0,0.5)};% node[pos=0.4,  anchor=east] {$\sigma=0.5$};
+    \addplot [red, ultra thick]    {gauss(0,0.5)};
     \node [above] at (axis cs:  0, 0) {$s$};
 \node [above] at (axis cs:  1.47, 0.7) {\footnotesize Haptics};
   \end{axis}
   \begin{axis}[scale=0.5, every axis plot post/.append style={mark=none, domain=-4.56:4, samples=50, smooth}, 
     axis x line*=bottom, axis y line*=left, ticks=none, enlargelimits=upper, name=gauss]
-    \addplot [green, ultra thick]  {gauss(0,0.5)};%   node[pos=0.6,  anchor=west] {$\sigma=1$};
+    \addplot [green, ultra thick]  {gauss(0,0.5)};
     \node [right] at (axis cs:  1.37, 0.77) {\footnotesize Vision};
   \end{axis}
 \draw (1.8,2.375) -- (2.25,2.5);
 \draw (1.9,3.575) -- (2.25,3.7);
-\end{tikzpicture} \\
-%\bigskip
-\\
+\end{tikzpicture} 
+
 What should be my estimate $\hat{s}$ of $s$?
 \smallskip
 \\
 \begin{tikzpicture}
-\begin{axis}[domain=-0none4:4, y domain=-4:4, x=5cm, y=3.5cm, ticks=none]
-\end{axis}
 \draw (3,2.15) ellipse (2cm and 1cm);
 \draw (3,2.15) ellipse (1.7cm and 0.8cm);
 \draw (3,2.15) ellipse (1.4cm and 0.6cm);
