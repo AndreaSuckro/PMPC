@@ -3,7 +3,7 @@
 
 \section[Solution 6: Signal Detection Theory I+II]{Solution 6: Signal Detection Theory I+II \iftoggle{showdates}{\small{\textit{2014-06-23}}}{}}
 
-\subsection{Excercise 2}\index{Expected Value}
+\subsection{Excercise 2}\index{Expected Value}\label{sheet6ex2}
 
 We want to get a better feeling of what the Expected Value of a random variable is and how to work with it. As we have already seen intuitively the Expected Value is just a weighted average over the sample space, so formally we get:
 
@@ -93,7 +93,7 @@ As we want to get the ROC we have to look at the Hits and the False Alarms which
 
 \begin{align*}
   P\left(H\right) &= P\left(Response=old|Stimulus=old\right)\\
-  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \underbrace{P\left(M=old|S=old\right)}_{q} + P\left(R=old|M=new\right) P\left(M=old|S=old\right)\\
+  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \underbrace{P\left(M=old|S=old\right)}_{P_r} + \underbrace{P\left(R=old|M=new\right)}_q \underbrace{P\left(M=new|S=old\right)}_{1-P_r}\\
   &= \underbrace{P\left(M=old|S=old\right)}_{P_r} + q\cdot\left(1-P_r\right)\\
 \end{align*}
 With q as the probability with which we say we remember a Stimulus even though we don't.
