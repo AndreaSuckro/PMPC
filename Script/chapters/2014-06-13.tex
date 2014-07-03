@@ -85,12 +85,12 @@ E(L(S,R)) &= \pi_y  E(L(S=y, R)) + \pi_n E(L(S=n, R)) &= \\
 &= \pi_y P(H) (C_H - C_M) + \pi_n P(FA) (C_{FA} - C_{CR}) + \underbrace{(\pi_y C_M + \pi_n C_{CR})}_{\text{independent of } A} &
 \end{align*}
 
-Now we minimize only the parts dependent on $A$
+Now we minimize only the parts dependent on $A$.
 
 \begin{align*}
 & \pi_y P(H) (C_H - C_M) + \pi_n P(FA) (C_{FA} - C_{CR}) &= \\
-&= \pi_y (\int_A p(X \mid S=yes) dx)(C_H - C_M) + \pi_n (\int_A p(X \mid S=no) dx) (C_{FA} - C_{CR}) &= \\
-&= \int_A [\pi_y p(X \mid S=yes)(C_H - C_M) + \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) dx] & \\
+&= \pi_y \left(\int_A p(X \mid S=yes) dx\right)(C_H - C_M) + \pi_n \left(\int_A p(X \mid S=no) dx\right) (C_{FA} - C_{CR}) &= \\
+&= \int_A \left[\pi_y p(X \mid S=yes)(C_H - C_M) + \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) dx\right] & \\
 \end{align*}
 
 Choose $A$ such that we only integrate over the negative part.
