@@ -333,9 +333,9 @@ Give the belief for this to be true. \\(This means 0 = ``I believe this is false
 
 \bigskip
 
-The aim of a proper scoring rule is to yield a high gain if the answer is true and the belief in it is high, but yield no gain if the answer is false but the belief in it high.
+The aim of a proper scoring rule is to yield a high gain (a minimum loss) if the answer is true and the belief in it is high, but yield no gain if the answer is false but the belief in it high.
 
-$q$ is the belief assigned to the answer given, $X$ is 1 if the statement was true or 0 if it was false.
+In the loss-function $L$ given below $q$ is the belief assigned to the answer given and $X$ is 1 if the statement was true or 0 if it was false.
 \begin{align*}
 L\left(X,q\right) &= \left(X-q\right)^2 \\
                   &= X^2-2qX+q^2 \mbox{ \textit{(note: $X^2 = X$, since only 0 or 1)}} \\
@@ -343,10 +343,11 @@ L\left(X,q\right) &= \left(X-q\right)^2 \\
 \end{align*}
 
 \subsubsection*{Penalty for lying}
+If we now assume the subject is not stating her actual belief $p$, but another value $q$ ($p\neq q$), the formula changes in the following way:
 \begin{align*}
-E\left(L\left(X,q\right)\right) &= p-2pq+q^2 = \left(p-p^2\right) + \left(p^2-2pq+q^2\right) \\&= \underbrace{p\left(1-p\right)}_\text{basic loss} + \underbrace{\left(p-q\right)^2}_\text{penalty for lying}
+E\left(L\left(p,q\right)\right) &= p-2pq+q^2 = \left(p-p^2\right) + \left(p^2-2pq+q^2\right) \\&= \underbrace{p\left(1-p\right)}_\text{basic loss} + \underbrace{\left(p-q\right)^2}_\text{penalty for lying}
 \end{align*}
-
+Note that the basic loss is maximal if the subject has no clue ($p=0.5$). 
 \subsubsection*{How to answer?}
 If one's belief is p, which q will yield the best gain (i.e. will minimize the expected loss)?
 
