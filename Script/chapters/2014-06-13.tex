@@ -159,7 +159,7 @@ Receiver operator characteristics (ROC) allow for that by systematically varying
 
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east,xlabel ={P(FA)}, ylabel={P(H)}}]
-  \addplot[smooth] file {../data/2014-06-13_dist5.txt};
+  \addplot[smooth,domain=0:1, samples=50]{roc(2)};
   \addlegendentry{ROC}
   \end{axis}
 \end{tikzpicture}
