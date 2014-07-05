@@ -9,8 +9,8 @@ In the previous lecture we saw how ROC curves helped us to measure the sensitivi
 \begin{figure}[ht!]
 \centering
 \begin{tikzpicture}
-  \begin{axis}[axis x line*=bottom,xlabel = P(FA), ylabel={P(H)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east}]
-  \addplot [black] file {../data/2014-06-16_ROC.txt};
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east,xlabel ={P(FA)}, ylabel={P(H)}}]
+  \addplot[smooth,domain=0:1, samples=50]{roc(2)};
   \end{axis}
 \end{tikzpicture}
 \caption{ROC-Curve}%
@@ -59,7 +59,7 @@ A long time ago, people thought that our sensors work in a 0-1 like manner. Ther
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east, x post scale=0.8, y post scale=0.8}]
   \addplot [black] file {../data/2014-06-16_SignalThresh.txt};
-  \addplot [black, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
+  \addplot [red, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
   \end{axis}
 \end{tikzpicture}
 \captionof{figure}{Model of a Sensory Threshold}
@@ -70,12 +70,13 @@ A long time ago, people thought that our sensors work in a 0-1 like manner. Ther
 \begin{tikzpicture}
   \begin{axis}[axis x line*=bottom,xlabel = Stimulus, ylabel={P(D=y|S)}, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.2,0.8)}, anchor=east, x post scale=0.8, y post scale=0.8}]
   \addplot [black,smooth] file {../data/2014-06-16_SignalThreshReal.txt};
-  \addplot [black, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
+  \addplot [red, mark = *, nodes near coords=$\theta$,every node near coord/.style={anchor=90}] coordinates {( 0.5, 0)};
   \end{axis}
 \end{tikzpicture}
   \captionof{figure}{The Real Data}
   \label{fig:2014-06-16_sigPlot2}
 \end{subfigure}
+\caption{Prediction of the Threshold-Theory}
 \label{fig:2014-06-16_sigPlot_compl}
 \end{figure}
 
@@ -98,7 +99,7 @@ P(H)&=P(D=y|S=s)\cdot 1+(1-P(D=y|S=s))\cdot q\\
     &=q+(1-q)F_\theta(s)\\
     &=P(FA)+(1-P(FA))F_\theta(s)\\
 P(FA)&=P(D=y|s=0)\cdot 1 + (1-P(D=y|s=0))\cdot q\\
-     &=q+(1-q)P(D=y|s=0)
+     &=q+(1-q)P(D=y|s=0)\\
      &=q
 \end{align*}
 We assume that we have a high threshold so that $P(D=y|s=0)\approx 0$. If we solve the first equation for $F_\theta(s)$, we get:
