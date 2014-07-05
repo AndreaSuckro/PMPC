@@ -44,9 +44,7 @@ The probabilities to get a certain response given the existence of a signal may 
 
 \subsubsection{Response strategy}
 
-We are now looking for a set of values for which our response will be \emph{yes}. This is called the response strategy. It somehow determines from what signal strength onward you would report the signal was there. Formally: \texttt{if} $x\in A$ \texttt{then YES else NO}. Our response strategy should not only depend on the probabilities, but also on the cost of being wrong.
-
-The loss function $L(S,R)$ depends now on the costs for the different cases.
+We are now looking for a set of values for which our response will be \emph{yes}. This is called the response strategy. It somehow determines from what signal strength onward you would report the signal was there. Formally: \texttt{if} $x\in A$ \texttt{then YES else NO}. Our response strategy should not only depend on the probabilities, but also on the cost of being wrong. The loss function $L(S,R)$ depends now on the costs for the different cases.
 
 \begin{center}
 \setlength{\extrarowheight}{.2cm}
@@ -64,7 +62,7 @@ P(H)  &= \int_A p(X \mid S=yes)dx = P(R=y \mid S=y) \\
 P(FA) &= \int_A p(X \mid S=no)dx  = P(R=y \mid S=n)
 \end{align*}
 
-The probabilities for miss and correct response can be directly computed from the others.
+The probabilities for miss and correct response can be directly computed from these.
 \begin{align*}
 P(M)  &= 1 - P(H)  = P(R=n \mid S=y)\\
 P(CR) &= 1 - P(FA) = P(R=n \mid S=n)
@@ -101,11 +99,11 @@ Choose $A$ such that we only integrate over the negative part.
 
 \begin{align*}
 \pi_y p(X \mid S=yes)(C_H - C_M) + \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) &< 0 \\
-\pi_y p(X \mid S=yes)(C_H - C_M) &\leqq - \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) \\
-\pi_y p(X \mid S=yes)(C_H - C_M) &\leqq \pi_n p(X \mid S=no)(C_{CR} - C_{FA}) \\
+\pi_y p(X \mid S=yes)(C_H - C_M) &\leq - \pi_n p(X \mid S=no)(C_{FA} - C_{CR}) \\
+\pi_y p(X \mid S=yes)(C_H - C_M) &\leq \pi_n p(X \mid S=no)(C_{CR} - C_{FA}) \\
 \end{align*}
 \begin{equation*}
-\underbrace{\frac{\pi_y p(X \mid S=yes)}{\pi_n p(X \mid S=no)}}_\text{posterior odds} \geqq \underbrace{\frac{C_{CR} - C_{FA}}{C_H - C_M}}_\text{costs threshold}
+\underbrace{\frac{\pi_y p(X \mid S=yes)}{\pi_n p(X \mid S=no)}}_\text{posterior odds} \geq \underbrace{\frac{C_{CR} - C_{FA}}{C_H - C_M}}_\text{costs threshold}
 \end{equation*}
 
 Interpretation: We choose $A$ so that the posterior odds are greater then the costs.
@@ -113,7 +111,7 @@ Interpretation: We choose $A$ so that the posterior odds are greater then the co
 Other way of writing:
 
 \begin{equation*}
-\underbrace{\frac{p(X \mid S=yes)}{p(X \mid S=no)}}_\text{likelihood ratio} \geqq \underbrace{\frac{\pi_n(C_{CR} - C_{FA})}{\pi_y(C_H - C_M)}}_\beta
+\underbrace{\frac{p(X \mid S=yes)}{p(X \mid S=no)}}_\text{likelihood ratio} \geq \underbrace{\frac{\pi_n(C_{CR} - C_{FA})}{\pi_y(C_H - C_M)}}_\beta
 \end{equation*}
 
 
@@ -129,21 +127,21 @@ We can model the probability of Hits and False Alarms with Gaussians respectivel
 This is not easy to calculate, but it is alright to take the $\log$, so we use the log-likelihood ratio and compare that to our previous calculated $\beta$:
 
 \begin{align*}
- \frac{1}{2}\sigma^2 \cdot \left[\left(x-\mu_y\right)^2 - \left(x-\mu_n\right)^2 \right] &\geq log\left(\beta\right)\\
-  x^2 - 2x\mu_y + \mu_{y}^{2} - x^2 - 2x\mu_n + \mu_{n}^{2} &\leq - 2\sigma^2 \cdot log\left(\beta\right)\\
+ -\frac{1}{2\sigma^2} \cdot \left[\left(x-\mu_y\right)^2 - \left(x-\mu_n\right)^2 \right] &\geq log\left(\beta\right)\\
+  x^2 - 2x\mu_y + \mu_{y}^{2} - x^2 + 2x\mu_n - \mu_{n}^{2} &\leq -2\sigma^2 \cdot log\left(\beta\right)\\
   2x\left(\mu_n - \mu_y\right)+\mu_{y}^{2}-\mu_{n}^{2}&\leq -2\sigma^2\cdot log\left(\beta\right)\end{align*}
   
-By convention the mean of the noise distribution $\mu_n$ is smaller than $\mu_y$, such that the inequality turns and we get:
+By convention the mean of the noise distribution $\mu_n$ is smaller than $\mu_y$, such that by solving for $x$ and dividing by $\left(\mu_n-\mu_y\right)$ the inequality turns and we get:
 
 \begin{align*}
-  x  &\geq \underbrace{\frac{-2\sigma^2 \cdot log\left(\beta\right) + \mu_{n}^{2}-\mu{n}^{2}}{2\left(\mu_n-\mu_y\right)}}_{\Theta}
+  x  &\geq \underbrace{\frac{-2\sigma^2 \cdot log\left(\beta\right) + \mu_{n}^{2}-\mu_{y}^{2}}{2\left(\mu_n-\mu_y\right)}}_{\Theta}
 \end{align*}
 
 That we can interpret such that we answer with yes in the case the x we perceive is bigger than the threshold (criterion) $\Theta$.
 In the case of $\beta = 1$ and equal prior probabilities that means:
 
 \begin{align*}
-  x \geq \frac{\left(\mu_n-\mu_y\right)\cdot \left(\mu_n+\mu_y\right)}{2\left(\mu_n-\mu_y\right)}
+  x \geq \frac{\left(\mu_n-\mu_y\right)\cdot \left(\mu_n+\mu_y\right)}{2\left(\mu_n-\mu_y\right)} = \frac{\left(\mu_n+\mu_y\right)}{2} 
 \end{align*}
 i.e. the best threshold is just in the middle of the two Gaussians.
 
@@ -151,15 +149,13 @@ i.e. the best threshold is just in the middle of the two Gaussians.
 
 \subsection{Signal to Noise Ratio}
 
-Now we want to find the limits of perception - how few light can we detect, or in other words: What is a persons signal to noise ratio for light detection.
-The signal to noise ratio is defined as:
+Now we want to find the limits of perception - how few light can we detect, or in other words: What is a persons signal to noise ratio for light detection. For the case where we again assume two Gaussian distributions with equal deviation, the signal to noise ratio is defined as:
 
 \begin{align*}
 SNR = \frac{\mu_y-\mu_n}{\sigma}  
 \end{align*} 
 
-As we want to know the actual percept of a subject and not his decision-criterion when to say yes, we have to come up with a measure independent of the subjects threshold.
-Receiver operator characteristics (ROC) allow for that by systematically varying the threshold, such that all possible criteria are covered (from always saying yes, to always saying no). Then we get a curve describing the perception of a subject independently of his criteria.
+As we care for the actual perception (the distance of the Gaussians) of a subject and not his decision-criterion when to say yes, we have to come up with a measure independent of the subjects threshold. Receiver operator characteristics (ROC) allow for that by systematically varying the threshold, such that all possible criteria are covered (from always saying yes, to always saying no). Then we get a curve describing the perception of a subject independently of his criteria.
 
 \bigskip
 \begin{center}
@@ -170,5 +166,7 @@ Receiver operator characteristics (ROC) allow for that by systematically varying
   \end{axis}
 \end{tikzpicture}
 \end{center}
+
+Varying the threshold may be achieved by the experimenter, by manipulating the costs and pay-offs for False Alarms or Hits. Note that the above depicted graph is a theoretical model. In a real experiment we would get single data points, scattered around such a curve.
  
 \end{document}
