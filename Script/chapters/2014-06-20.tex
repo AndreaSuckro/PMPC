@@ -112,38 +112,23 @@ If the stimulus was presented in the $1^{st}$ interval $X_2$ (our sensation for 
 \draw (1,1) -- (5.25,5.25);
 \end{tikzpicture}
 \end{figure}
-If we could discriminate perfectly our data points would lie on the $x$ or $y$ axis for each trial (depending on the interval). When we discussed why HT-Theory is wrong (LINK HIER), we already stated that subjects perform better in 2AFC than in YN-Tasks. Now we see why: the distance of the two distributions is $\Delta \mu_{2AFC} = \sqrt{2}\Delta\mu$. This is $>\Delta\mu$! The strategy for the best performance in 2AFC is the following:
+If we could discriminate perfectly our data points would lie on the $x$ or $y$ axis for each trial (depending on the interval). When we discussed why HT-Theory is wrong (\ref{subsubsec:RelYN2AFC}), we already stated that subjects perform better in 2AFC than in YN-Tasks. Now we see why: the distance of the two distributions is $\Delta \mu_{2AFC} = \sqrt{2}\Delta\mu$. This is $>\Delta\mu$! The strategy for the best performance in 2AFC is the following:
 
 \begin{itemize}
 \item Say 1 if $X_{1} > X_{2}$
 \item Say 2 if $X_{2} \geq X_{1}$
 \end{itemize}
 
-$\Rightarrow \Delta X= X_{2}-X_{1} \stackrel{!}{>}0$
-
 %we should maybe add here something why this is so also intuitively
 
-\begin{minipage}[t][3cm][t]{9.25cm}
-What is the distribution of $\Delta X$?
+We see that $\Delta X= X_{2}-X_{1} \stackrel{!}{>}0$. What is now the distribution of $\Delta X$? Note that if you scale or add normal distributions you always get again a normal distribution with scaled standard deviations and means and added variances and means.
 
-$\left(\Delta X | S = 1\right) \sim N\left( -\Delta \mu , 2\sigma^{2}\right)$
+\begin{align*}
+\left(\Delta X | S = 1\right) &\sim N\left(0, \sigma^{2}\right) - N\left( \Delta \mu , 2\sigma^{2}\right) = N\left( -\Delta \mu , 2\sigma^{2}\right)\\
+\left(\Delta X | S = 2\right) &\sim N\left(\Delta \mu, \sigma^{2}\right) - N\left(0, 2\sigma^{2}\right) = N \left( \Delta \mu , 2\sigma^{2}\right)
+\end{align*}
+We may now calculate the Signal to Noise Ratio of this two distributions.
 
-$\left(\Delta X | S = 2\right) \sim N\left( \Delta \mu , \sigma^{2} + \left(\left( -1 \right)\sigma\right)^{2}\right) = N \left( \Delta \mu , 2\sigma^{2}\right)$
-\end{minipage} 
-\begin{minipage}[t][3cm][t]{6cm}
-Helpful rules:
-
-$X_{1},X_{2}$ are normal N
-
-$X_{1} \sim N\left(\mu_{1} , \sigma_{1}^{2}\right)$
-
-$X_{2} \sim N\left(\mu_{2} , \sigma_{2}^{2}\right)$
-
-$aX_{1} \sim N\left(a\mu_{1} , \left(a\sigma_{1}\right)^{2}\right)$
-
-$X_{1} + X_{2} \sim N \left( \mu_{1} + \mu_{2}, \sigma_{1}^{2} + \sigma_{2}^{2} \right)$
-\end{minipage}
-\\
 \begin{minipage}[b][3cm][t]{3.5cm}
 \begin{tikzpicture}[scale=0.5]
 \begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, 
@@ -159,10 +144,9 @@ $X_{1} + X_{2} \sim N \left( \mu_{1} + \mu_{2}, \sigma_{1}^{2} + \sigma_{2}^{2} 
 \end{minipage}
 \begin{minipage}[b][3.5cm][t]{8cm}
 \begin{align*}
-& & \Delta ~~~\mu_{2AFC} & = \sqrt{2}\Delta\mu ~~~|:\sigma & &\\
-& & \Leftrightarrow d'_{2AFC} & = \sqrt{2}d' & & \\
-& & \frac{\Delta\mu_{2AFC}}{\sigma} & = \frac{2\Delta\mu}{\sqrt{2}\sigma} = \sqrt{2}d' & & \\
-& & d'_{2AFC} & = \frac{2d'}{\sqrt{2}\sigma} = \sqrt{2}d' ~~~\left(\text{same result as in the geometric solution}\right) & &
+SNR &= \frac{\Delta\mu - (-\Delta\mu)}{\sqrt{2\sigma^2}}\\
+    &= \frac{2\Delta\mu}{\sqrt{2}\sigma}\\
+    &= \sqrt{2}\Delta\mu ~~~\left(\text{same result as in the geometric solution}\right)
 \end{align*}
 \end{minipage}
 
@@ -186,10 +170,11 @@ In this is example it is not wise to choose the same distribution for both measu
 \end{axis}
 \end{tikzpicture} 
 \end{figure}
+\newpage
 
-
-
-What should be my estimate $\hat{s}$ of $s$?
+Different than in the 2AFC the two distributions have the same mean- leading to the following plot: 
+\begin{figure}[ht!]
+\centering
 \begin{tikzpicture}
 \draw (3,2.15) ellipse (2cm and 1cm);
 \draw (3,2.15) ellipse (1.7cm and 0.8cm);
@@ -203,16 +188,20 @@ What should be my estimate $\hat{s}$ of $s$?
 \node [above] at (3, -0.5) {Haptics};
 \draw [dashed] (0.3, 2.15) -- (2.8, 2.15);
 \draw [dashed] (3, 0.3) -- (3, 2);
-\end{tikzpicture}\\
-$p\left(V=v;H=h|s\right)=\frac{1}{\sqrt{2\pi}\sigma_{V}}e^{-\frac{1}{2}\left(\frac{v-s}{\sigma_{V}}\right)^{2}}\frac{1}{\sqrt{2\pi}\sigma_{H}}e^{-\frac{1}{2}\left(\frac{h-s}{\sigma_{H}}\right)^{2}}$
-\smallskip
-\\
-ML-Estimate $\hat{s}$: Maximize log-likelihood of $p\left(V=v;H=h|s\right)$
-\smallskip
-\\
-$\Rightarrow -\frac{1}{2}\left(\left(\frac{v-\hat{s}}{\sigma_{V}}\right)^{2} + \left(\frac{h-\hat{s}}{\sigma_{H}}\right)^{2}\right) = -\frac{1}{2}\left(\frac{v-\hat{s}}{\sigma_{V}}\right)^{2} -\frac{1}{2} \left(\frac{h-\hat{s}}{\sigma_{H}}\right)^{2}$
+\end{tikzpicture}
+\end{figure}
 
-First derivative:
+Given the length of the bar ($s$) this is the probability for our haptic ($h$) and visual ($v$) impression:
+\smallskip
+\begin{align*}
+p\left(V=v;H=h|s\right)=\frac{1}{\sqrt{2\pi}\sigma_{V}}e^{-\frac{1}{2}\left(\frac{v-s}{\sigma_{V}}\right)^{2}}\frac{1}{\sqrt{2\pi}\sigma_{H}}e^{-\frac{1}{2}\left(\frac{h-s}{\sigma_{H}}\right)^{2}}
+\end{align*}
+
+Together with the log-likelihood we can calculate a ML-Estimate $\hat{s}$ for $s$:
+\begin{align*}
+\Rightarrow -\frac{1}{2}\left(\left(\frac{v-\hat{s}}{\sigma_{V}}\right)^{2} + \left(\frac{h-\hat{s}}{\sigma_{H}}\right)^{2}\right) = -\frac{1}{2}\left(\frac{v-\hat{s}}{\sigma_{V}}\right)^{2} -\frac{1}{2} \left(\frac{h-\hat{s}}{\sigma_{H}}\right)^{2}
+\end{align*}
+Use first derivative:
 
 \begin{align*}
 & & \left(\frac{v-\hat{s}}{\sigma_{V}}\right) \frac{2}{2\sigma_{V}} + \left(\frac{h-\hat{s}}{\sigma_{H}}\right) \frac{2}{2\sigma_{H}} & \stackrel{!}{=}0 & & \\
@@ -222,5 +211,8 @@ First derivative:
 \Leftrightarrow & & \hat{s} & = \left(\frac{v}{\sigma_{V}^{2}} + \frac{h}{\sigma_{H}^{2}}\right) \frac{\sigma_{V}^{2}\sigma_{H}^{2}}{\sigma_{V}^{2} + \sigma_{H}^{2}} & & \\
 \Leftrightarrow & & \hat{s} & = \frac{v\sigma_{H}^{2}}{\sigma_{V}^{2} + \sigma_{H}^{2}} + \frac{h\sigma_{V}^{2}}{\sigma_{V}^{2} + \sigma_{H}^{2}} & &
 \end{align*}
+
+This estimate seems logical, since the variances are used as a normalization term in the denominator and the numerator weights our sensation according to their internal variance. In our example we assumed the visual system to have a small variance compared to the haptic system, so the $v$ has greater impact on $\hat{s}$.
+
 \end{document}
 
