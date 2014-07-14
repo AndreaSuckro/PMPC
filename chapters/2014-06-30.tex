@@ -85,26 +85,55 @@ var(N) &= E(N^2)-E(N)^2 \\
 This variance corresponds with the Weber-Fechner-law (for details see \href{http://en.wikipedia.org/wiki/Weber-Fechner_law}{Wikipedia}): If the signal increases, also the noise (i.e. the variance) increases.
 
 \subsection*{Exercise 2}
-% distribution here
+\begin{figure}
+  \begin{tikzpicture}
+    \begin{axis}[enlargelimits=false, axis x line=bottom, axis y line=left, legend style={at={(1,0.75)},anchor=east}]
+      \addplot[red, samples at={0,...,10}]   {poisson(100*80/1000)};
+        \addlegendentry{$80 Hz$}
+      \addplot[green, samples at={0,...,10}] {poisson(2)};
+        \addlegendentry{$20 Hz$}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{The poisson distributions for $20 Hz$ and $80 Hz$.}
+  \label{fig:2014-06-30_ex2distri}
+\end{figure}
+
 \begin{align*}
 \frac{P(N=n|r=80 Hz, t = 100 ms)}{P(N=n|r=20 Hz, t = 100 ms)} &= \frac{ \frac{8^n}{n!}e^{-8} }{ \frac{2^n}{n!} e^{-2} } = \left(\frac{8}{2}\right)^n e^{-8+2}
 \end{align*}
 
-For the intersection we set $\left(\frac{8}{2}\right)^n e^{-8+2} = 1$.
+For calculating the intersection we set $\left(\frac{8}{2}\right)^n e^{-8+2} = 1$.
 \begin{align*}
 \left(\frac{8}{2}\right)^n e^{-8+2} &= 1\\
-4^n &= e^6 \\
-n \log 4 &= 6 \\
-n &\approx 4.3
+                                4^n &= e^6 \\
+                           n \log 4 &= 6 \\
+                                  n &\approx 4.3
 \end{align*}
 
 \subsection*{Exercise 3}
-
+\emph{We don't have this solution. If you have it, feel free to contact us so we can add it.}
 
 \subsection*{Exercise 4}
+We are given
+$\chi_X(\omega) = E(e^{i\omega X})= \int\limits_{-\infty}^\infty f_X(x)e^{i\omega x} dx$, which is the Fourier transformation $\mathcal{F}(f_X)(\omega)$.
 
+\sidenote{$*$ denotes a convolution.}
+We assume two independent random variables $X, Y$ with $Z=X+Y$ and the functions $f_X, f_Y,$ and $f_Z$, respectively and derive the convolution $f_Z(z)$.
+\begin{align*}
+f_Z(z) &= \int\limits_{-\infty}^\infty f_X(x)f_Y(\underbrace{z-x}_{!})dx \\
+       &= \int\limits_{-\infty}^\infty f_X(x)f_X(\underbrace{z-y}_{!})dy \\
+       &= f_X(z) * f_Y(z)
+\end{align*}
+
+We can use this information to derive the characteristic function $\chi_Z(\omega)$.
+\begin{align*}
+\chi_Z(\omega) &= \chi_{X+Y}(\omega) = E(e^{i\omega(X+Y)}) \\
+               &= E(e^{i\omega X}e^{i\omega Y}) =E(e^{i\omega X})E(e^{i\omega Y})\\
+               &=\chi_X(\omega) + \chi_Y(\omega).
+\end{align*}
 
 \subsection*{Exercise 5}
+\emph{This exercise was not discussed in class.}
 
 
 \end{document}
