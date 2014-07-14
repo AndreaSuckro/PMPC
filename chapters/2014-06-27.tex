@@ -132,13 +132,13 @@ $\est{d}$ is a matrix (figure \ref{fig:2014-06-27-est_d_exp}) with the estimated
 \begin{figure}[hb]
   \centering
   \begin{align*}
-    \est{d}=\begin{array}{ccccc}
-    0 &  & \cdots & \est{d_{ij}} &  \\
-     & 0 &  &  &  \\
-    \vdots &  & 0 &  & \vdots \\
-    \est{d_{ji}} &  &  & 0 &  \\
-     &  & \cdots &  & 0 
-    \end{array}
+    \est{d}=\left( \begin{array}{ccccc}
+      0            &   & \cdots & \est{d_{ij}} &  \\
+                   & 0 &        &              &  \\
+      \vdots       &   & 0      &              & \vdots \\
+      \est{d_{ji}} &   &        & 0            &  \\
+                   &   & \cdots &              & 0 
+    \end{array} \right)
   \end{align*}
   \caption{$\est{d}$, note that $d_{ji} = -d_{ij}$ and the diagonal is 0.}
   \label{fig:2014-06-27-est_d_exp}
@@ -157,11 +157,60 @@ So we want to minimize $Q$ with respect to $\est{\mu_i}$ and $\est{\mu_j}$.
 
 This can be done easily by taking the first derivative and setting it to 0.
 \begin{align*}
-\frac{\partial Q}{\partial \est{\mu_k}} = \left( \sum\limits_j\est{\mu_k}-\est{\mu_j}-\est{\d_{kj}} \right) - \left( \sum\limits_i\est{\mu_k}-\est{\mu_i}-\est{\d_{ki}} \right) = 0
+\frac{\partial Q}{\partial \est{\mu_k}} &=             \left( \sum\limits_j \est{\mu_k} - \est{\mu_j} - \est{d_{kj}} \right) - \left( \sum\limits_i \est{\mu_i} - \est{\mu_k}              - \est{d_{ik}} \right) = 0\\
+                          &\Leftrightarrow             \left( \sum\limits_j \est{\mu_k} - \est{\mu_j} - \est{d_{kj}} \right) + \left( \sum\limits_i \est{\mu_k} - \est{\mu_i} \underbrace{ + \est{d_{ik}} }_{\text{Remember: }d_{ij}=-d{ji}} \right) = 0\\
+                          &\Leftrightarrow \underbrace{\left( \sum\limits_j \est{\mu_k} - \est{\mu_j} - \est{d_{kj}} \right) + \left( \sum\limits_i \est{\mu_k} - \est{\mu_i}              - \est{d_{ki}} \right)}_{\text{twice the same}} = 0\\
+                          &\Leftrightarrow           2 \left( \sum\limits_i \est{\mu_k} - \est{\mu_i} - \est{d_{ki}} \right) = 0\\
+                          &\Leftrightarrow                    \sum\limits_i \est{\mu_k} - \est{\mu_i} - \est{d_{ki}}         = 0\\
+                          &\Leftrightarrow    n \est{\mu_k} -            \sum\limits_i \est{\mu_i} -            \sum\limits_i \est{d_{ki}} = 0 \\
+                          &\Leftrightarrow      \est{\mu_k} - \frac{1}{n}\sum\limits_i \est{\mu_i} = \frac{1}{n}\sum\limits_i \est{d_{ki}}
+\end{align*}
+We end up with $n$ equations (one for each $k$) in $n$ unknowns. However the system's rank is $n-1$, so the system of equations is underdetermined. This means that to solve it we are free to choose something as we want, and obviously we set the average of the $\mu_i$s to 0 and get a nice formula to calculate the average over all distances, $\est{\mu_k}$.
+\begin{align*}
+\frac{1}{n} \sum\limits_i \est{d_{ki}} \stackrel{!}{=} 0 \Rightarrow \est{\mu_k} = \frac{1}{n} \sum\limits_i \est{d_{ki}}
+\end{align*}
+
+\subsubsection*{Simple example}
+We have three normal distributions $i, j,$ and $k$ with the means $\mu_i = 1, \mu_j = 0,$ and $\mu_k = -1$ (figure \ref{fig:2014-06-27-normaldists}).
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[enlargelimits=false, restrict x to domain=-2:2, mark=none, axis x line*=bottom, axis y line*=left]
+      \addplot[red, samples=100]   {gauss(1,1)};
+        \addlegendentry{$i$}
+      \addplot[green, samples=100] {gauss(0,1)};
+        \addlegendentry{$j$}
+      \addplot[blue, samples=100]  {gauss(-1,1)};
+        \addlegendentry{$k$}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Three normal distributions $i, j,$ and $k$.}
+  \label{fig:2014-06-27-normaldists}
+\end{figure}
+
+For these distributions we can simply derive the matrix $d$ and calculate the average distance between two plots.
+
+\begin{align*}
+d = \left( \begin{array}{ccc}
+ 0 &  1 & 2 \\
+-1 &  0 & 1 \\
+-2 & -1 & 0
+\end{array} \right)
+\end{align*}
+
+\begin{align*}
+\mu_i = \frac{1}{n} \sum\limits_l d_{il} = \frac{1}{3} \left( d_{i1} + d_{i2} + d_{i3} \right) = \frac{1}{3} \left( 0 + 1 + 2 \right) = 1
 \end{align*}
 
 
 
+\subsection{Thurstone Scaling}
+
+\subsection{Weak Stochastic Transitivity}
+
+\subsection{Strong Stochastic Transitivity}
+
+\subsection{Restle's Choice Model}
 
 
 
