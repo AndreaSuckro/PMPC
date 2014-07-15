@@ -27,23 +27,50 @@ Galton (1907) went to a fair and observed a simple guessing game. There was a bu
 \end{tikzpicture} 
 
 In their paper, Griffiths \& Tenenbaum (2006) did a "simple" Bayesian inference with "real-world" priors and only one datapoint. An example for this is the distribution of age of death of men in Germany.
-\begin{minipage}[b][3cm][t]{3.5cm}
+
+\begin{minipage}[b][3.5cm][t]{7.1cm}
 \begin{tikzpicture}
-\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:10, y post scale=0.5, ticks=none ]  
-            {gauss(7,1)} \closedcycle;
-    \addplot+[domain=8:10, samples=100, pattern=flexible hatch, mark=none
-            hatch distance=5pt, hatch thickness=0.5pt,
-            draw=green, pattern color=green!40, area legend, yshift=0.1cm]
-            {gauss(7,1)} \closedcycle;        \addplot[color=red, samples=50, smooth, yshift=0.1cm] {gauss(7,1)};
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:10, y post scale=0.5, ticks=none]  
+         \addplot[color=white, samples=50, smooth, yshift=0.1cm] {gauss(7,1)};
+         \addplot[domain=2:10, color=red, samples=50, smooth, yshift=0.1cm] {gauss(7,1)};
+        \draw[green] (axis cs: 7.7,0) -- (axis cs:7.7,0.6);
 \end{axis}
 \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:10, y post scale=0.5, ticks=none, scale=0.2 ]  
 \addplot[color=red, samples=50, smooth, yshift=0.1cm] {gauss(0,1)};
 \end{axis}
-\node [above] at (1.4,-0.5) {1074};
-\node [above] at (4.9,-0.5) {1293};
-\node [above] at (3.1,-0.5) {1207};
-\node [below] at (3.1,-0.4) {median};
+\node [above] at (4.4,-0.5) {80};
+\node [above] at (4.9,-0.5) {85};
+\node [above] at (6,-0.5) {100};
+\node [above] at (3,-0.5) {60};
+\node [above] at (0,-0.5) {0};
 \end{tikzpicture}
 \end{minipage}
+\begin{minipage}[b][4cm][t]{9.1cm}
+\bigskip
+You meet someone who is 25 years old. When will he die? In this case you have to go with your prior, which then is your posterior.
+\\
+\\
+You meet someone who is 85 years old. When will he die? Every age below 85 is now not possible any more, you have to update your prior.
+\end{minipage}
+
+When X is the total value and Y the observed value, P(X) is our prior. It follows that:
+\begin{align*}
+& P(Y=y|X=x) & = \frac{1}{X}\cdot I(y\leq x) & & \rightarrow I~is~1~if~y\leq x ; 0~otherwise\\
+& P(X=x|Y=y) & = \frac{P(Y=y|X=x) \cdot P(X=x)}{P(Y=y)} & &\\
+& & =  \frac{\frac{1}{X}I(y\leq x)p(X=x)}{\int_{-\infty}^{\infty}\frac{1}{X}I(y\leq x)p(X=x)dx} & &\\
+& & =  \frac{\frac{1}{X}I(y\leq x)p(X=x)}{\int_{y}^{\infty}\frac{p(X=x)}{X}dx} & &
+\end{align*}
+
+pareto distribution picture
+\begin{tikzpicture}
+\end{tikzpicture}
+\begin{align*}
+p(X \leq x) = \begin{cases} 1 - \frac{\beta}{x}^{\alpha} &\mbox{if } x \geq \beta \\ 
+0 & \mbox{otherwise} \end{cases} & & \beta > 0 , \alpha > 0\\
+p(X = x) = \begin{cases} \alpha \beta^{\alpha} x^{-\alpha -1} &\mbox{if } x \geq \beta \\ 
+0 & \mbox{otherwise} \end{cases} 
+\end{align*}
+
+$\beta \rightarrow 0$ median of the posterior: y 2$^{\frac{1}{\alpha +1}} = \hat{x}$
 
 \end{document}
