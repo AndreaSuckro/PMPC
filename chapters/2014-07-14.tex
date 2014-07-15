@@ -1,0 +1,49 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
+\section[Headline?!?!]{Headline \iftoggle{showdates}{\small{\textit{2014-07-14}}}{}}
+Galton (1907) went to a fair and observed a simple guessing game. There was a bull displayed and you could get a price if you guessed the right weight of it. Galton had a look at all guesses and found, that the knowledge of the mass could display the real value for the bull's weight (1198 lbs) pretty good as can be seen in the following graph:
+
+\begin{tikzpicture}
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=-4:4, y post scale=0.5, ticks=none ]
+%\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, axis x line*=bottom, axis y line*=left, ticks=none, enlargelimits=upper, name=gauss, y post scale=0.5]
+  \addplot+[domain=-4:-2.2, samples=100, pattern=flexible hatch, mark=none
+            hatch distance=5pt, hatch thickness=0.5pt,
+            draw=green, pattern color=green!40, area legend]
+            {gauss(0,1)} \closedcycle;
+    \addplot+[domain=2.2:4, samples=100, pattern=flexible hatch, mark=none
+            hatch distance=5pt, hatch thickness=0.5pt,
+            draw=green, pattern color=green!40, area legend]
+            {gauss(0,1)} \closedcycle;
+    \addplot[color=red, samples=50, smooth] {gauss(0,1)};
+    \draw[green] (axis cs: 0,0) -- (axis cs: 0,2);
+\end{axis}
+\node [above] at (1.35,0.25) {$5\%$};
+\node [above] at (5,0.25) {$95\%$};
+\node [above] at (1.4,-0.5) {1074};
+\node [above] at (4.9,-0.5) {1293};
+\node [above] at (3.1,-0.5) {1207};
+\node [below] at (3.1,-0.4) {median};
+\end{tikzpicture} 
+
+In their paper, Griffiths \& Tenenbaum (2006) did a "simple" Bayesian inference with "real-world" priors and only one datapoint. An example for this is the distribution of age of death of men in Germany.
+\begin{minipage}[b][3cm][t]{3.5cm}
+\begin{tikzpicture}
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:10, y post scale=0.5, ticks=none ]  
+            {gauss(7,1)} \closedcycle;
+    \addplot+[domain=8:10, samples=100, pattern=flexible hatch, mark=none
+            hatch distance=5pt, hatch thickness=0.5pt,
+            draw=green, pattern color=green!40, area legend, yshift=0.1cm]
+            {gauss(7,1)} \closedcycle;        \addplot[color=red, samples=50, smooth, yshift=0.1cm] {gauss(7,1)};
+\end{axis}
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:10, y post scale=0.5, ticks=none, scale=0.2 ]  
+\addplot[color=red, samples=50, smooth, yshift=0.1cm] {gauss(0,1)};
+\end{axis}
+\node [above] at (1.4,-0.5) {1074};
+\node [above] at (4.9,-0.5) {1293};
+\node [above] at (3.1,-0.5) {1207};
+\node [below] at (3.1,-0.4) {median};
+\end{tikzpicture}
+\end{minipage}
+
+\end{document}
