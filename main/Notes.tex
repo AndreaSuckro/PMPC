@@ -50,6 +50,9 @@
 % Gauss(\mu, \sigma)
 % error function, numerical approximation of the gauss integration
 \pgfmathdeclarefunction{Gauss}{2}{\pgfmathparse{( 1 /(1 + exp(-0.07056*((x-#1)/#2)^3 - 1.5976*(x-#1)/#2) )}}
+% poisson(\lambda)
+% poisson distribution for lambda. Use ``samples at{1,...,n}''
+\pgfmathdeclarefunction{poisson}{1}{\pgfmathparse{#1^x * exp(-#1) / x!}}
 
 % ROC(q)
 % example ROC curves, approximations by distance metrics
@@ -60,18 +63,6 @@
 \pgfmathdeclarefunction{betaDist}{2}{\pgfmathparse{( x^(#1-1)*(1-x)^(#2-1) ) / ( ( (#1-1)! * (#2-1)! ) / ( ( #1 + #2 - 1 )! ) )}}
 \edef\tmp{\pgfmathresult}
 \pgfkeys{/pgf/fpu=false}
-
-% Create diagonal seperated cell
-%\newcommand\diag[4]{%
-  %\multicolumn{1}{p{#2}}{\hskip-\tabcolsep
-  %$\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
-  %\path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
-  %\node[minimum width={#2+2\tabcolsep-\pgflinewidth},
-        %minimum  height=\baselineskip+\extrarowheight-\pgflinewidth] (box) {};
-  %\draw[line cap=round] (box.north west) -- (box.south east);
-  %\node[anchor=south west] at (box.south west) {#3};
-  %\node[anchor=north east] at (box.north east) {#4};
- %\end{tikzpicture}}$\hskip-\tabcolsep}}
 
 
 % START fill area below graph
@@ -303,11 +294,15 @@
   \clearpage
 }{}
 
-% Choice Models I
+% ??
 %\subfile{../chapters/2014-06-27.tex}
 %\clearpage
 
-% Practice: Choice Models I
+% Choice Models I(?)
+\subfile{../chapters/2014-07-04.tex}
+\clearpage
+
+% Practice: Choice Models I(?)
 \iftoggle{exercises}{
   \includepdf[pages={-},
       addtotoc={1,section,1,Tutorial Sheet 8: Choice Models I,exsheet8},
@@ -317,40 +312,22 @@
       ]{../exercises/Exercises08.pdf}
 }{}
 \iftoggle{solutions}{
-%  \subfile{../chapters/2014-07-07.tex}
-%  \clearpage
-}{}
-
-% Choice Models II
-%\subfile{../chapters/2014-07-04.tex}
-%\clearpage
-
-% Practice: Choice Models II
-\iftoggle{exercises}{
-  %\includepdf[pages={-},
-      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
-      %viewport=100 50 550 700,
-      %scale=0.75,
-      %pagecommand=\thispagestyle{plain}
-      %]{../exercises/Exercises0.pdf}
-}{}
-\iftoggle{solutions}{
-%  \subfile{../chapters/2014-07-14.tex}
+%  \subfile{../chapters/2014-07-11.tex}
 %  \clearpage
 }{}
 
 % Everyday Predictions
-%\subfile{../chapters/2014-07-11.tex}
+%\subfile{../chapters/2014-07-14.tex}
 %\clearpage
 
 % Practice: Everyday Predictions
 \iftoggle{exercises}{
-  %\includepdf[pages={-},
-      %addtotoc={1,section,1,Tutorial Sheet ,exsheet},
-      %viewport=100 50 550 700,
-      %scale=0.75,
-      %pagecommand=\thispagestyle{plain}
-      %]{../exercises/Exercises0.pdf}
+  \includepdf[pages={-},
+      addtotoc={1,section,1,Tutorial Sheet 9: Everyday Predictions,exsheet9},
+      viewport=100 50 550 700,
+      scale=0.75,
+      pagecommand=\thispagestyle{plain}
+      ]{../exercises/Exercises09.pdf}
 }{}
 \iftoggle{solutions}{
 %  \subfile{../chapters/2014-07-18.tex}
@@ -358,10 +335,28 @@
 }{}
 
 % Q&A
-%\subfile{../chapters/2014-07-18.tex}
+%\subfile{../chapters/2014-07-18b.tex}
 %\clearpage
+
+% final exam
+\iftoggle{exercises}{
+  %\pagestyle{plain}
+  %\subfile{../exercises/final.tex}
+  %\clearpage
+  %\pagestyle{fancy}
+}{}
+\iftoggle{solutions}{
+  %\subfile{../chapters/2014-07-25.tex}
+  %\clearpage
+}{}
+
 
 \clearpage
 \printindex
+
+% the end of the day
+%\clearpage
+%\subfile{../chapters/endoftheday.tex}
+
 
 \end{document}

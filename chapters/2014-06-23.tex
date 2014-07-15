@@ -94,13 +94,15 @@ As we want to get the ROC we have to look at the Hits and the False Alarms which
 
 \begin{align*}
   P\left(H\right) &= P\left(Response=old|Stimulus=old\right)\\
-  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \underbrace{P\left(M=old|S=old\right)}_{P_r} + \underbrace{P\left(R=old|M=new\right)}_q \underbrace{P\left(M=new|S=old\right)}_{1-P_r}\\
-  &= \underbrace{P\left(M=old|S=old\right)}_{P_r} + q\cdot\left(1-P_r\right)\\
+  &= \underbrace{P\left(R=old|Memory=old\right)}_{1} \underbrace{P\left(M=old|S=old\right)}_{P_r} \\
+  &+ \underbrace{P\left(R=old|M=new\right)}_q \underbrace{P\left(M=new|S=old\right)}_{1-P_r}      \\
+  &= \underbrace{P\left(M=old|S=old\right)}_{P_r} + q\cdot\left(1-P_r\right)
 \end{align*}
 With q as the probability with which we say we remember a Stimulus even though we don't.
 \begin{align*}
   P\left(FA\right)&= P\left(R=old|S=new\right)\\
-  &= \underbrace{P\left(R=old|M=old\right)}_{1} \cdot \underbrace{P\left(M=old|S=new\right)}_{0} + \underbrace{P\left(R=old|M=new\right)}_{q} \cdot \underbrace{P\left(M=new|S=new\right)}_{1}\\
+  &= \underbrace{P\left(R=old|M=old\right)}_{1} \cdot \underbrace{P\left(M=old|S=new\right)}_{0} \\
+  &+ \underbrace{P\left(R=old|M=new\right)}_{q} \cdot \underbrace{P\left(M=new|S=new\right)}_{1} \\
   &= q
 \end{align*}
 

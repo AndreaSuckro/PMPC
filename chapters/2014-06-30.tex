@@ -10,6 +10,43 @@ We think about neurons as Poisson processes.
 
 If we just look at the spikes, a neuron's firing behavior looks roughly like figure \ref{fig:2014-06-30_firing_neuron_data}. To model it, we discretize over time and say for each cell whether the neuron fires or not (figure \ref{fig:2014-06-30_firing_neuron_model}) and can then calculate the probability.
 
+\begin{figure}[htb]
+  \centering
+  \begin{subfigure}{.45\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[domain=0:2, ymin=0, ymax=0.1, no markers, xtick={0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0}, axis x line=bottom, axis y line=none, enlargelimits=upper, y post scale=0.3, xlabel={time in s}]
+        \foreach \x in {0,0.1,0.2,0.5,0.55,0.8,0.85,0.9,0.95,1.25,1.35,1.75,1.78,1.79}
+          \addplot[black] coordinates{(\x,0) (\x,1)};
+        \addplot[white] coordinates{(2,0) (2,1)};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{``Data'' for firing neurons: each line stands for a firing.}
+    \label{fig:2014-06-30_firing_neuron_data}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[domain=0:2, ymin=0, ymax=0.1, no markers, xtick={0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0}, axis x line=bottom,axis y line=none, enlargelimits=upper, y post scale=0.3, xlabel={time in s}]
+        \foreach \x in {0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0}
+          \addplot[black] coordinates{(\x,0) (\x,1)};
+        \node[above,green] at (axis cs:0.1,0) {$\checkmark$};
+        \node[above,green] at (axis cs:0.3,0) {$\checkmark$};
+        \node[above,green] at (axis cs:0.5,0) {$\checkmark$};
+        \node[above,red]   at (axis cs:0.7,0) {$\times$};
+        \node[above,green] at (axis cs:0.9,0) {$\checkmark$};
+        \node[above,red]   at (axis cs:1.1,0) {$\times$};
+        \node[above,green] at (axis cs:1.3,0) {$\checkmark$};
+        \node[above,red]   at (axis cs:1.5,0) {$\times$};
+        \node[above,green] at (axis cs:1.7,0) {$\checkmark$};
+        \node[above,red]   at (axis cs:1.9,0) {$\times$};
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Model for firing neurons: Bins to show whether a neuron fired during that time or not.}
+    \label{fig:2014-06-30_firing_neuron_model}
+  \end{subfigure}
+  \caption{Example data for firing neurons and the respective model}
+  \label{fig:2014-06-30_firing_neurons}
+\end{figure}
+
 We can then find the distribution over time for the neuron by taking an interval of time and counting the number of spikes. This will result in the Poisson distribution: $P(N=n|r,t)=\frac{(rt)^n}{n!}e^{rt}$.
 
 Assuming we have 10 spikes in a second and plug this into the Poisson distribution, we should intuitively end up with 10 Hz.
@@ -48,26 +85,55 @@ var(N) &= E(N^2)-E(N)^2 \\
 This variance corresponds with the Weber-Fechner-law (for details see \href{http://en.wikipedia.org/wiki/Weber-Fechner_law}{Wikipedia}): If the signal increases, also the noise (i.e. the variance) increases.
 
 \subsection*{Exercise 2}
-% distribution here
+\begin{figure}
+  \begin{tikzpicture}
+    \begin{axis}[enlargelimits=false, axis x line=bottom, axis y line=left, legend style={at={(1,0.75)},anchor=east}]
+      \addplot[red, samples at={0,...,10}]   {poisson(100*80/1000)};
+        \addlegendentry{$80 Hz$}
+      \addplot[green, samples at={0,...,10}] {poisson(2)};
+        \addlegendentry{$20 Hz$}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{The poisson distributions for $20 Hz$ and $80 Hz$.}
+  \label{fig:2014-06-30_ex2distri}
+\end{figure}
+
 \begin{align*}
 \frac{P(N=n|r=80 Hz, t = 100 ms)}{P(N=n|r=20 Hz, t = 100 ms)} &= \frac{ \frac{8^n}{n!}e^{-8} }{ \frac{2^n}{n!} e^{-2} } = \left(\frac{8}{2}\right)^n e^{-8+2}
 \end{align*}
 
-For the intersection we set $\left(\frac{8}{2}\right)^n e^{-8+2} = 1$.
+For calculating the intersection we set $\left(\frac{8}{2}\right)^n e^{-8+2} = 1$.
 \begin{align*}
 \left(\frac{8}{2}\right)^n e^{-8+2} &= 1\\
-4^n &= e^6 \\
-n \log 4 &= 6 \\
-n &\approx 4.3
+                                4^n &= e^6 \\
+                           n \log 4 &= 6 \\
+                                  n &\approx 4.3
 \end{align*}
 
 \subsection*{Exercise 3}
-
+\emph{We don't have this solution. If you have it, feel free to contact us so we can add it.}
 
 \subsection*{Exercise 4}
+We are given
+$\chi_X(\omega) = E(e^{i\omega X})= \int\limits_{-\infty}^\infty f_X(x)e^{i\omega x} dx$, which is the Fourier transformation $\mathcal{F}(f_X)(\omega)$.
 
+\sidenote{$*$ denotes a convolution.}
+We assume two independent random variables $X, Y$ with $Z=X+Y$ and the functions $f_X, f_Y,$ and $f_Z$, respectively and derive the convolution $f_Z(z)$.
+\begin{align*}
+f_Z(z) &= \int\limits_{-\infty}^\infty f_X(x)f_Y(\underbrace{z-x}_{!})dx \\
+       &= \int\limits_{-\infty}^\infty f_X(x)f_X(\underbrace{z-y}_{!})dy \\
+       &= f_X(z) * f_Y(z)
+\end{align*}
+
+We can use this information to derive the characteristic function $\chi_Z(\omega)$.
+\begin{align*}
+\chi_Z(\omega) &= \chi_{X+Y}(\omega) = E(e^{i\omega(X+Y)}) \\
+               &= E(e^{i\omega X}e^{i\omega Y}) =E(e^{i\omega X})E(e^{i\omega Y})\\
+               &=\chi_X(\omega) + \chi_Y(\omega).
+\end{align*}
 
 \subsection*{Exercise 5}
+\emph{This exercise was not discussed in class.}
 
 
 \end{document}
