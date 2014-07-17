@@ -41,6 +41,7 @@
 \usepackage{tikz}              % diagrams
 \usetikzlibrary{trees}         % tree diagrams
 \usetikzlibrary{patterns}      % patterns to fill areas below graphs
+\usetikzlibrary{automata,positioning}
 
 \usepackage{pgfplots}          % complex functions
 \pgfplotsset{compat=1.8}
@@ -298,14 +299,18 @@
 %\subfile{../chapters/2014-06-27.tex}
 %\clearpage
 
-% Choice Models I(?)
+% Choice Models I
 \subfile{../chapters/2014-07-04.tex}
 \clearpage
 
-% Practice: Choice Models I(?)
+% Choice Models II
+\subfile{../chapters/2014-07-07.tex}
+\clearpage
+
+% Practice: Choice Models I+II
 \iftoggle{exercises}{
   \includepdf[pages={-},
-      addtotoc={1,section,1,Tutorial Sheet 8: Choice Models I,exsheet8},
+      addtotoc={1,section,1,Tutorial Sheet 8: Choice Models I+II,exsheet8},
       viewport=100 50 550 700,
       scale=0.75,
       pagecommand=\thispagestyle{plain}
@@ -317,8 +322,8 @@
 }{}
 
 % Everyday Predictions
-%\subfile{../chapters/2014-07-14.tex}
-%\clearpage
+\subfile{../chapters/2014-07-14.tex}
+\clearpage
 
 % Practice: Everyday Predictions
 \iftoggle{exercises}{

@@ -1,0 +1,39 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
+\section[Choice Models II]{Choice Models II\iftoggle{showdates}{\small{\textit{2014-07-07}}}{}}\index{Choice models}
+
+\subsection{Thurstone Scaling}
+\emph{to be added...}
+
+
+
+\subsection{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}
+Assume a situation of three chess players $A, B,$ and $C$. $A$ more often beats $B$ than losing against him, $B$ more often beats $C$ but $C$ also more often beats $A$ than losing against her. This scenario is visualized in figure \ref{fig:2014-07-04-chesscycle}. If we try to find Gaussian distributions for each player's utility it gets clear quite quickly, that we will fail, since we don't know ``where'' to put the $\mu$ for the last competitor: left or right of the other two?
+
+\begin{figure}[hb]
+  \centering
+  \begin{tikzpicture}
+    \node[state] (A) {$A$};
+    \node[state] (B) [right=1.5cm of A] {$B$};
+    \node[state] (C) [below right=.5cm and .65cm of A] {$C$};
+    \path (A) edge [bend left,->] node {} (B)
+          (B) edge [bend left,->] node {} (C)
+          (C) edge [bend left,->] node {} (A);
+  \end{tikzpicture}
+  \caption{Three chessplayers dominate each other in a cyclic way.}
+  \label{fig:2014-07-04-chesscycle}
+\end{figure}
+
+It seems our measurement model is not appropriate for this kind of situation. But how can we decide whether our model is appropriate or not? 
+
+We can check the \emph{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}. We define it as follows:
+\begin{align*}
+add this
+\end{align*}
+
+\subsection{Strong Stochastic Transitivity}\index{Strong Stochastic Transitivity}
+
+\subsection{Restle's Choice Model}
+
+\end{document}

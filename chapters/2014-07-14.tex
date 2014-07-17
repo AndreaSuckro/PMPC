@@ -1,7 +1,7 @@
 \documentclass[../main/Notes.tex]{subfiles}
 \begin{document}
 
-\section[Headline?!?!]{Headline \iftoggle{showdates}{\small{\textit{2014-07-14}}}{}}
+\section[Everyday Predictions]{Everyday Predictions \iftoggle{showdates}{\small{\textit{2014-07-14}}}{}}
 Galton (1907) went to a fair and observed a simple guessing game. There was a bull displayed and you could get a price if you guessed the right weight of it. Galton had a look at all guesses and found, that the knowledge of the mass could display the real value for the bull's weight (1198 lbs) pretty good as can be seen in the following graph:
 
 \begin{tikzpicture}
@@ -61,16 +61,16 @@ When X is the total value and Y the observed value, P(X) is our prior. It follow
 & & =  \frac{\frac{1}{X}I(y\leq x)p(X=x)}{\int_{y}^{\infty}\frac{p(X=x)}{X}dx} & &
 \end{align*}
 
-pareto distribution picture
-\begin{tikzpicture}
-\end{tikzpicture}
-\begin{align*}
-p(X \leq x) = \begin{cases} 1 - \frac{\beta}{x}^{\alpha} &\mbox{if } x \geq \beta \\ 
-0 & \mbox{otherwise} \end{cases} & & \beta > 0 , \alpha > 0\\
-p(X = x) = \begin{cases} \alpha \beta^{\alpha} x^{-\alpha -1} &\mbox{if } x \geq \beta \\ 
-0 & \mbox{otherwise} \end{cases} 
-\end{align*}
-
-$\beta \rightarrow 0$ median of the posterior: y 2$^{\frac{1}{\alpha +1}} = \hat{x}$
+%pareto distribution picture
+%\begin{tikzpicture}
+%\end{tikzpicture}
+%\begin{align*}
+%p(X \leq x) = \begin{cases} 1 - \frac{\beta}{x}^{\alpha} &\mbox{if } x \geq \beta \\ 
+%0 & \mbox{otherwise} \end{cases} & & \beta > 0 , \alpha > 0\\
+%p(X = x) = \begin{cases} \alpha \beta^{\alpha} x^{-\alpha -1} &\mbox{if } x \geq \beta \\ 
+%0 & \mbox{otherwise} \end{cases} 
+%\end{align*}
+%
+%$\beta \rightarrow 0$ median of the posterior: y 2$^{\frac{1}{\alpha +1}} = \hat{x}$
 
 \end{document}
