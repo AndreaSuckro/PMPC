@@ -88,6 +88,17 @@
 % END fill area below graph
 
 \usepackage{mcode} % matlab source
+\newcommand{\matlabcode}[1]{
+%  \smallskip
+  
+  \rule{.8\textwidth}{0.2pt}
+  \vspace{-1.5em}
+  \lstinputlisting{#1}
+  \vspace{-1em}
+  \rule{.8\textwidth}{0.2pt}
+  
+  \smallskip
+}
 
 \usepackage{eurosym}           % euro symbol
 \DeclareRobustCommand{\officialeuro}{
@@ -132,22 +143,20 @@
 % title, no headings etc.
 \pagestyle{empty}
 \subfile{../chapters/titlepage.tex}
-\clearpage
+\cleardoublepage
+
+% maybe one day we want to include a preface
+%\subfile{../chapters/preface.tex}
+%\cleardoublepage
 
 % bookmark for table of contents
 \belowpdfbookmark{\contentsname}{Contents}
 % table of contents and new page
 \tableofcontents
-\clearpage
+\cleardoublepage
 
 % from now on headings etc.
 \pagestyle{fancy}
-
-
-% maybe one day we want to include a preface
-%\subfile{../chapters/preface.tex}
-%\clearpage
-
 
 % Probability Refresher I
 \subfile{../chapters/2014-04-22.tex}
@@ -317,8 +326,8 @@
       ]{../exercises/Exercises08.pdf}
 }{}
 \iftoggle{solutions}{
-%  \subfile{../chapters/2014-07-11.tex}
-%  \clearpage
+  \subfile{../chapters/2014-07-11.tex}
+  \clearpage
 }{}
 
 % Everyday Predictions
@@ -355,13 +364,14 @@
   %\clearpage
 }{}
 
+\subfile{../chapters/appendix.tex}
 
 \clearpage
 \printindex
 
 % the end of the day
-%\clearpage
-%\subfile{../chapters/endoftheday.tex}
+\cleardoublepage
+\subfile{../chapters/endoftheday.tex}
 
 
 \end{document}
