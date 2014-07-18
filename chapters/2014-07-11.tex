@@ -1,0 +1,43 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
+\section[Solution 8: Choice Models I+II]{Solution 8: Choice Models I+II \iftoggle{showdates}{\small{\textit{2014-07-11}}}{}}\index{Choice models}
+
+\subsection*{Exercise 1}\index{Strong Stochastic Transitivity}
+\texttt{MATLAB} code for exercise 1:
+\matlabcode{../data/sheet8_pce.m}
+
+This code simply initializes the three $\mu$ and creates the distance matrix between them. Then it simply calculates the probability for each event (i.e. how high is the probability that a subject chooses $1$ over $2$?). The probability for the case that a subject chooses 2 over 1, 3 over 2, and 1 over 3 is then just the multiplication of these three individual events: $p = P(2,1) \cdot P(3,2) \cdot P(1,3) \approx 0.07$.
+
+\bigskip
+
+So now we know the probability for one single subject. How is the probability for $n$ subjects?
+
+To answer that question we continue our script from before and add a simulation for the case that 2 is chosen over 1, 3 is chosen over 2, and 1 is chosen over three, to see how often the strong stochastic transitivity gets violated.
+
+\bigskip
+
+\textbf{Reminder:} Strong Stochastic Transitivity
+\begin{align*}
+\text{\texttt{if }}   & p_{jk} \geq 0.5\ \&\ p_{ij} \geq 0.5 \\
+\text{\texttt{then }} & p_{ik} \geq \max{\left(p_{jk},p_{ij}\right)}
+\end{align*}
+
+The following \texttt{MATLAB} code simulates the choices with the probabilities taken from the code above (Matrix $P$) for $m$ subjects and counts the violations of strong stochastic transitivity. In the end it just divides the number of violations by the number of simulated trials to come up with a probability.
+\matlabcode{../data/sheet8_strong_stochastic_transitivity.m}
+
+\sidenote{Not directly covered in the lecture.}
+We can also invert this process (at least parts of it). Assuming we have the $q$ values for a matrix (e.g. by asking random people whether they prefer pizza tonno over pizza salami, pizza tonno over pizza margarita, etc.) we can calculate the $\mu$s, i.e. the utilities for those choices. However, we are not able to find the x-shift, so if we have two $\mu$s, e.g. $\mu_1 = 1.5$ and $\mu_2 = 2$, the result of our calculations will turn out to be $\mu_1=0$ and $\mu_2=0.5$. An example \texttt{MATLAB} code can be found in the appendix on page \pageref{app:matlabcode_ex8_1}\label{back:matlabcode_ex8_1}.
+
+
+
+\subsection*{Exercises 2-4}
+The commented \texttt{MATLAB} code which was provided as a solution can be found in the appendix on page \pageref{app:matlabcode_ex8_2_show}\label{back:matlabcode_ex8_2_show}.
+
+It employs the functions \texttt{thurstone} (page \pageref{app:matlabcode_ex8_2_thurstone}\label{back:matlabcode_ex8_2_thurstone}) and \texttt{restle} (page \pageref{app:matlabcode_ex8_2_restle}\label{back:matlabcode_ex8_2_restle}) which are solutions to the exercises two to four.
+
+The \texttt{choiceplot} function (page \pageref{app:matlabcode_ex8_2_choiceplot}\label{back:matlabcode_ex8_2_choiceplot}) makes a plot which shows how good a model fits the data. The more data points are inside the red borders, the better the data is fitted by the model.
+
+Please refer to the respective pages in the appendix for further information.
+
+\end{document}
