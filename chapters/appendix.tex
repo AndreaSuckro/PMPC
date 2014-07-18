@@ -1,0 +1,44 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
+
+\pagenumbering{Roman}
+\section{Appendix}
+
+
+\iftoggle{exercises}{ % begin toggle exercises
+\subsection{MATLAB codes}
+
+\subsubsection*{Tutorial Sheet 8, Exercise 1: Find $\mu$}\label{app:matlabcode_ex8_1}
+This code is an example for the claim on page \pageref{back:matlabcode_ex8_1}. It calculates the $\mu$s from given $q$s in a paired-comparison experiment.
+\matlabcode{../data/sheet8_getmu.m}
+
+
+\subsubsection*{Tutorial Sheet 8, Exercises 2-4: Choice Models}\label{app:matlabcode_ex8_2_show}
+This code is the solution for tutorial sheet 8, exercises 2-5. It also demonstrates with a plot, how well the two compared models fit the data. The code was referenced on page \pageref{back:matlabcode_ex8_2_show}.
+
+To use it you need the files \texttt{thurstone.m} (page \pageref{app:matlabcode_ex8_2_thurstone}), \texttt{restle.m} (page \pageref{app:matlabcode_ex8_2_restle}), and \texttt{choiceplot.m} (page \pageref{app:matlabcode_ex8_2_choiceplot}) as well.
+\matlabcode{../data/show.m}
+
+
+\subsubsection*{Tutorial Sheet 8, Exercises 2-4: Thurstone Scaling}\label{app:matlabcode_ex8_2_thurstone}
+This function implements Thurstone's choice model, \emph{Thurstone scaling}. Used on page \pageref{back:matlabcode_ex8_2_thurstone}.
+\matlabcode{../data/thurstone.m}
+
+
+\subsubsection*{Tutorial Sheet 8, Exercises 2-4: Restle's Choice Model}\label{app:matlabcode_ex8_2_restle}
+This function implements Restle's choice model. Used on page \pageref{back:matlabcode_ex8_2_restle}.
+\matlabcode{../data/restle.m}
+
+
+\subsubsection*{Tutorial Sheet 8, Exercises 2-4: Restle's Choice Model}\label{app:matlabcode_ex8_2_choiceplot}
+This function implements Restle's choice model. Used on page \pageref{back:matlabcode_ex8_2_choiceplot}.
+\matlabcode{../data/restle.m}
+
+} % end toggle exercises
+
+
+\subsection{Recommended Readings}
+\emph{will be added after the exam... ;-) }
+
+\end{document}
