@@ -93,13 +93,13 @@ Another model that does not assume one dimensional scaling for choices was propo
 	\item Paris
   \item Paris + an apple
 \end{itemize}
-If we are indifferent between Paris and Rome ($p_{21} = p_{12} = \frac{1}{2}$)- what is $p_{32}$? Actually the one extra apple should not change our basic decision between Paris and Rome, so $p_{32} \approx \frac{1}{2}$, but strong stochastic transitivity would predict $p_{32} = 1$! So if our previous model would be right every travel agent could simply persuade you to book any vacation by simply having an apple at hand.
+If we are indifferent between Paris and Rome ($p_{21} = p_{12} = \frac{1}{2}$) -- what is $p_{32}$? Actually the one extra apple should not change our basic decision between Paris and Rome, so $p_{32} \approx \frac{1}{2}$, but strong stochastic transitivity would predict $p_{32} = 1$! So if our previous model would be right every travel agent could simply persuade you to book any vacation by simply having an apple at hand.
 
-Restle proposes a binary feature vector that describes each option. Our vectors look like $(Paris,Rome,Apple)$:
+Restle proposes a binary feature vector that describes each option. Our vectors look like $(Paris, Rome, Apple)$:
 \begin{align*}
-f_1 = (0,1,0)\\
-f_2 = (1,0,0)\\
-f_3 = (1,0,1)
+f_1 = (0, 1, 0)\\
+f_2 = (1, 0, 0)\\
+f_3 = (1, 0, 1)
 \end{align*}
 Each feature has a utility $\mu_1,\mu_2,\mu_3$ and the probability to choose one over the other is dependent on the sum of all the features one choice has compared to the other. In the following formula $m$ is the dimension of the feature vector.
 \begin{align*}
