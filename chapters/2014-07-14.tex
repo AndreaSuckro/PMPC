@@ -4,31 +4,37 @@
 \section[Everyday Predictions]{Everyday Predictions \iftoggle{showdates}{\small{\textit{2014-07-14}}}{}}
 Galton (1907) went to a fair and observed a simple guessing game. There was a bull displayed and you could get a price if you guessed the right weight of it. Galton had a look at all guesses and found, that the knowledge of the mass could display the real value for the bull's weight (1198 lbs) pretty good as can be seen in the following graph:
 
-\begin{tikzpicture}
-\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=-4:4, y post scale=0.5, ticks=none ]
-%\begin{axis}[every axis plot post/.append style={mark=none, domain=-4:4, samples=50, smooth}, axis x line*=bottom, axis y line*=left, ticks=none, enlargelimits=upper, name=gauss, y post scale=0.5]
-  \addplot+[domain=-4:-2.2, samples=100, pattern=flexible hatch, mark=none
-            hatch distance=5pt, hatch thickness=0.5pt,
-            draw=green, pattern color=green!40, area legend]
-            {gauss(0,1)} \closedcycle;
-    \addplot+[domain=2.2:4, samples=100, pattern=flexible hatch, mark=none
-            hatch distance=5pt, hatch thickness=0.5pt,
-            draw=green, pattern color=green!40, area legend]
-            {gauss(0,1)} \closedcycle;
-    \addplot[color=red, samples=50, smooth] {gauss(0,1)};
-    \draw[green] (axis cs: 0,0) -- (axis cs: 0,2);
-\end{axis}
-\node [above] at (1.35,0.25) {$5\%$};
-\node [above] at (5,0.25) {$95\%$};
-\node [above] at (1.4,-0.5) {1074};
-\node [above] at (4.9,-0.5) {1293};
-\node [above] at (3.1,-0.5) {1207};
-\node [below] at (3.1,-0.4) {median};
-\end{tikzpicture} 
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+  \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=-4:4, y post scale=0.5, ticks=none ]
+    \addplot+[domain=-4:-2.2, samples=100, pattern=flexible hatch, mark=none
+              hatch distance=5pt, hatch thickness=0.5pt,
+              draw=green, pattern color=green!40, area legend]
+              {gauss(0,1)} \closedcycle;
+      \addplot+[domain=2.2:4, samples=100, pattern=flexible hatch, mark=none
+              hatch distance=5pt, hatch thickness=0.5pt,
+              draw=green, pattern color=green!40, area legend]
+              {gauss(0,1)} \closedcycle;
+      \addplot[color=red, samples=50, smooth] {gauss(0,1)};
+      \draw[green] (axis cs: 0,0) -- (axis cs: 0,2);
+  \end{axis}
+  \node [above] at (1.35,0.25) {$5\%$};
+  \node [above] at (5,0.25) {$95\%$};
+  \node [above] at (1.4,-0.5) {1074};
+  \node [above] at (4.9,-0.5) {1293};
+  \node [above] at (3.1,-0.5) {1207};
+  \node [below] at (3.1,-0.4) {median};
+  \end{tikzpicture}
+  \caption{A popular fair game: guess the bull's weight. The \emph{wisdom of the crowds} leads to quite a good solution.}
+  \label{fig:2014-07-14_bullsweight}
+\end{figure}
 
-In their paper, Griffiths \& Tenenbaum (2006) did a ``simple'' Bayesian inference with ``real-world'' priors and only one datapoint. An example for this is the distribution of age of death of men in Germany.
+\sidenote{Another famous example: the German Tank Problem.}
+In 2006 Griffiths \& Tenenbaum did a ``simple'' Bayesian inference with ``real-world'' priors and only one data point. An example for this is the distribution of age of death of men in Germany.
 
-\begin{figure}
+\begin{figure}[h]
+  \centering
   \begin{tikzpicture}
     \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:10, y post scale=0.5, ticks=none]  
       \addplot[color=white, samples=50, smooth, yshift=0.1cm] {gauss(7,1)};
@@ -44,15 +50,15 @@ In their paper, Griffiths \& Tenenbaum (2006) did a ``simple'' Bayesian inferenc
     \node [above] at (3,-0.5) {60};
     \node [above] at (0,-0.5) {0};
   \end{tikzpicture}
-  \caption{fig:2014-07-14-deathofmen}
-  \label{}
+  \caption{Example distribution of men's age of death in Germany.}
+  \label{fig:2014-07-14-deathofmen}
 \end{figure}
 
-\bigskip
-You meet someone who is 25 years old. When will he die? In this case you have to go with your prior, which then is your posterior.
-
-
-You meet someone who is 85 years old. When will he die? Every age below 85 is now not possible any more, you have to update your prior.
+Assume the following two scenarios.
+\begin{itemize}
+	\item You meet someone who is 25 years old. When will he die? In this case you have to go with your prior, which then is your posterior.
+  \item You meet someone who is 85 years old. When will he die? Every age below 85 is now not possible any more, you have to update your prior.
+\end{itemize}
 
 When X is the total value and Y the observed value, P(X) is our prior. It follows that:
 \begin{align*}
@@ -61,17 +67,5 @@ When X is the total value and Y the observed value, P(X) is our prior. It follow
 & & =  \frac{\frac{1}{X}I(y\leq x)p(X=x)}{\int_{-\infty}^{\infty}\frac{1}{X}I(y\leq x)p(X=x)dx} & &\\
 & & =  \frac{\frac{1}{X}I(y\leq x)p(X=x)}{\int_{y}^{\infty}\frac{p(X=x)}{X}dx} & &
 \end{align*}
-
-%pareto distribution picture
-%\begin{tikzpicture}
-%\end{tikzpicture}
-%\begin{align*}
-%p(X \leq x) = \begin{cases} 1 - \frac{\beta}{x}^{\alpha} &\mbox{if } x \geq \beta \\ 
-%0 & \mbox{otherwise} \end{cases} & & \beta > 0 , \alpha > 0\\
-%p(X = x) = \begin{cases} \alpha \beta^{\alpha} x^{-\alpha -1} &\mbox{if } x \geq \beta \\ 
-%0 & \mbox{otherwise} \end{cases} 
-%\end{align*}
-%
-%$\beta \rightarrow 0$ median of the posterior: y 2$^{\frac{1}{\alpha +1}} = \hat{x}$
 
 \end{document}
