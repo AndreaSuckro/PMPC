@@ -1,17 +1,76 @@
 \documentclass[../main/Notes.tex]{subfiles}
 \begin{document}
 
-\section[Choice Models II]{Choice Models II\iftoggle{showdates}{\small{\textit{2014-07-07}}}{}}\index{Choice models}
+\section[Choice Models II]{Choice Models II \iftoggle{showdates}{\small{\textit{2014-07-07}}}{}}\index{Choice models}
 
-\subsection{Thurstone Scaling}
-\emph{to be added...}
+\subsection{Thurstone Scaling}\index{Thurstone Scaling}
+In 1920 Thurstone thought about measurements in Psychology. He conducted an experiment where he asked the subjects whether they think that one crime is more serious than another. Of course there exists no thing like a crime-seriousness scale, but by comparing all pairs of answers, Thurstone could construct one.
 
+\bigskip
+This technique is also used in the Elo rating (famous amongst chess players) or the similar X-Box's Trueskill. These scales are used to match players of equal skill. The problem is, that you lack enough data to apply our method (you will never have a nearly complete matrix of all X-Box players competing against each other in one specific game). Good thing: we do not need the whole matrix! For subsets of the matrix we can predict new matches based on common past enemies. And (considering the X-Box setting) the matchmake can also optimize their information by matching the right people together. But how do we know, that all this rating is formally correct?
 
+\subsection{A little bit of Measurement Theory} 
+Consider the problems of an IQ-Test. You lack a concrete scale for the intelligence of a person as well as a 'suitable' opponent for a match up. The solution: to match the subject against the test items.
 
-\subsection{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[enlargelimits=false,domain=0:11, mark=none, axis x line*=bottom, axis y line*=left, xlabel ={IQ}]
+      \addplot[red, samples=100]   {gauss(3,1)};
+        \addlegendentry{$Subject_1$}
+      \addplot[green, samples=100] {gauss(1.5,1)};
+        \addlegendentry{$Subject_2$}
+      \addplot[blue, samples=100]  {gauss(6,1)};
+        \addlegendentry{$Subject_3$}
+      \foreach \x in {1.25,2.9,8,6.5}
+          \addplot[black] coordinates{(\x,0) (\x,0.4)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Performance of 3 subjects in an IQ-Test.}
+  \label{fig:2014-07-07-iqTest}
+\end{figure}
+The test items mark thresholds similar to signal detection theory: you answer a question correctly and you are right of it, you fail you are left. Now it is possible to calculate simultaneously the position of the thresholds on the IQ-scale, as well as the IQ-scale itself (we do not discuss how to do this in detail). 
+
+\subsubsection{What are the underlying assumptions of our "`Measurement Model"'?}
+Obviously we assume some kind of ordering between the different items. There is a fancy word for this:
+
+\subsubsection{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}
+If $\mu_i \geq \mu_j,\mu_j \geq \mu_k$ then $\mu_i \geq \mu_k$. In this case transitivity holds. We can rewrite this:
+\begin{align*}
+&\underbrace{\mu_i-\mu_j \geq 0}_{d_{ij}},\underbrace{\mu_j-\mu_k \geq 0}_{d_{jk}} \Rightarrow \underbrace{\mu_i-\mu_k \geq 0}_{d_{ik}}\\
+&\Leftrightarrow p_{ij} \geq \frac{1}{2}, p_{jk} \geq \frac{1}{2} \Rightarrow p_{ik} \geq \frac{1}{2}
+\end{align*}
+So weak stochastic transitivity is about ordering of the different choices, but is less restrictive about the values. This constraint is exploited by:
+
+\subsubsection{Strong Stochastic Transitivity}\index{Strong Stochastic Transitivity}
+If we know that choice $i$ is preferred over choice $j$ and $j$ is chosen over $k$, the resulting choice probability of $i$ over $k$ can not be less, than the maximum of the single probabilities:
+\begin{align*}
+d_{ij} \geq 0, d_{jk} \geq 0 &\Rightarrow d_{ik} = d_{ij}+d_{jk} \geq max(d_{ij},d_{jk})\\
+p_{ij} \geq \frac{1}{2}, p_{jk} \geq \frac{1}{2} &\Rightarrow p_{ik} \geq max(p_{ij},p_{jk})
+\end{align*}
+Strong stochastic transitivity may be violated in the case where the variances of the different choices differ:
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[enlargelimits=false,domain=0:13, mark=none, axis x line*=bottom, axis y line*=left, xlabel ={IQ}]
+      \addplot[red, samples=100]   {gauss(1,1)};
+        \addlegendentry{$k$}
+      \addplot[green, samples=100] {gauss(5.5,1)};
+        \addlegendentry{$j$}
+      \addplot[blue, samples=100]  {gauss(8,3)};
+        \addlegendentry{$i$}
+      \end{axis}
+  \end{tikzpicture}
+  \caption{A problem for strong stochastic probability}
+  \label{fig:2014-07-07-strongStochTrans}
+\end{figure}
+
+In this case $p_{ij} = 0.6$, $p_{jk}=0.95$ but $p_{ik} = 0.85$ which is less than the maximum of the other probabilities $0.95$! But we can also think of different examples where the whole concept of transitivity is questionable.
+
+\subsubsection{Is transitivity reasonable?}
 Assume a situation of three chess players $A, B,$ and $C$. $A$ more often beats $B$ than losing against him, $B$ more often beats $C$ but $C$ also more often beats $A$ than losing against her. This scenario is visualized in figure \ref{fig:2014-07-04-chesscycle}. If we try to find Gaussian distributions for each player's utility it gets clear quite quickly, that we will fail, since we don't know ``where'' to put the $\mu$ for the last competitor: left or right of the other two?
 
-\begin{figure}[hb]
+\begin{figure}[ht]
   \centering
   \begin{tikzpicture}
     \node[state] (A) {$A$};
@@ -25,15 +84,37 @@ Assume a situation of three chess players $A, B,$ and $C$. $A$ more often beats 
   \label{fig:2014-07-04-chesscycle}
 \end{figure}
 
-It seems our measurement model is not appropriate for this kind of situation. But how can we decide whether our model is appropriate or not? 
+It seems our measurement model is not appropriate for this kind of situation. But how can we decide whether our model is appropriate or not?
 
-We can check the \emph{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}. We define it as follows:
+\subsubsection{Restle's Choice Model}
+Another model that does not assume one dimensional scaling for choices was proposed by Restle. In 1961 he showed with a gedankenexperiment why our previous model is maybe not that accurate and intuitive as it first sounded. Consider the following setting: we would like to go on holiday and have the following alternatives:
+\begin{itemize}
+  \item Rome
+	\item Paris
+  \item Paris + an apple
+\end{itemize}
+If we are indifferent between Paris and Rome ($p_{21} = p_{12} = \frac{1}{2}$)- what is $p_{32}$? Actually the one extra apple should not change our basic decision between Paris and Rome, so $p_{32} \approx \frac{1}{2}$, but strong stochastic transitivity would predict $p_{32} = 1$! So if our previous model would be right every travel agent could simply persuade you to book any vacation by simply having an apple at hand.
+
+Restle proposes a binary feature vector that describes each option. Our vectors look like $(Paris,Rome,Apple)$:
 \begin{align*}
-add this
+f_1 = (0,1,0)\\
+f_2 = (1,0,0)\\
+f_3 = (1,0,1)
 \end{align*}
-
-\subsection{Strong Stochastic Transitivity}\index{Strong Stochastic Transitivity}
-
-\subsection{Restle's Choice Model}
-
+Each feature has a utility $\mu_1,\mu_2,\mu_3$ and the probability to choose one over the other is dependent on the sum of all the features one choice has compared to the other. In the following formula $m$ is the dimension of the feature vector.
+\begin{align*}
+p_{ij} &\propto \sum_{k=1}^{m}\mu_k(f_{ik}-f_{ik}\cdot f_{jk}) = u_{ij}\\
+p_{ij} &= \frac{u_{ij}}{u_{ij}+u_{ji}}
+\end{align*}
+Let's calculate the probability with which we choose Rome over Paris:
+\begin{align*}
+p_{12} &= \frac{\sum_{k=1}^3\mu_k(f_{1k}-f_{1k} \cdot f_{2k})}{u_{12}+u_{21}}\\
+       &= \frac{\mu_2}{\mu_2+\mu_1} = \frac{1}{2} \text{ , if $\mu_1=\mu_2$}
+\end{align*}
+Now we calculate the interesting choice Paris+Apple over Rome:
+\begin{align*}
+p_{31} &= \frac{\sum_{k=1}^3\mu_k(f_{1k}-f_{1k} \cdot f_{2k})}{u_{31}+u_{13}}\\
+       &= \frac{\mu_1+\mu_3}{\mu_1+\mu_3+\mu_2} \approx \frac{1}{2} \text{ , since $\mu_3 << \mu_2$}
+\end{align*}
+So Restle's model can predict this scenario much better.
 \end{document}
