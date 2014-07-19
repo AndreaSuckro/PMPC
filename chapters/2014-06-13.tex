@@ -124,7 +124,7 @@ We can model the probability of Hits and False Alarms with Gaussians respectivel
   P\left(X|s=no\right) &= \frac{1}{\sqrt{2\pi \sigma^2}} \cdot e^{-\frac{1}{2}\frac{\left(x-\mu_n\right)^2}{\sigma^2}}
 \end{align*}
 
-This is not easy to calculate, but it is alright to take the $\log$, so we use the log-likelihood ratio and compare that to our previous calculated $\beta$:
+This is not easy to calculate, so we simplify by applying the $\log$ thereby obtaining the log-likelihood ratio and compare that to our previous calculated $\beta$:
 
 \begin{align*}
  -\frac{1}{2\sigma^2} \cdot \left[\left(x-\mu_y\right)^2 - \left(x-\mu_n\right)^2 \right] &\geq log\left(\beta\right)\\
@@ -143,7 +143,7 @@ In the case of $\beta = 1$ and equal prior probabilities that means:
 \begin{align*}
   x \geq \frac{\left(\mu_n-\mu_y\right)\cdot \left(\mu_n+\mu_y\right)}{2\left(\mu_n-\mu_y\right)} = \frac{\left(\mu_n+\mu_y\right)}{2} 
 \end{align*}
-i.e. the best threshold is just in the middle of the two Gaussians.
+i.e. the best threshold is just in the middle of the two Gaussians, given the condition that both Gaussians have the same variance.
 
 \newpage
 
@@ -167,6 +167,6 @@ As we care for the actual perception (the distance of the Gaussians) of a subjec
 \end{tikzpicture}
 \end{center}
 
-Varying the threshold may be achieved by the experimenter, by manipulating the costs and pay-offs for False Alarms or Hits. Note that the above depicted graph is a theoretical model. In a real experiment we would get single data points, scattered around such a curve.
+Varying the threshold may be achieved by the experimenter, by manipulating the costs and pay-offs for False Alarms or Hits. Note that the above depicted graph is a theoretical model. In a real experiment we would get single data points, scattered around such a curve. The further left we get on the $P(FA)$ axis, the further right the subject placed her criterion.
  
 \end{document}

@@ -22,18 +22,19 @@ But it would be better to have a single value to compare the sensitivity. For th
 \bigskip
 First we subtract the mean of the No-responses to make it zero-centered. 
 \begin{align*}
-p(H) = \int_{0}^{\infty} \varphi \left( x,\mu_y,\delta \right)dx &= 1 - \Phi\left(\theta,x_y,\delta\right)\\
-                                                                 &= 1 - \Phi\left(\theta-\mu_n,\mu_y-\mu_n,\delta \right)\\ 
 p(FA) = \int_{\theta}^{\infty} \varphi \left( x,\mu_n,\delta \right)dx &= 1 - \Phi\left(\theta,x_n,\delta\right)\\
-                                                                       &= 1 - \Phi\left(\theta-\mu_n,0,\delta \right)   
+                                                                       &= 1 - \Phi\left(\theta-\mu_n,0,\delta \right)\\   
+p(H) = \int_{0}^{\infty} \varphi \left( x,\mu_y,\delta \right)dx &= 1 - \Phi\left(\theta,x_y,\delta\right)\\
+                                                                 &= 1 - \Phi\left(\theta-\mu_n,\mu_y-\mu_n,\delta \right)
 \end{align*}
-We may also adapt on the variance by dividing through $\delta$.
+We may also adapt on the variance by dividing through $\delta$, thus arriving on a Gaussian with variance $\delta = 1$ and mean $\mu = 0$ in statistics this is called standardising or normalising.
 \begin{align*}
+p(FA) = 1 - \Phi\left(\frac{\theta-\mu_n}{\delta},0,1 \right) &= 1 - \Phi\left(\theta' \right)\\
 p(H) = 1 - \Phi\left(\frac{\theta-\mu_n}{\delta},\frac{\mu_y-\mu_n}{\delta},1 \right) &= 1 - \Phi\left(\theta'-d',0,1\right)\\
-                                                                                      &= 1 - \Phi\left(\theta'-d'\right)\\
-p(FA) = 1 - \Phi\left(\frac{\theta-\mu_n}{\delta},0,1 \right) &= 1 - \Phi\left(\theta' \right) 
+                                                                                      &= 1 - \Phi\left(\theta'-d'\right) \\
+d' &= \frac{\mu_y-\mu_n}{\delta} \\
 \end{align*}
-We can rearrange the last formula to:
+We can rearrange the formula for $P(FA)$ to:
 \begin{align*}
 \Phi\left(\theta'\right) &= 1 - P(FA)\\
 \theta'&=\Phi^{-1}\left(1-P(FA)\right)\\
@@ -83,7 +84,7 @@ A long time ago, people thought that our sensors work in a 0-1 like manner. Ther
 As seen in the plots, the real data that was measured does not really fit the model. Two reasons could explain this difference. First of all there could be noise in the threshold (depending on some hidden neuron mechanisms). Another explanation could be noise in the stimulus.
 
 \bigskip
-The function $F_\theta(\theta)=\frac{1}{2}$ is called the psychometric function. This is all fine, as long as the subject is honest and not lying about her sensation (R is the response and D is whether the subject detected the stimulus):
+The function $P(D = y|S = s)=F_\theta(s), F_\theta(\theta)=\frac{1}{2}$ is called the psychometric function. This is all fine, as long as the subject is honest and not lying about her sensation (R is the response and D is whether the subject detected the stimulus):
 \begin{align*}
 P(R=y|D=y)=P(R=n|D=n)=1
 \end{align*}
@@ -115,9 +116,9 @@ If HT-Theory would be right, the ROC-Curves would be straight lines and not curv
 \label{subsubsec:RelYN2AFC}
 In a Y-N experiment I may state for each frame if there was a stimulus (Y) or not (N). In 2-AFC the subject sees 2 frames and has to decide in which frame the stimulus was. If we did not see the stimulus we have a $50\%$ chance to get the answer right. The probability of a correct answer should be:
 \begin{align*}
-P(C) &=F_\theta(s)+(1-F_\theta(s))\cdot\frac{1}{2}\\
+P(H) &=F_\theta(s)+(1-F_\theta(s))\cdot\frac{1}{2}\\
      &=\frac{1}{2} + \frac{1}{2}F_\theta(s)\\
-F_\theta(s)&=2P(C)-1    
+F_\theta(s)&=2P(H)-1    
 \end{align*}
 But this formulars do not match up with the real data.
 \subsubsection*{3. $2^{nd}$Choice in 4-AFC Task}

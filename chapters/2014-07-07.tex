@@ -4,10 +4,10 @@
 \section[Choice Models II]{Choice Models II \iftoggle{showdates}{\small{\textit{2014-07-07}}}{}}\index{Choice models}
 
 \subsection{Thurstone Scaling}\index{Thurstone Scaling}
-In 1920 Thurstone thought about measurements in Psychology. He conducted an experiment where he asked the subjects whether they think that one crime is more serious than another. Of course there exists no thing like a crime-seriousness scale, but by comparing all pairs of answers, Thurstone could construct one.
+In 1920 Thurstone thought about measurements in Psychology. He conducted an experiment where he asked the subjects whether they think that one crime is more serious than another. Of course there exists no such thing like a crime-seriousness scale, but by comparing all pairs of answers, Thurstone could construct one.
 
 \bigskip
-This technique is also used in the Elo rating (famous amongst chess players) or the similar X-Box's Trueskill. These scales are used to match players of equal skill. The problem is, that you lack enough data to apply our method (you will never have a nearly complete matrix of all X-Box players competing against each other in one specific game). Good thing: we do not need the whole matrix! For subsets of the matrix we can predict new matches based on common past enemies. And (considering the X-Box setting) the matchmake can also optimize their information by matching the right people together. But how do we know, that all this rating is formally correct?
+This technique is also used in the Elo rating (famous amongst chess players) or the similar X-Box's Trueskill. These scales are used to match players of equal skill. The problem is, that you lack enough data to apply our method (you will never have a nearly complete matrix of all X-Box players competing against each other in one specific game). Good thing: we do not need the whole matrix! For subsets of the matrix we can predict new matches based on common past enemies. And (considering the X-Box setting) the matchmaker can also optimize their information by matching the right people together. But how do we know, that all this rating is formally correct?
 
 \subsection{A little bit of Measurement Theory} 
 Consider the problems of an IQ-Test. You lack a concrete scale for the intelligence of a person as well as a 'suitable' opponent for a match up. The solution: to match the subject against the test items.
@@ -31,7 +31,7 @@ Consider the problems of an IQ-Test. You lack a concrete scale for the intellige
 \end{figure}
 The test items mark thresholds similar to signal detection theory: you answer a question correctly and you are right of it, you fail you are left. Now it is possible to calculate simultaneously the position of the thresholds on the IQ-scale, as well as the IQ-scale itself (we do not discuss how to do this in detail). 
 
-\subsubsection{What are the underlying assumptions of our "`Measurement Model"'?}
+\subsubsection{What are the underlying assumptions of our "Measurement Model"?}
 Obviously we assume some kind of ordering between the different items. There is a fancy word for this:
 
 \subsubsection{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}
@@ -43,7 +43,7 @@ If $\mu_i \geq \mu_j,\mu_j \geq \mu_k$ then $\mu_i \geq \mu_k$. In this case tra
 So weak stochastic transitivity is about ordering of the different choices, but is less restrictive about the values. This constraint is exploited by:
 
 \subsubsection{Strong Stochastic Transitivity}\index{Strong Stochastic Transitivity}
-If we know that choice $i$ is preferred over choice $j$ and $j$ is chosen over $k$, the resulting choice probability of $i$ over $k$ can not be less, than the maximum of the single probabilities:
+If we know that choice $i$ is preferred over choice $j$ and $j$ is chosen over $k$, the resulting choice probability of $i$ over $k$ can not be less than the maximum of the single probabilities:
 \begin{align*}
 d_{ij} \geq 0, d_{jk} \geq 0 &\Rightarrow d_{ik} = d_{ij}+d_{jk} \geq max(d_{ij},d_{jk})\\
 p_{ij} \geq \frac{1}{2}, p_{jk} \geq \frac{1}{2} &\Rightarrow p_{ik} \geq max(p_{ij},p_{jk})
