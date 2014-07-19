@@ -135,6 +135,14 @@
 % \est{q} creates the estimation for a variable (i.e. places ^ over it)
 \newcommand{\est}[1]{\expandafter\hat#1}
 
+% bibliography settings
+\bibliographystyle{alpha}
+% nocite error fix
+\makeatletter
+\patchcmd{\nocite}{\ifx\@onlypreamble\document}{\iftrue}{}{}
+\makeatother
+% left aligned bibliography: avoid underfull hboxes
+\apptocmd{\thebibliography}{\raggedright}{}{}
 
 
 
@@ -304,9 +312,9 @@
   \clearpage
 }{}
 
-% ??
-%\subfile{../chapters/2014-06-27.tex}
-%\clearpage
+% Signal Detection Theory IV
+\subfile{../chapters/2014-06-27.tex}
+\clearpage
 
 % Choice Models I
 \subfile{../chapters/2014-07-04.tex}
@@ -344,8 +352,8 @@
       ]{../exercises/Exercises09.pdf}
 }{}
 \iftoggle{solutions}{
-%  \subfile{../chapters/2014-07-18.tex}
-%  \clearpage
+  \subfile{../chapters/2014-07-18.tex}
+  \clearpage
 }{}
 
 % Q&A
