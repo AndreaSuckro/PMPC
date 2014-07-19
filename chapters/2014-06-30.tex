@@ -57,7 +57,9 @@ P(N=n|r,t) &= \frac{(rt)^n}{n!} e^{-rt} \\
 \frac{\partial\log{P(N=n|r,t)}}{\partial r} &= \frac{n}{rt}t-t \\
 \frac{\partial^2\log{P(N=n|r,t)}}{\partial^2 r} &= \frac{n}{r^2} \\
 \text{Use the first derivative to maximize it:}\\
-\frac{n}{\est{r}t}t-t &= 1 \\
+\frac{\partial\log{P(N=n|r,t)}}{\partial r} &= 0 \\
+\frac{n}{\est{r}t}t-t &= 0 \\
+\frac{n}{\est{r}t}t &= t \\
 \frac{n}{\est{r}t} &= 1 \\
 \frac{n}{t} &= \est{r}
 \end{align*}
