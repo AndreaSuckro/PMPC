@@ -22,17 +22,17 @@ But it would be better to have a single value to compare the sensitivity. For th
 \bigskip
 First we subtract the mean of the No-responses to make it zero-centered. 
 \begin{align*}
-p(FA) = \int_{\theta}^{\infty} \varphi \left( x,\mu_n,\sigma^2 \right)dx &= 1 - \Phi\left(\theta,x_n,\sigma^2\right)\\
-                                                                       &= 1 - \Phi\left(\theta-\mu_n,0,\sigma^2 \right)\\   
-p(H) = \int_{0}^{\infty} \varphi \left( x,\mu_y,\sigma^2 \right)dx &= 1 - \Phi\left(\theta,x_y,\sigma^2\right)\\
-                                                                 &= 1 - \Phi\left(\theta-\mu_n,\mu_y-\mu_n,\sigma^2 \right)
+p(FA) = \int_{\theta}^{\infty} \varphi \left( x,\mu_n,\sigma \right)dx &= 1 - \Phi\left(\theta,x_n,\sigma\right)\\
+                                                                       &= 1 - \Phi\left(\theta-\mu_n,0,\sigma \right)\\   
+p(H) = \int_{0}^{\infty} \varphi \left( x,\mu_y,\sigma \right)dx &= 1 - \Phi\left(\theta,x_y,\sigma\right)\\
+                                                                 &= 1 - \Phi\left(\theta-\mu_n,\mu_y-\mu_n,\sigma \right)
 \end{align*}
-We may also adapt on the variance by dividing through $\sigma^2$, thus arriving on a Gaussian with variance $\sigma^2 = 1$ and mean $\mu = 0$ in statistics this is called standardising or normalising.
+We may also adapt on the deviation by dividing through $\sigma$, thus arriving on a Gaussian with variance $\sigma^2 = 1$ and mean $\mu = 0$ in statistics this is called standardising or normalising.
 \begin{align*}
-p(FA) = 1 - \Phi\left(\frac{\theta-\mu_n}{\sigma^2},0,1 \right) &= 1 - \Phi\left(\theta' \right)\\
-p(H) = 1 - \Phi\left(\frac{\theta-\mu_n}{\sigma^2},\frac{\mu_y-\mu_n}{\sigma^2},1 \right) &= 1 - \Phi\left(\theta'-d',0,1\right)\\
+p(FA) = 1 - \Phi\left(\frac{\theta-\mu_n}{\sigma},0,1 \right) &= 1 - \Phi\left(\theta' \right)\\
+p(H) = 1 - \Phi\left(\frac{\theta-\mu_n}{\sigma},\frac{\mu_y-\mu_n}{\sigma},1 \right) &= 1 - \Phi\left(\theta'-d',0,1\right)\\
                                                                                       &= 1 - \Phi\left(\theta'-d'\right) \\
-d' &= \frac{\mu_y-\mu_n}{\sigma^2} \\
+d' &= \frac{\mu_y-\mu_n}{\sigma} \\
 \end{align*}
 We can rearrange the formula for $P(FA)$ to:
 \begin{align*}
