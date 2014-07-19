@@ -35,9 +35,7 @@ end
 p = p ./ (p+p');
 % by definition the diagonal contains only zeros
 p(eye(n)>0) = 0.5;
-p
-k
-log(p)
+
 % finally, calculate the negative log likelihood
 L = k .* log(p);
 negloglik = -sum(L(:));
