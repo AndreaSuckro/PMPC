@@ -38,7 +38,7 @@ Then we can use Bayes' rule\index{Bayes' Rule} to come up with a solution. We us
 \begin{align*}
 p(X=x|Y=y) &= \frac{p(Y=y|X=x)p(X=x)}{p(Y=y)} \\
            &= \frac{\frac{1}{x} \mathcal{I}(y \leq x) \beta^{-2} x e^{-\frac{x}{\beta}}}{p(Y=y)} \\
-           &= \frac{\mathcal{I}(y \leq x) e^{-\frac{x}{\beta}}}{p(Y=y)}
+           &= \frac{\mathcal{I}(y \leq x) \beta^{-2} e^{-\frac{x}{\beta}}}{p(Y=y)}
 \end{align*}
 We can derive $p(Y=y)$ (normalization) by taking the integral of $e^{-\frac{x}{\beta}}\mathcal{I}(y \leq x)$.
 
@@ -50,9 +50,9 @@ p(Y=y) &= \int\limits_0^\infty e^{-\frac{x}{\beta}} \mathcal{I}(y \leq x) dx \\
 
 By employing $p(Y=y)$ in the formula, we finally come up with our posterior distribution:
 \begin{align*}
-p(X=x|Y=y) &= \frac{\mathcal{I}(y \leq x) e^{-\frac{x}{\beta}}}{p(Y=y)} \\
-           &= \frac{\mathcal{I}(y \leq x) e^{-\frac{x}{\beta}}}{\beta e^{-\frac{y}{\beta}}} \\
-           &= \mathcal{I}(y \leq x) \frac{e^{-\frac{x}{\beta}}}{\beta e^{-\frac{y}{\beta}}}
+p(X=x|Y=y) &= \frac{\mathcal{I}(y \leq x) \beta^{-2} e^{-\frac{x}{\beta}}}{p(Y=y)} \\
+           &= \frac{\mathcal{I}(y \leq x) e^{-\frac{x}{\beta}}}{\beta^3 e^{-\frac{y}{\beta}}} \\
+           &= \mathcal{I}(y \leq x) \frac{e^{-\frac{x}{\beta}}}{\beta^3 e^{-\frac{y}{\beta}}}
 \end{align*}
 
 The plot of the posterior distribution is as follows (for $y = 2$ and $\beta = 2$):
@@ -76,18 +76,18 @@ The plot of the posterior distribution is as follows (for $y = 2$ and $\beta = 2
 The idea for our prediction is now to take the mean of the ``remaining'' distribution, i.e. the mean of the part which is greater than $y$. The mean is where the integral over our distribution is 0.5.
 
 \begin{align*}
-\frac{1}{2} &\stackrel{!}{=} \int\limits_y^{\est{x}} \frac{1}{\beta} e^{-\frac{x-y}{\beta} } dx = \frac{1}{\beta} \int\limits_0^{\est{x}-y} e^{-\frac{x}{\beta}} dx \\
-&= \frac{1}{\beta} \left[-\beta e^{-\frac{x}{\beta}}\right]_0^{\est{x}-y} = \frac{1}{\beta} \left( -\beta e^{-\frac{\est{x}-y}{\beta}} + \beta \right) \\
-= 1 - e^{-\frac{\est{x}-y}{\beta}} &\stackrel{!}{=} \frac{1}{2} \\
-e^{-\frac{\est{x}-y}{\beta}} &= \frac{1}{2} \\
--\frac{\est{x}-y}{\beta} = \log {\frac{1}{2}} \\
--\est{x}+y = \beta \log{ \frac{1}{2} } \\
-y = \beta \log{ \frac{1}{2} } + \est{x}
-\est{x} = y-\beta \log{ \frac{1}{2} } \\
-\est{x} = \underbrace{y}_{\text{current}}+\underbrace{\beta \log{ 2 }}_{\text{additional}}
+\frac{1}{2} &\stackrel{!}{=} \int\limits_y^{\est{x}} \frac{1}{\beta^3} e^{-\frac{x-y}{\beta} } dx = \frac{1}{\beta^3} \int\limits_0^{\est{x}-y} e^{-\frac{x}{\beta}} dx \\
+&= \frac{1}{\beta^3} \left[-\beta e^{-\frac{x}{\beta}}\right]_0^{\est{x}-y} = \frac{1}{\beta^3} \left( -\beta e^{-\frac{\est{x}-y}{\beta}} + \beta \right) \\
+&= \frac{1}{\beta^2}( 1 - e^{-\frac{\est{x}-y}{\beta}}) \stackrel{!}{=} \frac{1}{2} \\
+e^{-\frac{\est{x}-y}{\beta}} &= \frac{\beta^2}{2} \\
+-\frac{\est{x}-y}{\beta} &= \log {\frac{\beta^2}{2}} \\
+-\est{x}+y &= \beta \log{ \frac{\beta^2}{2} } \\
+y &= \beta \log{ \frac{\beta^2}{2} } + \est{x}\\
+\est{x} &= y-\beta \log{ \frac{\beta^2}{2} } \\
+\est{x} &= \underbrace{y}_{\text{current}}+\underbrace{\beta \log{\frac{2}{\beta^2}}}_{\text{additional}}
 \end{align*}
 
-So our best guest for how long the member of the House of Representatives will stay in congress is $\beta \log{2}$. With the example distribution above, this would yield $2\log{2} \approx 1.4$
+So our best guest for how long the member of the House of Representatives will stay in congress is $\beta \log{\frac{2}{\beta^2}}$. With the example distribution above, this would yield $2 \log{\frac{2}{2^2}} \approx -1.3$ (whooopsi...)
 
 
 
