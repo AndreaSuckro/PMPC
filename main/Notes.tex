@@ -55,6 +55,12 @@
 % poisson distribution for lambda. Use ``samples at{1,...,n}''
 \pgfmathdeclarefunction{poisson}{1}{\pgfmathparse{#1^x * exp(-#1) / x!}}
 
+% specErlang(\beta)
+% the special case of the Erlang distribution for exercise 9.1
+\pgfmathdeclarefunction{specErlang}{1}{\pgfmathparse{#1^(-2) * x * exp(-x/#1)}}
+
+
+
 % ROC(q)
 % example ROC curves, approximations by distance metrics
 \pgfmathdeclarefunction{roc}{1}{\pgfmathparse{(#1==1) * x + (#1>1) * sqrt(1-(x-1)^#1)}}
