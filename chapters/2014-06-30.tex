@@ -55,7 +55,7 @@ Assuming we have 10 spikes in a second and plug this into the Poisson distributi
 P(N=n|r,t) &= \frac{(rt)^n}{n!} e^{-rt} \\
 \log{P(N=n|r,t)} &= n \log{rt} - \log{n!} - rt \\
 \frac{\partial\log{P(N=n|r,t)}}{\partial r} &= \frac{n}{rt}t-t \\
-\frac{\partial^2\log{P(N=n|r,t)}}{\partial^2 r} &= \frac{n}{r^2} \\
+\frac{\partial^2\log{P(N=n|r,t)}}{\partial^2 r} &= -\frac{n}{r^2} \\
 \text{Use the first derivative to maximize it:}\\
 \frac{\partial\log{P(N=n|r,t)}}{\partial r} &= 0 \\
 \frac{n}{\est{r}t}t-t &= 0 \\

@@ -31,7 +31,7 @@ Consider the problems of an IQ-Test. You lack a concrete scale for the intellige
 \end{figure}
 The test items mark thresholds similar to signal detection theory: you answer a question correctly and you are right of it, you fail you are left. Now it is possible to calculate simultaneously the position of the thresholds on the IQ-scale, as well as the IQ-scale itself (we do not discuss how to do this in detail). 
 
-\subsubsection{What are the underlying assumptions of our "Measurement Model"?}
+\subsubsection*{What are the underlying assumptions of our ``Measurement Model''?}
 Obviously we assume some kind of ordering between the different items. There is a fancy word for this:
 
 \subsubsection{Weak Stochastic Transitivity}\index{Weak Stochastic Transitivity}
@@ -67,7 +67,7 @@ Strong stochastic transitivity may be violated in the case where the variances o
 
 In this case $p_{ij} = 0.6$, $p_{jk}=0.95$ but $p_{ik} = 0.85$ which is less than the maximum of the other probabilities $0.95$! But we can also think of different examples where the whole concept of transitivity is questionable.
 
-\subsubsection{Is transitivity reasonable?}
+\subsubsection*{Is transitivity reasonable?}
 Assume a situation of three chess players $A, B,$ and $C$. $A$ more often beats $B$ than losing against him, $B$ more often beats $C$ but $C$ also more often beats $A$ than losing against her. This scenario is visualized in figure \ref{fig:2014-07-04-chesscycle}. If we try to find Gaussian distributions for each player's utility it gets clear quite quickly, that we will fail, since we don't know ``where'' to put the $\mu$ for the last competitor: left or right of the other two?
 
 \begin{figure}[ht]
@@ -101,7 +101,7 @@ f_1 = (0, 1, 0)\\
 f_2 = (1, 0, 0)\\
 f_3 = (1, 0, 1)
 \end{align*}
-Each feature has a utility $\mu_1,\mu_2,\mu_3$ and the probability to choose one over the other $i$s dependent on the sum of all the features one choice has compared to the other. In the following formula $m$ is the dimension of the feature vector.
+Each feature has a utility $\mu_1,\mu_2,\mu_3$ and the probability to choose one over the other is dependent on the sum of all the features one choice has compared to the other. In the following formula $m$ is the dimension of the feature vector.
 \begin{align*}
 p_{ij} &\propto \sum_{k=1}^{m}\mu_k(f_{ik}-f_{ik}\cdot f_{jk}) = u_{ij}\\
 p_{ij} &= \frac{u_{ij}}{u_{ij}+u_{ji}}
@@ -113,7 +113,7 @@ p_{12} &= \frac{\sum_{k=1}^3\mu_k(f_{1k}-f_{1k} \cdot f_{2k})}{u_{12}+u_{21}}\\
 \end{align*}
 Now we calculate the interesting choice Paris+Apple over Rome:
 \begin{align*}
-p_{31} &= \frac{\sum_{k=1}^3\mu_k(f_{1k}-f_{1k} \cdot f_{2k})}{u_{31}+u_{13}}\\
+p_{31} &= \frac{\sum_{k=1}^3\mu_k(f_{3k}-f_{3k} \cdot f_{1k})}{u_{31}+u_{13}}\\
        &= \frac{\mu_1+\mu_3}{\mu_1+\mu_3+\mu_2} \approx \frac{1}{2} \text{ , since $\mu_3 << \mu_2$}
 \end{align*}
 So Restle's model can predict this scenario much better.

@@ -55,18 +55,14 @@ p(X=x|Y=y) &= \frac{\mathcal{I}(y \leq x) \beta^{-2} e^{-\frac{x}{\beta}}}{p(Y=y
            &= \mathcal{I}(y \leq x) \frac{e^{-\frac{x}{\beta}}}{\beta^3 e^{-\frac{y}{\beta}}}
 \end{align*}
 
-The plot of the posterior distribution is as follows (for $y = 2$ and $\beta = 2$):
+The plot of the posterior distribution is as follows (for $y = 2$ and $\beta = 1$):
 \begin{figure}[h]
   \centering
   \begin{tikzpicture}
-    \begin{axis}[every axis plot post/.append style={mark=none, samples=50, smooth}, 
+    \begin{axis}[every axis plot post/.append style={mark=none, samples=200, smooth}, 
                   axis x line*=bottom, axis y line*=left, enlargelimits=upper, domain=0:10]
-      %\addplot[blue] {(2<=x) * ( exp(-x/0.5) ) / ( 0.5 * exp(-2/0.5) ) };
-        %\addlegendentry{$\beta=0.5$}
-      %\addplot[violet] {(2<=x) * ( exp(-x/1) ) / ( 1 * exp(-2/1) ) };
-        %\addlegendentry{$\beta=1$}
-      \addplot[red] {(2<=x) * ( exp(-x/2) ) / ( 2 * exp(-2/2) ) };
-        \addlegendentry{$\beta=2$}
+      \addplot[violet] {(2<=x) * ( exp(-x/1) ) / ( 1^3 * exp(-2/1) ) };
+        \addlegendentry{$\beta=1$}
     \end{axis}
   \end{tikzpicture}
   \caption{Final posterior distribution.}
