@@ -45,9 +45,32 @@ It is now time $t^\star$ after the last flash and the next flash hasn't happened
 
 
 \subsection*{Exercise 6}
-
+In a detection experiment the distribution for a trial without a signal ($signal = no$) is given by
+\begin{align*}
+p(X=x|signal = no) = \begin{cases}
+  1 \text{ if }0\leq x \leq 1\\ 
+  0 \text{ otherwise}
+\end{cases}
 \end{align*}
+The distribution for the trials where there is a signal ($signal = yes$) is given by
+\begin{align*}
+p(X=x|signal = yes) = \begin{cases}
+  1 \text{ if }0.5\leq x \leq 1.5\\ 
+  0 \text{ otherwise}
+\end{cases}
+\end{align*}
+Assume a subject responds with $yes$ if the observed value $X$ is larger than a criterion $c$ and $no$ otherwise. How does the hit rate change as a function of $c$? How does the false alarm rate change as a function of $c$? Make a plot of the ROC curve.
 
+
+\subsection*{Exercise 7}
+Explain why a high-threshold theory of detection is not tenable. Name and explain four findings that together speak against high-threshold theory.
+
+\subsection*{Exercise 8}\index{Choice models}
+Let the probability $p_{ij}$ that an option $i$ is chosen over an option $j$ in a paired comparison experiment be a function of the utilities $\mu_i$ and $\mu_j$:
+\begin{align*}
+p_{ij}=F(\mu_i-\mu_j)
+\end{align*}
+where $F$ is a strictly increasing cumulative distribution function with $F(0)=\frac{1}{2}$. Choice models that can be expressed in this way are said to satisfy $simple scalability$. Show that simple scalability implies strong stochastic transitivity.
 
 
 \end{document}
