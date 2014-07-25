@@ -97,9 +97,9 @@ If we are indifferent between Paris and Rome ($p_{21} = p_{12} = \frac{1}{2}$) -
 
 Restle proposes a binary feature vector that describes each option. Ours look like $(Paris, Rome, Apple)$:
 \begin{align*}
-f_1 = (0, 1, 0)\\
-f_2 = (1, 0, 0)\\
-f_3 = (1, 0, 1)
+& Rome: & f_1 = (0, 1, 0) & & &\\
+& Paris: & f_2 = (1, 0, 0) & & &\\
+& Paris + an~apple: & f_3 = (1, 0, 1) & & &
 \end{align*}
 Each feature has a utility $\mu_1,\mu_2,\mu_3$ and the probability to choose one over the other is dependent on the sum of all the features one choice has compared to the other. In the following formula $m$ is the dimension of the feature vector.
 \begin{align*}

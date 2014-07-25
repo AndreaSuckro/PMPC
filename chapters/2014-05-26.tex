@@ -64,7 +64,21 @@ P(H=h|q) = \underbrace{ \binom{n}{h} q^h (1-q)^{n-h} }_\text{Binomial distributi
 \sidenote{Obviously WIP!}
 Now we introduce a criterion: subjects can discriminate if they get >20 correct answers. In that case you reject the null hypothesis.
 
---- some gauss distribution from notes
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:25, y post scale=0.5]
+  \addplot+[domain=20:25, samples=100, pattern=flexible hatch, mark=none
+            hatch distance=5pt, hatch thickness=0.5pt,
+            draw=green, pattern color=green!40, area legend]
+            {gauss(12.5,4.5)} \closedcycle;
+  \addplot[color=red, samples=50, smooth] {gauss(12.5,4.5)};
+\end{axis}
+\end{tikzpicture}
+\caption{The corresponding Gaussian}
+\label{fig:2014-05-26-gauss1}
+\end{figure}
 
 \begin{align*}
 &P\left(H=h |q=\frac{1}{2},n=25\right) \\
@@ -75,7 +89,20 @@ $\alpha$ is the signal level $\rightarrow$ type I error rate that's acceptable (
 
 say $q = \frac{4}{5}$
 
---- another plot from notes
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:25, y post scale=0.5, legend pos= north west, yticklabels={,,} ]
+  \addplot+[domain=0:20, samples=100, pattern=flexible hatch, mark=none
+            hatch distance=5pt, hatch thickness=0.5pt,
+            draw=green, pattern color=green!40, area legend]
+            {gauss(22.5,4)} \closedcycle;
+   \addlegendentry{$\beta\approx\frac{3}{4}$}
+  \addplot[color=red, samples=50, smooth] {gauss(22.5,4)};
+\end{axis}
+\end{tikzpicture}
+\label{fig:2014-05-26-gauss2}
+\end{figure}
 
 type II error $\beta \approx \frac{3}{4}$
 
