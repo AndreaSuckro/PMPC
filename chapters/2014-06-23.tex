@@ -112,14 +112,15 @@ That means we can express $P\left(H\right)$ as a linear function of the False Al
 \end{equation}
 And therefore we would get a linear ROC curve which, as we already have seen, does not correspond to the data. It would mean that we only have false alarms because we chose to answer opposite to our actual memory and not because we falsely remember any stimuli. 
 
-%\begin{tikzpicture}
-  %\begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, legend style={at={(1.5,0.2)}, anchor=east},xlabel ={P(FA)}, ylabel={P(H)}]
-  %\addplot[smooth,dashed] file {../data/2014-06-13_dist5.txt};
-  %\addlegendentry{Signal Detection Theory and actual Data}
-  %\addplot[smooth] file {../data/2014-06-13_dist1.txt};
-  %\addlegendentry{High Threshold Theory}
-  %\end{axis}
-%\end{tikzpicture}
+\begin{tikzpicture}
+ \begin{axis}[axis x line*=bottom, axis y line*=left, enlargelimits=upper, axis on top, domain=0:1, y domain=0:1, legend style={at={(1.5,0.2)}, anchor=east},xlabel ={P(FA)}, ylabel={P(H)}]
+  \addplot[smooth, dashed, samples=50]{roc(2)};
+ \addlegendentry{Signal Detection Theory and actual Data} ;
+ \addplot[smooth, red] file {../data/2014-06-23_HighTrsh.txt};
+ \addlegendentry{High Threshold Theory};
+ \addplot [red, mark = *, nodes near coords=$P_{r}$,every node near coord/.style={anchor=90}] coordinates {( 0, 0.5)};
+ \end{axis}
+\end{tikzpicture}
 
 \end{document}
 
