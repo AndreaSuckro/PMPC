@@ -1,0 +1,53 @@
+\documentclass[../main/Notes.tex]{subfiles}
+\begin{document}
+
+\section{Final Exam Questions}\index{Final Exam}
+There are 8 questions and each question is worth 4 points. You only have to answer 6 out of the 8 questions. Hence, the maximum score is 24 points. If you answer more than 6 questions the answers with the lowest scores will be discarded. You have from 8:00 to 10:00 to work on your responses. Please respond in full sentences.
+
+
+\subsection*{Exercise 1}\index{Bayes' Rule}
+To diagnose colorectal cancer the hemoccult test is conducted to detect occult blood in the stool. For symptom-free people over 50 years old who participate in screening using the heoccult test the following information is available: 0.3\% have colorectal cancer. Of these people with cancer, half of them will have a positie test result (The hemoccult test is not very sensitive, its hit-rate is only 50\%). Of the people without cancer, 3\% will still have a positive hemoccult test (the false-alarm-rate is about 3\%). What is the posterior probability of having colorectal cancer for a symptom-free person over 50 with a positive test result?
+
+
+\subsection*{Exercise 2}\index{Proper scoring}
+A statement $X$ in a knowledge test can be true ($X=1$) or false ($X=0$). Say, you answered that your probability is $q$ for $X=1$. You will be scored using the following loss function
+\begin{align*}
+L(X,q) = \frac{1}{2}q^2-Xq,
+\end{align*}
+Your true belief in the statement is $p$. Show that $L$ is a proper scoring rule.
+
+
+\subsection*{Exercise 3}\index{Change of variable}
+$X$ is a random variable with probability density function\index{PDF}
+\begin{align*}
+f(x) = \begin{cases}
+1 \text{ if } 0 \leq x \leq 1 \\
+0 \text{ otherwise}
+\end{cases}
+\end{align*}
+Define a new random variable $Y = X^2$. What is the cumulative distribution function\index{CDF} for $Y$? What is the probability density function for $Y$?
+
+
+\subsection*{Exercise 4}
+The exponential distribution has the following probability density function
+\begin{align*}
+p(T_i=t_i|\lambda)=\lambda e^{-\lambda t_i}
+\end{align*}
+for positive values of $t_i$, and strictly positive values of $\lambda$. Assume you have seen $n$ independent samples $T_1,\dots,T_n$ from an exponential distribution. What is the joint distribution $p(T_1=t_1,\dots,T_n=t_n|\lambda)$? What is the maximum likelihood estimate for $\lambda$ after you've seen $n$ samples.
+
+
+\subsection*{Exercise 5}
+Your are a subject in a reaction time experiment. Your task is to press a button as fast as possible when a clearly visible light flashes up. The time point $T$ of the next flash in the experiment depends only on the time point of the last flash. Without loss of generality we can assume that the last flash happened at time zero. The distribution for the next flash at time $T$ is an exponential distribution with parameter $\lambda$
+\begin{align*}
+p(T=t|\lambda)=\lambda e^{-\lambda t}
+\end{align*}
+It is now time $t^\star$ after the last flash and the next flash hasn't happened yet. What is the new distribution of $T$ given that the next flash has not happened until time $t^\star$, $p(T=t|T>t^\star,\lambda)$? Why is it clever of the experimenter to use the exponential distribution?
+
+
+\subsection*{Exercise 6}
+
+\end{align*}
+
+
+
+\end{document}
