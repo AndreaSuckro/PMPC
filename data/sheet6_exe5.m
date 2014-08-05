@@ -52,7 +52,7 @@ falsealarms=1-normcdf(c,0,1);
 %plot ROC curve with distance of gaussians = 1
 plot(falsealarms,hits,'k'), axis square, title('criterion=1/4');
 hold on;
-for i=1:6
+for i=1:10
     %simulate 100 random trials with a criterion of 1/4
     %take the mean of the trials above the criterion
     expectedfalsealarms=mean(normrnd(0,1,[100,1])>(1/4));
